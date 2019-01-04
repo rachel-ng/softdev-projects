@@ -1,0 +1,25 @@
+group d'etat
+Rachel Ng
+Ray Onishi
+Tina Wong
+Maggie Zhao
+pd 07
+---------------------
+P #02: The End
+Your team has been contracted to showcase your proficiency with all things covered this term.
+
+You have secured creative freedom of expressions, constrained only by the bounds of scholarly discourse
+
+ ______   ______   __   __   __       ______   _______
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+tinaW -- 2019-01-04 15:27
+- Added devlog
