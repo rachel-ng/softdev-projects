@@ -1,8 +1,3 @@
-# Maggie Zhao
-# SoftDev1 pd7
-# K
-# 2018-##-##
-
 import sqlite3
 
 #opens if db exist, otherwise create
@@ -27,10 +22,3 @@ for row in boo:
     print(row)
 db.commit() #save changes
 db.close()
-
-'''
-if the sqlite terminal looks like
-sqlite> SELECT * FROM roster
-    ...>
-you are probably missing the semicolon (;)
-'''
