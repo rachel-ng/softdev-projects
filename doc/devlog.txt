@@ -24,3 +24,8 @@ You have secured creative freedom of expressions, constrained only by the bounds
 tinaW -- 2019-01-04 15:27
 - Added devlog
 - Added basic templates
+
+tinaW -- 2019-01-08 11:08
+- Added database creation
+- Added registration and authentication
+- Added page templating for login and register
