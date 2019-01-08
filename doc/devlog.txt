@@ -23,9 +23,10 @@ You have secured creative freedom of expressions, constrained only by the bounds
 
 tinaW -- 2019-01-04 15:27
 - Added devlog
-- Added basic templates
 
-tinaW -- 2019-01-08 11:08
+tinaW -- 2019-01-08 17:11
+- Fixed component map by organizing it by front end and back end to provide more clarity
+- Added basic templates
 - Added database creation
 - Added registration and authentication
 - Added page templating for login and register
