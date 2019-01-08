@@ -23,7 +23,14 @@ def signup():
 def login():
     '''This function renders the HTML template for the login page.'''
     return render_template('login.html')
-    
+
+@app.route('/logout')
+def logout():
+    '''This function removes the username from the session, logging the user out. Redirects user to home page.'''
+    session.pop('username') # ends session
+    flash("You have successfully logged out.")
+    return redirect('/')
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
