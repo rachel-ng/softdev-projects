@@ -28,5 +28,5 @@ tinaW -- 2019-01-08 17:11
 - Fixed component map by organizing it by front end and back end to provide more clarity
 - Added basic templates
 - Added database creation
-- Added registration and authentication
+- Added back end for registration, login and authentication
 - Added page templating for login and register

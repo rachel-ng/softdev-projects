@@ -2,7 +2,7 @@ import sqlite3
 from passlib.hash import sha256_crypt
 
 #opens if db exist, otherwise create
-DB_FILE = "health.db"
+DB_FILE = "data/health.db"
 
 def create_table():
     ''' This function creates a Users table in database with column names username and password.'''
@@ -14,7 +14,6 @@ def create_table():
     c.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, user TEXT, password TEXT)")
     c.execute("CREATE TABLE IF NOT EXISTS basic_info (user_id INTEGER, height REAL, weight REAL)")
     c.execute("CREATE TABLE IF NOT EXISTS water (user_id INTEGER, current_intake REAL, expected_intake REAL)")
-    c.execute("CREATE TABLE IF NOT EXISTS sleep (user_id INTEGER, 01_hours INTEGER, 02_hours INTEGER, 03_hours INTEGER, 04_hours INTEGER, 05_hours INTEGER, 06_hours INTEGER, 07_hours INTEGER)")
     c.execute("CREATE TABLE IF NOT EXISTS diet (user_id INTEGER, allergies TEXT, carbs REAL, protein REAL, fat REAL)")
     c.execute("CREATE TABLE IF NOT EXISTS expected_diet (user_id INTEGER, expected_carbs REAL, expected_protein REAL, expected_fat REAL)")
 
@@ -47,4 +46,5 @@ def authenticate(username, password):
             return True
     db.close()
     return False
-# create_table()
+
+create_table()
