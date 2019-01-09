@@ -5,21 +5,69 @@
     <title> {% block title %} {% endblock %} | ambrosia</title>
     {% endblock %}
     <meta charset="utf-8">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet"> -->
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top">
+      <a class="navbar-brand" href="/">AMBROSIA</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          {% if 'user' not in session %}
+          <li class="nav-item active itemSpacing">
+            <a class="nav-link" href="/PATHTOFOOD">Food/Nutrition</a>
+          </li>
+          <li class="nav-item active itemSpacing">
+            <a class="nav-link" href="/PATHTOSLEEP">Sleep</a>
+          </li>
+          <li class="nav-item active itemSpacing">
+            <a class="nav-link" href="/PATHTOWATER">Water</a>
+          </li>
+          <li class="nav-item active itemSpacing">
+            <a class="nav-link" href="/PATHTOEXERCISE">Exercise</a>
+          </li>
+          {% endif %}
+        </ul>
+        <ul class="navbar-nav">
+          {% if 'user' not in session %}
+          <li class="nav-item active itemSpacing">
+            <a class="nav-link" href="/login">Login</a>
+          </li>
+          <li class="nav-item active itemSpacing">
+            <a class="nav-link" href="/signup">Register</a>
+          </li>
+          {% else %}
+          <li class="nav-item active">
+            <a class="nav-link"> Logged in as {{session['user']}} </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/logout"> Sign Out</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <br>
     {% set msgs = get_flashed_messages() %}
       {% for each in msgs %}
       {{ each }}
       <br>
       {% endfor %}
-      <br>
     {% block content %}
     {% endblock %}
     {% block footer %}
     <br><hr>
     <p align="center">&copy group d'etat</p>
    {% endblock %}
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>

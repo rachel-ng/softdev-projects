@@ -30,3 +30,9 @@ tinaW -- 2019-01-08 17:11
 - Added database creation
 - Added back end for registration, login and authentication
 - Added page templating for login and register
+
+rayO -- 2019-01-08 23:03
+- Added navbar to base
+- Created static folder to hold css/images
+- Created index.css and base.css
+- Added some placeholder items to index.html to test organization of items

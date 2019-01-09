@@ -1,0 +1,9 @@
+.bg-light {
+  padding-top: 10px;
+  background-color: transparent !important;
+}
+
+.itemSpacing {
+  padding-left: 5px;
+  padding-right: 5px;
+}
