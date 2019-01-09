@@ -7,6 +7,7 @@ Home
 {% endblock %}
 
 {% block content %}
+{% if 'username' not in session %}
 <div class="container">
   <div class="jumbotron">
   <h1 class="display-4">PLACEHOLDER</h1>
@@ -17,7 +18,9 @@ Home
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
   </p>
   </div>
+</div>
 
+{% else %}
   <div class="container">
     <div class="row">
       <div class="col gridTemp">
@@ -36,6 +39,6 @@ Home
       </div>
     </div>
   </div>
-</div>
+  {% endif %}
 
 {% endblock %}

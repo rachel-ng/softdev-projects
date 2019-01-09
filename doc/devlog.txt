@@ -64,3 +64,6 @@ rachelN -- 2019-01-09 00:15
 tinaW -- 2019-01-09 01:07
 - Added profile template
 - Added backend for getting user's height and weight into database
+
+rayO -- 2019-01-09 13:05
+- Facilitated passing session to index to show different items for logged in users
