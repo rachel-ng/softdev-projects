@@ -4,7 +4,6 @@ from flask import Flask, render_template, request, session, redirect, url_for, f
 
 from util import user
 
-import os
 app = Flask(__name__) #create instance of class flask
 
 app.secret_key = os.urandom(32)
