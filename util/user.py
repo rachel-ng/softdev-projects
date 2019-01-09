@@ -5,7 +5,7 @@ from passlib.hash import sha256_crypt
 DB_FILE = "data/health.db"
 
 def create_table():
-    ''' This function creates a Users table in database with column names username and password.'''
+    ''' This function creates all the tables in the database if they do not exist.'''
     db = sqlite3.connect(DB_FILE)
 
     #used to traverse db
