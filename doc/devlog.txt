@@ -43,3 +43,17 @@ rayO -- 2019-01-08 23:03
 - Created static folder to hold css/images
 - Created index.css and base.css
 - Added some placeholder items to index.html to test organization of items
+
+rachelNg -- 2019-01-09 00:15
+- Added ideal timeline with dates and tasks in order of priority 
+- Updated database schema: now includes tables user_information, water_log, sleep_log, exercise_log, food_log, weekly_diet
+    - user_information -- user id, username and hashed password, height and weight   
+          - now includes allergies and dietary restrictions, and expected macros (from diet: carbs, protein, fat) 
+    - water_log -- dates, daily intake
+          - now weekly 
+    - sleep_log -- dates, start and end, hours slept
+    - exercise_log -- dates, hours exercised, targeted muscle groups  
+    - food_log -- dates, time, meal / what you ate, takes calories, carbs, protein, fat
+          - easier adding of calories + macros in the weekly_diet table
+    - weekly_diet -- dates, daily calories + macros
+- Added updated design doc to repo
