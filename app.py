@@ -69,6 +69,27 @@ def logout():
     flash("You have successfully logged out.")
     return redirect('/')
 
+@app.route('/profile')
+def profile():
+    '''This function renders the HTML template for the profile page.'''
+    try:
+        user = session['username']
+        return render_template('profile.html', user=user)
+    except:
+        flash("You must be logged in to access this page.")
+        return redirect('/')
+
+@app.route('/user_info', methods = ['POST'])
+def user_info():
+    user = session['username']
+    height = request.form['height']
+    weight = request.form['weight']
+    if user.add_info(height, weight, user):
+        flash("Changes successfully saved!")
+    else:
+        flash("Changes could not be saved.")
+    return redirect(url_for('profile'))
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

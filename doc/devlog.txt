@@ -24,7 +24,7 @@ You have secured creative freedom of expressions, constrained only by the bounds
 tinaW -- 2019-01-04 15:27
 - Added devlog
 
-tinaW -- 2019-01-08 15:45
+tinaW -- 2019-01-07 15:45
 - Added list of components, database schema, and component map on design doc
 
 maggieZ -- 2019-01-08 00:45
@@ -47,7 +47,7 @@ rayO -- 2019-01-08 23:03
 - Created index.css and base.css
 - Added some placeholder items to index.html to test organization of items
 
-rachelNg -- 2019-01-09 00:15
+rachelN -- 2019-01-09 00:15
 - Added ideal timeline with dates and tasks in order of priority
 - Updated database schema: now includes tables user_information, water_log, sleep_log, exercise_log, food_log, weekly_diet
     - user_information -- user id, username and hashed password, height and weight
@@ -60,3 +60,7 @@ rachelNg -- 2019-01-09 00:15
           - easier adding of calories + macros in the weekly_diet table
     - weekly_diet -- dates, daily calories + macros
 - Added updated design doc to repo
+
+tinaW -- 2019-01-09 01:07
+- Added profile template
+- Added backend for height and weight in app

@@ -47,4 +47,12 @@ def authenticate(username, password):
     db.close()
     return False
 
+def add_info(height, weight, user):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    data = c.execute("SELECT * FROM users")
+    
+    db.close()
+    return True
+
 create_table()
