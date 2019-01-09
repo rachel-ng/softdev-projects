@@ -24,12 +24,19 @@ You have secured creative freedom of expressions, constrained only by the bounds
 tinaW -- 2019-01-04 15:27
 - Added devlog
 
+maggieZ -- 2019-01-08 00:45
+- Created sitemap and sample web pages. 
+
 tinaW -- 2019-01-08 17:11
 - Fixed component map by organizing it by front end and back end to provide more clarity
 - Added basic templates
 - Added database creation
 - Added back end for registration, login and authentication
 - Added page templating for login and register
+
+maggieZ -- 2019-01-08 21:45
+- Fixed sitemap by adding bidirectional arrows for pages that link to the homepage and for user profile/edit user info.
+- Digitized sitemap.
 
 rayO -- 2019-01-08 23:03
 - Added navbar to base
