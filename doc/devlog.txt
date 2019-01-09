@@ -63,4 +63,4 @@ rachelN -- 2019-01-09 00:15
 
 tinaW -- 2019-01-09 01:07
 - Added profile template
-- Added backend for height and weight in app
+- Added backend for getting user's height and weight into database

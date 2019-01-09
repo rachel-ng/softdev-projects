@@ -47,11 +47,24 @@ def authenticate(username, password):
     db.close()
     return False
 
-def add_info(height, weight, user):
+def add_info(height, weight, username):
+    if height == '' or weight == '':
+        return False
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    data = c.execute("SELECT * FROM users")
-    
+    command = "SELECT id from users WHERE user={}".format(repr(username))
+    c.execute(command)
+    user_id = c.fetchone()[0]
+    command = "SELECT user_id FROM basic_info WHERE user_id={}".format(user_id)
+    c.execute(command)
+
+    if c.fetchone() == None: # if user has not yet added their info
+        params = (user_id, height, weight)
+        c.execute("INSERT INTO basic_info (user_id, height, weight) VALUES (?, ?, ?)", params)
+    else:
+        command = "UPDATE basic_info SET height=\"{}\", weight=\"{}\" WHERE user_id={}".format(height, weight, user_id)
+        c.execute(command)
+    db.commit()
     db.close()
     return True
 

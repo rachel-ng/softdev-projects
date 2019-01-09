@@ -81,10 +81,10 @@ def profile():
 
 @app.route('/user_info', methods = ['POST'])
 def user_info():
-    user = session['username']
+    username = session['username']
     height = request.form['height']
     weight = request.form['weight']
-    if user.add_info(height, weight, user):
+    if user.add_info(height, weight, username):
         flash("Changes successfully saved!")
     else:
         flash("Changes could not be saved.")
