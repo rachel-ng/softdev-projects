@@ -10,35 +10,75 @@ Home
 {% if 'username' not in session %}
 <div class="container">
   <div class="jumbotron">
-  <h1 class="display-4">PLACEHOLDER</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-  </p>
+    <h1 class="display-4">PLACEHOLDER</h1>
+    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p>
   </div>
 </div>
 
 {% else %}
-  <div class="container">
-    <div class="row">
-      <div class="col gridTemp">
-        Item1
-      </div>
-      <div class="col gridTemp">
-        Item2
+<div class="container">
+  <div class="row rowSpacing">
+    <div class="col ">
+      <div class="card">
+        <div class="card-header">
+          Sleep
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+          </blockquote>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col gridTemp">
-        Item3
-      </div>
-      <div class="col gridTemp">
-        Item4
+    <div class="col ">
+      <div class="card">
+        <div class="card-header">
+          Exercise
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+          </blockquote>
+        </div>
       </div>
     </div>
   </div>
-  {% endif %}
+  <div class="row rowSpacing">
+    <div class="col ">
+      <div class="card">
+        <div class="card-header">
+          Nutrition
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    <div class="col ">
+      <div class="card">
+        <div class="card-header">
+          Water
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
 
 {% endblock %}

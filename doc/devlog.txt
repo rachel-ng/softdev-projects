@@ -71,3 +71,6 @@ rayO -- 2019-01-09 13:05
 tinaW -- 2019-01-09 15:11
 - Fixed database to reflect design doc changes
 - Added allergies and dietary restrictions to user profile
+
+rayO -- 2019-01-09 15:40
+- Added cards to index in the grid, to be designed/worked on later
