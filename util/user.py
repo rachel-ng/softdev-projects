@@ -33,6 +33,11 @@ def register(username, password):
             return False
     params = (username, sha256_crypt.hash(password))
     c.execute("INSERT INTO users (user, password) VALUES (?, ?)", params)
+    command = "SELECT id from users WHERE user={}".format(repr(username))
+    c.execute(command)
+    user_id = c.fetchone()[0]
+    params = (user_id, 2000, 275, 60, 51)
+    c.execute("INSERT INTO basic_info (user_id, expected_calories, expected_carbs, expected_protein, expected_fat) VALUES(?, ?, ?, ?, ?)", params)
     db.commit()
     db.close()
     return True
@@ -49,7 +54,7 @@ def authenticate(username, password):
     db.close()
     return False
 
-def add_info(height, weight, username):
+def add_info(height, weight, allergies, dietary_restrictions, username):
     if height == '' or weight == '':
         return False
     db = sqlite3.connect(DB_FILE)
@@ -61,10 +66,10 @@ def add_info(height, weight, username):
     c.execute(command)
 
     if c.fetchone() == None: # if user has not yet added their info
-        params = (user_id, height, weight)
-        c.execute("INSERT INTO basic_info (user_id, height, weight) VALUES (?, ?, ?)", params)
+        params = (user_id, height, weight, allergies, dietary_restrictions)
+        c.execute("INSERT INTO basic_info (user_id, height, weight) VALUES (?, ?, ?, ?, ?)", params)
     else:
-        command = "UPDATE basic_info SET height=\"{}\", weight=\"{}\" WHERE user_id={}".format(height, weight, user_id)
+        command = "UPDATE basic_info SET height=\"{}\", weight=\"{}\", allergies=\"{}\", dietary_restrictions=\"{}\" WHERE user_id={}".format(height, weight, allergies, dietary_restrictions, user_id)
         c.execute(command)
     db.commit()
     db.close()

@@ -67,3 +67,7 @@ tinaW -- 2019-01-09 01:07
 
 rayO -- 2019-01-09 13:05
 - Facilitated passing session to index to show different items for logged in users
+
+tinaW -- 2019-01-09 15:11
+- Fixed database to reflect design doc changes
+- Added allergies and dietary restrictions to user profile

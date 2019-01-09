@@ -84,7 +84,10 @@ def user_info():
     username = session['username']
     height = request.form['height']
     weight = request.form['weight']
-    if user.add_info(height, weight, username):
+    allergies = request.form['allergies']
+    dietary_restrictions = request.form['dietary_restrictions']
+
+    if user.add_info(height, weight, allergies, dietary_restrictions, username):
         flash("Changes successfully saved!")
     else:
         flash("Changes could not be saved.")
