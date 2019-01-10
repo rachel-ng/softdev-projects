@@ -78,3 +78,4 @@ rayO -- 2019-01-09 15:40
 rachelN -- 2019-01-09 21:55
 - Tested out Chart.js, made a chart for sleep
 - Added requirements.txt
+- Added updated design doc to repo, now comes with reasoning behind Bootstrap! 
