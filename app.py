@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 
-from util import user
+from util import user, exercise
 
 app = Flask(__name__) #create instance of class flask
 
@@ -95,6 +95,18 @@ def user_info():
 @app.route('/sleep')
 def sleep():
     return render_template('sleep.html')
+    
+@app.route('/exercise', methods=["GET", "POST"])
+def exercise_options():
+    if request.method == 'GET':
+        all_categories = exercise.get_all_categories()
+        return render_template('exercise.html', all_categories=all_categories, can_view_results=False)
+    else:
+        all_categories = exercise.get_all_categories()
+        user_request = request.form['user_request']
+        results = exercise.list_category_exercises(exercise.get_category_id(user_request))
+        return render_template('exercise.html', all_categories=all_categories, results=results, can_view_results=True)
+
 if __name__ == "__main__":
     app.debug = True
     app.run()

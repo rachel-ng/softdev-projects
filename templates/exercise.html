@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Exercise
+{% endblock %}
+
+{% block content %}
+	<form method="POST">
+    What do you want to train?
+    <select name="user_request">
+      {% for category in all_categories %}
+      <option value="{{ category }}">{{ category }}</option>
+      {% endfor %}
+    </select>
+    <input type="submit" name="submit">
+  </form>
+
+  {% if can_view_results %}
+    {% for result in results %}
+    <p>{{ result }}</p>
+    {% endfor %}
+  {% endif %}
+{% endblock %}
