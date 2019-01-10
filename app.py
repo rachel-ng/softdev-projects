@@ -92,6 +92,9 @@ def user_info():
         flash("Changes could not be saved.")
     return redirect(url_for('profile'))
 
+@app.route('/sleep')
+def sleep():
+    return render_template('sleep.html')
 if __name__ == "__main__":
     app.debug = True
     app.run()
