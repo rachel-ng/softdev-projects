@@ -105,4 +105,9 @@ $ python
 
 rayO -- 2019-01-11 16:47
 - Added footer (doesn't stick to bottom yet)
-- Stylized alert message 
+- Stylized alert message
+
+tinaW -- 2019-01-11 18:11
+- Finished all of exercise backend, including:
+  - user's exercise log
+  - muscle group user worked on
