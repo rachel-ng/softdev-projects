@@ -82,3 +82,7 @@ rachelN -- 2019-01-09 21:55
 
 tinaW -- 2019-01-10 13:28
 - Added search functionality for exercise categories
+
+rayO -- 2019-01-10 19:08
+- Cards now have colors and some styling
+- Added basics of summary section at top 

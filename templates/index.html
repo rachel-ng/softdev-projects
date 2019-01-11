@@ -7,6 +7,7 @@ Home
 {% endblock %}
 
 {% block content %}
+
 {% if 'username' not in session %}
 <div class="container">
   <div class="jumbotron">
@@ -21,66 +22,107 @@ Home
 </div>
 
 {% else %}
-<div class="container">
-  <div class="row rowSpacing">
-    <div class="col ">
-      <div class="card">
-        <div class="card-header">
-          Sleep
-        </div>
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-          </blockquote>
-        </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col gridTemp">
-        <form action = "/sleep" method = "GET">
-        <a class="button" href="/sleep"> Sleep Page</a>
-
+<div class="container d-flex justify-content-center">
+  <div class="row center" id="rowTop">
+    <div class="col-md-6">
+      {% if 'username' in session %}
+      <h2 class="font-weight-light">Welcome {{session['username']}}<h2>
+        {% endif %}
+        <p class="lead">Daily Goal:</p>
       </div>
-    </div>
-    <div class="col ">
-      <div class="card">
-        <div class="card-header">
-          Exercise
-        </div>
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-          </blockquote>
+
+      <div class="col-md-6">
+        <div class="card text-white bg-dark mb-3">
+          <div class="card-header">
+            To be filled with more stuff later
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row rowSpacing">
-    <div class="col ">
-      <div class="card">
-        <div class="card-header">
-          Nutrition
+
+  <br>
+  <br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 mb-5">
+        <div class="card text-white bg-dark mb-3 transparency">
+          <div class="card-header">
+            Sleep
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class = "col-sm-6">
+                <img src="https://fakeimg.pl/640x360" class="img-fluid img-thumbnail">
+              </div>
+              <div class="col-sm-6">
+                <blockquote class="blockquote mb-0">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-          </blockquote>
+      </div>
+      <div class="col-sm-6 mb-5">
+        <div class="card text-white bg-danger mb-3 transparency">
+          <div class="card-header">
+            Exercise
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class = "col-sm-6">
+                <img src="https://fakeimg.pl/640x360" class="img-fluid img-thumbnail">
+              </div>
+              <div class="col-sm-6">
+                <blockquote class="blockquote mb-0">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col ">
-      <div class="card">
-        <div class="card-header">
-          Water
+    <div class="row" >
+      <div class="col-sm-6 mb-5">
+        <div class="card text-white bg-success mb-3 transparency">
+          <div class="card-header">
+            Nutrition
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class = "col-sm-6">
+                <img src="https://fakeimg.pl/640x360" class="img-fluid img-thumbnail">
+              </div>
+              <div class="col-sm-6">
+                <blockquote class="blockquote mb-0">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-            <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-          </blockquote>
+      </div>
+      <div class="col-sm-6 mb-5">
+        <div class="card text-white bg-info mb-3 transparency">
+          <div class="card-header">
+            Water
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class = "col-sm-6">
+                <img src="https://fakeimg.pl/640x360" class="img-fluid img-thumbnail">
+              </div>
+              <div class="col-sm-6">
+                <blockquote class="blockquote mb-0">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
