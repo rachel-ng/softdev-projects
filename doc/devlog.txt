@@ -96,4 +96,9 @@ rachelN -- 2019-01-11 10:45
 - Added plotly to keys.json 
     - PLOTLY_USERNAME
     - PLOTLY_API 
-- Added plotly_charts with config(), must be run in app.py at least once in order to set credentials and use plotly
+- Added plotly_charts with config(), must be run in at least once in order to set credentials and use plotly
+
+$ pip install plotly
+$ python 
+>>> import util.plotly_charts
+>>> util.plotly_charts.config()
