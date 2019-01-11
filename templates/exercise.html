@@ -5,6 +5,20 @@
 {% endblock %}
 
 {% block content %}
+{{ hours }} hours spent working out this week
+  <form method="POST">
+    Update exercise log: <br>
+    What did you exercise today?
+    <select name="user_category">
+      {% for category in all_categories %}
+      <option value="{{ category }}">{{ category }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    How long did you exercise? <input type="number" name="hours"> <br><br>
+
+    <input type="submit" name="submit" value="Submit">
+  </form>
 	<form method="POST">
     What do you want to train?
     <select name="user_request">
@@ -12,7 +26,7 @@
       <option value="{{ category }}">{{ category }}</option>
       {% endfor %}
     </select>
-    <input type="submit" name="submit">
+    <input type="submit" name="submit" value="Search for Exercises!">
   </form>
 
   {% if can_view_results %}

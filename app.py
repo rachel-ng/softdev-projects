@@ -95,17 +95,30 @@ def user_info():
 @app.route('/sleep')
 def sleep():
     return render_template('sleep.html')
-    
+
 @app.route('/exercise', methods=["GET", "POST"])
 def exercise_options():
-    if request.method == 'GET':
+    try:
+        username = session['username']
         all_categories = exercise.get_all_categories()
-        return render_template('exercise.html', all_categories=all_categories, can_view_results=False)
-    else:
-        all_categories = exercise.get_all_categories()
-        user_request = request.form['user_request']
-        results = exercise.list_category_exercises(exercise.get_category_id(user_request))
-        return render_template('exercise.html', all_categories=all_categories, results=results, can_view_results=True)
+        hours = exercise.get_user_exercise(username)
+        if request.method == 'GET':
+            return render_template('exercise.html', all_categories=all_categories, can_view_results=False, hours=hours)
+        else:
+            if request.form['submit'] == "Search for Exercises!":
+                user_request = request.form['user_request']
+                results = exercise.list_category_exercises(exercise.get_category_id(user_request))
+                return render_template('exercise.html', all_categories=all_categories, results=results, can_view_results=True, hours=hours)
+            else:
+                user_hours = request.form['hours']
+                user_category = request.form['user_category']
+                if exercise.update_user_log(username) == True:
+                    flash("Exercise log successfully updated!")
+                    hours = exercise.get_user_exercise(username)
+                return render_template('exercise.html', all_categories=all_categories, can_view_results=False, hours=hours)
+    except:
+        flash("You must be logged in to access this page.")
+        return redirect('/')
 
 if __name__ == "__main__":
     app.debug = True
