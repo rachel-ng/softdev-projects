@@ -115,3 +115,8 @@ dmypy.json
 
 # Mac System Files of Sadness 
 .DS_Store
+
+# DATABASES 
+.db
+
+data/keys.json
