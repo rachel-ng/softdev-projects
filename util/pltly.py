@@ -15,3 +15,4 @@ data = [trace0, trace1]
 new_chart = plotly.offline.plot(data, output_type='div')
 
 print(new_chart)
+print("plotly")
