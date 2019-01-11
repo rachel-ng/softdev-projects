@@ -41,7 +41,6 @@ def register_auth():
             return redirect(url_for('signup'))
     return redirect('/login')
 
-
 @app.route('/login')
 def login():
     '''This function renders the HTML template for the login page.'''
@@ -95,6 +94,10 @@ def user_info():
 @app.route('/sleep')
 def sleep():
     return render_template('sleep.html')
+
+@app.route('/water')
+def water():
+    return render_template('water.html')
 
 @app.route('/exercise', methods=["GET", "POST"])
 def exercise_options():
