@@ -20,13 +20,13 @@
     <input type="submit" name="submit" value="Submit">
   </form>
 	<form method="POST">
-    What do you want to train?
+    {{ category }} Search for some exercise recommendations that you can do:
     <select name="user_request">
       {% for category in all_categories %}
       <option value="{{ category }}">{{ category }}</option>
       {% endfor %}
     </select>
-    <input type="submit" name="submit" value="Search for Exercises!">
+    <input type="submit" name="submit" value="Search">
   </form>
 
   {% if can_view_results %}

@@ -15,7 +15,7 @@ def create_table():
     c.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, user TEXT, password TEXT)")
     c.execute("CREATE TABLE IF NOT EXISTS basic_info (user_id INTEGER, height REAL, weight REAL, allergies TEXT, dietary_restrictions TEXT, expected_calories INTEGER, expected_carbs INTEGER, expected_protein INTEGER, expected_fat INTEGER)")
     c.execute("CREATE TABLE IF NOT EXISTS water_log (user_id INTEGER, year INTEGER, month INTEGER, week_start_day INTEGER, intake_01 REAL, intake_02 REAL, intake_03 REAL, intake_04 REAL, intake_05 REAL, intake_06 REAL, intake_07 REAL)")
-    c.execute("CREATE TABLE IF NOT EXISTS exercise_log (user_id INTEGER, year INTEGER, month INTEGER, week_start_day INTEGER, hours_01 INTEGER, hours_02 INTEGER, hours_03 INTEGER, hours_04 INTEGER, hours_05 INTEGER, hours_06 INTEGER, hours_07 INTEGER, target_muscle_group_01 TEXT, target_muscle_group_02 TEXT, target_muscle_group_03 TEXT, target_muscle_group_04 TEXT, target_muscle_group_05 TEXT, target_muscle_group_06 TEXT, target_muscle_group_07 TEXT)")
+    c.execute("CREATE TABLE IF NOT EXISTS exercise_log (user_id INTEGER, year INTEGER, month INTEGER, day INTEGER, week_start_day INTEGER, hours_01 INTEGER, hours_02 INTEGER, hours_03 INTEGER, hours_04 INTEGER, hours_05 INTEGER, hours_06 INTEGER, hours_07 INTEGER, target_muscle_group_01 TEXT, target_muscle_group_02 TEXT, target_muscle_group_03 TEXT, target_muscle_group_04 TEXT, target_muscle_group_05 TEXT, target_muscle_group_06 TEXT, target_muscle_group_07 TEXT)")
     c.execute("CREATE TABLE IF NOT EXISTS sleep_log (user_id INTEGER, year INTEGER, month INTEGER, week_start_day INTEGER, hours_01 REAL, hours_02 REAL, hours_03 REAL, hours_04 REAL, hours_05 REAL, hours_06 REAL, hours_07 REAL)")
     c.execute("CREATE TABLE IF NOT EXISTS food_log (user_id INTEGER, year INTEGER, month INTEGER, day INTEGER, time INTEGER, meal TEXT, calories INTEGER, carbs INTEGER, protein INTEGER, fat INTEGER)")
     c.execute("CREATE TABLE IF NOT EXISTS weekly_diet (user_id INTEGER, year INTEGER, month INTEGER, week_start_day INTEGER, calories_01 INTEGER, carbs_01 INTEGER, protein_01 INTEGER, fat_01 INTEGER, calories_02 INTEGER, carbs_02 INTEGER, protein_02 INTEGER, fat_02 INTEGER, calories_03 INTEGER, carbs_03 INTEGER, protein_03 INTEGER, fat_03 INTEGER, calories_04 INTEGER, carbs_04 INTEGER, protein_04 INTEGER, fat_04 INTEGER, calories_05 INTEGER, carbs_05 INTEGER, protein_05 INTEGER, fat_05 INTEGER, calories_06 INTEGER, carbs_06 INTEGER, protein_06 INTEGER, fat_06 INTEGER, calories_07 INTEGER, carbs_07 INTEGER, protein_07 INTEGER, fat_07 INTEGER)")
@@ -41,9 +41,10 @@ def register(username, password):
     c.execute("INSERT INTO basic_info (user_id, expected_calories, expected_carbs, expected_protein, expected_fat) VALUES(?, ?, ?, ?, ?)", params)
     current_year = datetime.now().year
     current_month = datetime.now().month
+    current_day = datetime.now().day
     current_weekday = datetime.now().weekday()
-    params = (user_id, current_year, current_month, current_weekday, 0, 0, 0, 0, 0, 0, 0)
-    c.execute("INSERT INTO exercise_log (user_id, year, month, week_start_day, hours_01, hours_02, hours_03, hours_04, hours_05, hours_06, hours_07) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
+    params = (user_id, current_year, current_month, current_day, current_weekday, 0, 0, 0, 0, 0, 0, 0)
+    c.execute("INSERT INTO exercise_log (user_id, year, month, day, week_start_day, hours_01, hours_02, hours_03, hours_04, hours_05, hours_06, hours_07) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
 
     db.commit()
     db.close()

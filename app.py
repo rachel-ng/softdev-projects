@@ -102,20 +102,28 @@ def exercise_options():
         username = session['username']
         all_categories = exercise.get_all_categories()
         hours = exercise.get_user_exercise(username)
-        if request.method == 'GET':
-            return render_template('exercise.html', all_categories=all_categories, can_view_results=False, hours=hours)
+        category = exercise.get_user_category(username)
+        if category != None:
+            category = "You worked on "+category+" today."
         else:
-            if request.form['submit'] == "Search for Exercises!":
+            category = "You haven't worked out today."
+        if request.method == 'GET':
+            return render_template('exercise.html', all_categories=all_categories, can_view_results=False, hours=hours, category=category)
+        else:
+            if request.form['submit'] == "Search":
                 user_request = request.form['user_request']
                 results = exercise.list_category_exercises(exercise.get_category_id(user_request))
-                return render_template('exercise.html', all_categories=all_categories, results=results, can_view_results=True, hours=hours)
+                return render_template('exercise.html', all_categories=all_categories, results=results, can_view_results=True, hours=hours, category=category)
             else:
                 user_hours = request.form['hours']
                 user_category = request.form['user_category']
-                if exercise.update_user_log(username) == True:
+                if exercise.update_user_log(user_hours, user_category, username) == True:
+                    category = "You worked on "+exercise.get_user_category(username)+" today."
                     flash("Exercise log successfully updated!")
                     hours = exercise.get_user_exercise(username)
-                return render_template('exercise.html', all_categories=all_categories, can_view_results=False, hours=hours)
+                else:
+                    flash("Hours and category cannot be empty.")
+                return render_template('exercise.html', all_categories=all_categories, can_view_results=False, hours=hours, category=category)
     except:
         flash("You must be logged in to access this page.")
         return redirect('/')
