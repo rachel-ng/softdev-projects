@@ -51,20 +51,31 @@
         </ul>
       </div>
     </nav>
+
     <br>
     <br>
     <br>
-    <br>
+
+    <div class ="container-fluid center" style="margin:10px;">
     {% set msgs = get_flashed_messages() %}
       {% for each in msgs %}
+      <div class="alert alert-info alert-dismissible alertBox" style="margin:auto;" role="alert">
       {{ each }}
-      <br>
-      {% endfor %}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="collapse" data-target="#demo">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    </div>
+
     {% block content %}
     {% endblock %}
     {% block footer %}
-    <br><hr>
-    <p align="center">&copy group d'etat</p>
+    <div class="footer">
+      <div class="container center">
+        <span class="text-muted">Exercise powered by <a href="https://wger.de/en/software/api">wger</a>, food and recipes powered by <a href="https://spoonacular.com/food-api">spoonacular</a> and <a href="https://ndb.nal.usda.gov/ndb/doc/index">USDA nutrients</a>,charts/graphs powered by <a href="https://plot.ly/">Plotly</a>.</span>
+      </div>
+    </div>
    {% endblock %}
    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

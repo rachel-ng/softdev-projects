@@ -85,7 +85,7 @@ tinaW -- 2019-01-10 13:28
 
 rayO -- 2019-01-10 19:08
 - Cards now have colors and some styling
-- Added basics of summary section at top 
+- Added basics of summary section at top
 
 rachelN -- 2019-01-11 02:50
 - Updated requirements.txt
@@ -93,12 +93,16 @@ rachelN -- 2019-01-11 02:50
 
 rachelN -- 2019-01-11 10:45
 - Added plotly api kb card
-- Added plotly to keys.json 
+- Added plotly to keys.json
     - PLOTLY_USERNAME
-    - PLOTLY_API 
+    - PLOTLY_API
 - Added plotly_charts with config(), must be run in at least once in order to set credentials and use plotly
 
 $ pip install plotly
-$ python 
+$ python
 >>> import util.plotly_charts
 >>> util.plotly_charts.config()
+
+rayO -- 2019-01-11 16:47
+- Added footer (doesn't stick to bottom yet)
+- Stylized alert message 
