@@ -87,5 +87,21 @@ def add_info(age, height, weight, allergies, dietary_restrictions, username):
     db.close()
     return True
 
+def get_info(username):
+    info = []
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "SELECT id from users WHERE user={}".format(repr(username))
+    c.execute(command)
+    user_id = c.fetchone()[0]
+    command = "SELECT age, height, weight, allergies, dietary_restrictions FROM basic_info WHERE user_id={}".format(user_id)
+    c.execute(command)
+    data = c.fetchone()
+    for item in data:
+        if item == None:
+            info.append('')
+        else:
+            info.append(item)
+    db.close()
+    return info
 create_table()
-register("a", "a")

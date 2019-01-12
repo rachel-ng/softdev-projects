@@ -71,8 +71,10 @@ def logout():
 def profile():
     '''This function renders the HTML template for the profile page.'''
     try:
-        user = session['username']
-        return render_template('profile.html', user=user)
+        username = session['username']
+        user_data = user.get_info(username)
+        # print(user_data)
+        return render_template('profile.html', user=username, user_data=user_data)
     except:
         flash("You must be logged in to access this page.")
         return redirect('/')
