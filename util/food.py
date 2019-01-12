@@ -25,7 +25,8 @@ def get_food_nutrients(ndbno):
     url = ('https://api.nal.usda.gov/ndb/V2/reports?ndbno='+ndbno+'&type=f&format=json&api_key='+API_KEY)
     response = urllib.request.urlopen(url)
     raw_json = json.loads(response.read())
-    for item in raw_json['foods']:
-        print(item)
+
+    calories = raw_json['foods'][0]['food']['nutrients'][0]['value']
+    print(calories)
 # print(get_food_ndbno("milk"))
-# get_food_nutrients(get_food_ndbno('milk'))
+get_food_nutrients(get_food_ndbno('milk'))

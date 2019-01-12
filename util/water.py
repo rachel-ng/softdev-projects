@@ -93,5 +93,5 @@ def update_user_log(username, input):
     print("donezoed")
     return True
 
-print(get_user_water("a"))
+# print(get_user_water("a"))
 #print(calc_percentage("a"))
