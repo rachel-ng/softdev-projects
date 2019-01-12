@@ -43,10 +43,10 @@ def register(username, password):
     current_month = datetime.now().month
     current_day = datetime.now().day
     current_weekday = datetime.now().weekday()
-    '''
+
     params = (user_id, current_year, current_month, current_day, current_weekday, 0, 0, 0, 0, 0, 0, 0)
     c.execute("INSERT INTO exercise_log (user_id, year, month, day, week_start_day, hours_01, hours_02, hours_03, hours_04, hours_05, hours_06, hours_07) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
-    '''
+
     params = (user_id, current_year, current_month, current_day, current_weekday, 0, 0, 0, 0, 0, 0, 0)
     c.execute("INSERT INTO water_log (user_id, year, month, day, week_start_day, intake_01, intake_02, intake_03, intake_04, intake_05, intake_06, intake_07) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
 

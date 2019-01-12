@@ -1,26 +1,5 @@
 {% extends "base.html" %}
 
-
-{% block title %}
-Water
-{% endblock %}
-
 {% block content %}
-{# insert graph here! #}
-<p> You drank  </p>
-<form method="POST">
-  How much water did you drink today?
-  <!-- <div class="form-group col-md-2"> -->
-    <div class = "water input">
-       <label for="inputWater">Water</label>
-       <input type="text" class="form-control" id="inputWater">
-     </div>
-  <select name="measure">
-        <option value=0> cups </option>
-        <option value=1> fl. oz </option>
-        <option value=2> mL </option>
-  </select>
-  <input type="submit" name="submit" value="submit">
-</form>
 
 {% endblock %}
