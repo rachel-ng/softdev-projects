@@ -140,8 +140,10 @@ def nutrients():
             user_meal = request.form['meal']
             user_amount = request.form['amount']
             if food.add_food(user_meal, user_amount, username) == True:
+                today_food = food.get_user_food(username)
+                print(today_food)
                 flash("Food added to log!")
-                return render_template('nutrients.html')
+                return render_template('nutrients.html', today_food=today_food)
             return redirect('/')
     except:
         flash("You must be logged in to access this page.")
