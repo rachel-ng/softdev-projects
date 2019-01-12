@@ -13,13 +13,10 @@ def convert_measure(measurement, amount):
     '''Converts all liquid measurements to fluid ounces.'''
 
     if measurement == 0:
-        print(amount * 8)
         return (amount * 8)
     elif measurement == 1:
-        print(amount)
         return amount
     else:
-        print(amount / 2)
         return (round(amount / 29.57) , 2)
 
 def calc_percentage(username):
@@ -45,21 +42,17 @@ def get_user_water(username):
     c.execute(command)
     user_id = c.fetchone()[0]
     #print(user_id)
-    command = "SELECT * FROM water_log WHERE user_id={}".format(repr(user_id))
+    column = "intake_0" + str(datetime.today().isoweekday())
+    command = "SELECT {} FROM water_log WHERE user_id={}".format(column, repr(user_id))
     c.execute(command)
-    data = c.fetchall()
-    total_water = -1
+    data = c.fetchone()[0]
+    total_water = data
 
-    #print(data)
-    for row in data:
-        #print(row)
-        total_water = row[5] + row[6] + row[7] + row[8] + row[9] + row[10] + row[11]
     db.close()
     return total_water
 
 def update_user_log(username, input):
-    print("starting")
-    if input == '':
+    if input == '' or input == None:
         return False
     else:
         db = sqlite3.connect(DB_FILE)
@@ -77,12 +70,10 @@ def update_user_log(username, input):
         day = data[2]
         weekday = data[3]
 
+        input = get_user_water(username) + input
         if datetime.now().year == year and datetime.now().month == month and datetime.now().day - day < 7:
             column = "intake_0" + str(weekday)
-            print(column)
-
             command = "UPDATE water_log SET {} = \"{}\" WHERE user_id = {}".format(column, input, user_id )
-            print(command)
             c.execute(command)
         else:
             command = "UPDATE water_log SET year=\"{}\", month=\"{}\", day=\"{}\", week_start_day=\"{}\", hours_01=\"{}\" WHERE user_id={}".format(year, month, day, week_start_day, hours, user_id)
@@ -90,8 +81,4 @@ def update_user_log(username, input):
 
     db.commit()
     db.close()
-    print("donezoed")
     return True
-
-# print(get_user_water("a"))
-#print(calc_percentage("a"))

@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 
-from util import user, exercise, water, food, plotly_charts #sleep
+from util import user, exercise, water, food, sleep, plotly_charts
 
 app = Flask(__name__) #create instance of class flask
 
@@ -95,32 +95,59 @@ def user_info():
     return redirect(url_for('profile'))
 
 @app.route('/sleep', methods=["GET", "POST"])
-def sleep():
-    return render_template('sleep.html')
+def sleep_disp():
+    try:
+        username = session['username']
+        last_sleep = sleep.get_user_sleep(username)
+        if request.method == 'GET':
+            return render_template('sleep.html', past = last_sleep)
+        else:
+            starthr = int(request.form['hour1'])
+            startmin = int(request.form['minutes1'])
+            startx = int(request.form['group1'])
+            start_time = sleep.convert(starthr, startmin, startx)
+            print(start_time)
+
+            endhr = int(request.form['hour2'])
+            endmin = int(request.form['minutes2'])
+            endx = int(request.form['group2'])
+            end_time = sleep.convert(endhr, endmin, endx)
+            print(end_time)
+            total_time = sleep.get_diff(start_time, end_time)
+
+            if (sleep.update_user_log(username, total_time) == True):
+                flash("Sleep log successfully updated!")
+                last_sleep = sleep.get_user_sleep(username)
+            else:
+                flash("Something went wrong! Uh oh")
+
+            return render_template('sleep.html', past = last_sleep)
+
+
+    except:
+        flash("You must be logged in to access this page.")
+        #print(session)
+        return redirect('/')
 
 @app.route('/water', methods=["GET", "POST"])
 def water_disp():
-    print(session)
+    #print(session)
     try:
         username = session['username']
-        water.get_user_water(username)
         all_water = water.get_user_water(username)
         if request.method == 'GET':
             return render_template('water.html', total = all_water, percentage = water.calc_percentage(username))
         else:
             type = int(request.form['measure'])
             #print(type)
-            input = int(request.form['inputW'])
-            #print(input)
-            amount = water.convert_measure(type, input)
-            print("converted amount:")
-            print(amount)
-            print(username)
-            print(water.update_user_log(username, amount))
+            input = request.form['inputW']
+            amount = water.convert_measure(type, int(input))
             if (water.update_user_log(username, amount) == True):
                 flash("Water log successfully updated!")
+                all_water = water.get_user_water(username)
             else:
-                flash("Input field cannot be empty.")
+                flash("Input amount of water")
+
             return render_template('water.html', total = all_water, percentage = water.calc_percentage(username))
 
     except:

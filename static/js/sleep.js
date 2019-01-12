@@ -9,7 +9,16 @@ var sleepDisp = function() {
   var mindrop = document.getElementById("minutes")
   var minchoice =  mindrop.options[mindrop.selectedIndex].value;
 
-  var time = document.getElementById("time")
+  //var time;
+  var timechoice;
+  if (document.getElementById('o1').checked) {
+    timechoice = document.getElementById('o1').value;
+  }
+  else {
+    timechoice = document.getElementById('o2').value;
+  }
+  //console.log(time)
+  console.log(timechoice)
 
   var write = document.getElementById("display");
   write.innerHTML = hrchoice + ":" + minchoice + time.text;
