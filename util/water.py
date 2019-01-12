@@ -11,13 +11,17 @@ DB_FILE = "data/health.db"
 
 def convert_measure(measurement, amount):
     '''Converts all liquid measurements to fluid ounces.'''
-    if not measurement:
-        return 0
+
     if measurement == 0:
-        return (measurement * 8)
-    if measurement == 2:
-        return (round(measurement / 29.57) , 2)
-    return
+        print(amount * 8)
+        return (amount * 8)
+    elif measurement == 1:
+        print(amount)
+        return amount
+    else:
+        print(amount / 2)
+        return (round(amount / 29.57) , 2)
+
 def calc_percentage(username):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -27,7 +31,7 @@ def calc_percentage(username):
     weekday = datetime.today().weekday()
     column = column = "intake_0" + str(weekday)
     #print(column)
-    command = "SELECT {} FROM water_log WHERE user_id={}".format(column, repr(user_id))
+    command = "SELECT {} FROM water_log WHERE user_id={}".format(column, user_id)
     c.execute(command)
     data = c.fetchone()[0]
     #print(data)
@@ -54,7 +58,8 @@ def get_user_water(username):
     return total_water
 
 def update_user_log(username, input):
-    if not input:
+    print("starting")
+    if input == '':
         return False
     else:
         db = sqlite3.connect(DB_FILE)
@@ -74,15 +79,19 @@ def update_user_log(username, input):
 
         if datetime.now().year == year and datetime.now().month == month and datetime.now().day - day < 7:
             column = "intake_0" + str(weekday)
-            #print(column)
+            print(column)
 
             command = "UPDATE water_log SET {} = \"{}\" WHERE user_id = {}".format(column, input, user_id )
-            #print(command)
+            print(command)
+            c.execute(command)
+        else:
+            command = "UPDATE water_log SET year=\"{}\", month=\"{}\", day=\"{}\", week_start_day=\"{}\", hours_01=\"{}\" WHERE user_id={}".format(year, month, day, week_start_day, hours, user_id)
             c.execute(command)
 
-        else:
-            command = "UPDATE exercise_log SET year=\"{}\", month=\"{}\", day = \"{}\", week_start_day=\"{}\", hours_01=\"{}\" WHERE user_id={}".format(year, month, day, week_start_day, hours, user_id)
-            c.execute(command)
-        db.commit()
-        db.close()
-        return True
+    db.commit()
+    db.close()
+    print("donezoed")
+    return True
+
+print(get_user_water("a"))
+#print(calc_percentage("a"))

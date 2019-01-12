@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 
-from util import user, exercise, water,food
+from util import user, exercise, water, food #sleep
 
 app = Flask(__name__) #create instance of class flask
 
@@ -99,23 +99,33 @@ def sleep():
     return render_template('sleep.html')
 
 @app.route('/water', methods=["GET", "POST"])
-def water():
+def water_disp():
+    print(session)
     try:
         username = session['username']
+        water.get_user_water(username)
         all_water = water.get_user_water(username)
         if request.method == 'GET':
             return render_template('water.html', total = all_water, percentage = water.calc_percentage(username))
         else:
-            type = request.form['measure']
-            print(type)
-            input = request.form['inputW']
-            amount = water.convert_measure(input, type)
-            if (amount < 1 and water.update_user_log(username, amount) == True):
-                flash("Exercise log successfully updated!")
+            type = int(request.form['measure'])
+            #print(type)
+            input = int(request.form['inputW'])
+            #print(input)
+            amount = water.convert_measure(type, input)
+            print("converted amount:")
+            print(amount)
+            print(username)
+            print(water.update_user_log(username, amount))
+            if (water.update_user_log(username, amount) == True):
+                flash("Water log successfully updated!")
             else:
                 flash("Input field cannot be empty.")
+            return render_template('water.html', total = all_water, percentage = water.calc_percentage(username))
+
     except:
         flash("You must be logged in to access this page.")
+        #print(session)
         return redirect('/')
 
 @app.route('/nutrients')
