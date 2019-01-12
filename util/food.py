@@ -12,22 +12,37 @@ with open('keys/keys.json', 'r') as f:
 API_KEY = api_dict["USDA_NUTRIENTS_API"]
 
 def get_food_ndbno(food):
-    url = ('https://api.nal.usda.gov/ndb/search/?format=json&q='+food+'&sort=r&max=25&offset=0&api_key='+API_KEY)
+    query = food.replace(' ','%20')
+    # print(food)
+    url = ('https://api.nal.usda.gov/ndb/search/?format=json&q='+query+'&sort=r&max=10&offset=0&api_key='+API_KEY)
     response = urllib.request.urlopen(url)
     raw_json = json.loads(response.read())
+    # print(raw_json)
     for item in raw_json["list"]['item']:
-        if food in item['name'] or food.upper() in item['name']:
-            return item['ndbno']
+        # print(item['group'])
+        if item['group'] != "Branded Food Products Database":
+            requirements = food.split(' ')
+            # print(requirements)
+            if all(requirement.upper() in item['name'].upper() for requirement in requirements):
+                # print(item['ndbno'])
+                return item['ndbno']
     return -1
 
-def get_food_nutrients(ndbno):
+def get_food_calories(ndbno):
     info = []
-    url = ('https://api.nal.usda.gov/ndb/V2/reports?ndbno='+ndbno+'&type=f&format=json&api_key='+API_KEY)
-    response = urllib.request.urlopen(url)
-    raw_json = json.loads(response.read())
-
-    calories = raw_json['foods'][0]['food']['nutrients'][0]['value']
-    # print(calories)
+    if ndbno == -1:
+        return False
+    else:
+        url = ('https://api.nal.usda.gov/ndb/V2/reports?ndbno='+ndbno+'&type=f&format=json&api_key='+API_KEY)
+        response = urllib.request.urlopen(url)
+        raw_json = json.loads(response.read())
+        calories = 0
+        for row in raw_json['foods'][0]['food']['nutrients']:
+            # print(row['unit'])
+            if(row['unit'] == 'kcal'):
+                print(row['value'])
+                calories = row['value']
+        return calories
 
 def add_food(meal, amount, username):
     db = sqlite3.connect(DB_FILE)
@@ -41,8 +56,15 @@ def add_food(meal, amount, username):
     day = datetime.now().day
     hour = datetime.now().hour
     minute = datetime.now().minute
-    params = (user_id, year, month, day, hour, minute, meal, amount)
-    c.execute("INSERT INTO food_log (user_id, year, month, day, hour, minute, meal, amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", params)
+    # print(repr(amount))
+    try:
+        calories = convert_calories(meal, amount)
+    except:
+        calories = 0
+        return False
+    print(calories)
+    params = (user_id, year, month, day, hour, minute, meal, amount, calories)
+    c.execute("INSERT INTO food_log (user_id, year, month, day, hour, minute, meal, amount, calories) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
     db.commit()
     db.close()
     return True
@@ -65,6 +87,39 @@ def get_user_food(username):
     for row in data:
         today_food.append(row)
         # print(row[0])
+    db.close()
     return today_food
-# print(get_food_ndbno("milk"))
-# get_food_nutrients(get_food_ndbno('milk'))
+
+def convert_calories(meal, amount):
+    calories = get_food_calories(get_food_ndbno(meal))
+    print(calories)
+    calories = calories * float(amount) / 100
+    print(calories)
+    return calories
+
+def get_total_calories(username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "SELECT id from users WHERE user={}".format(repr(username))
+    c.execute(command)
+    user_id = c.fetchone()[0]
+
+    year = datetime.now().year
+    month = datetime.now().month
+    day = datetime.now().day
+    command = "SELECT calories FROM food_log WHERE user_id={} AND year={} AND month={} AND day={}".format(repr(user_id), repr(year), repr(month), repr(day))
+    c.execute(command)
+    data = c.fetchall()
+    db.close()
+    total = 0
+    # print(data)
+    for row in data:
+        if row[0] != None:
+            # print (row[0])
+            total += row[0]
+    # print(data)
+    return total
+
+# print(get_food_ndbno("pork cured"))
+# print(add_food("banana", 118.0, "test"))
+# print(get_total_calories('test'))

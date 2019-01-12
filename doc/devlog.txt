@@ -121,3 +121,8 @@ tinaW -- 2019-01-12 02:37
 - Added food log frontend form
 - Added add food to database function
 - Added display food user ate today function
+
+tinaW -- 2019-01-12 14:24
+- Finished using USDA Nutrients API to get calories of food submitted by user in form
+- Wrote function to display total calories consumed today.
+- Added checks for when API key is missing or food is not found.

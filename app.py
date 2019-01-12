@@ -134,17 +134,23 @@ def nutrients():
         username = session['username']
         if request.method == 'GET':
             today_food = food.get_user_food(username)
+            total_calories = food.get_total_calories(username)
             print(today_food)
-            return render_template('nutrients.html', today_food=today_food)
+            return render_template('nutrients.html', today_food=today_food, calories=total_calories)
         else:
             user_meal = request.form['meal']
             user_amount = request.form['amount']
             if food.add_food(user_meal, user_amount, username) == True:
                 today_food = food.get_user_food(username)
+                total_calories = food.get_total_calories(username)
                 print(today_food)
                 flash("Food added to log!")
-                return render_template('nutrients.html', today_food=today_food)
-            return redirect('/')
+                return render_template('nutrients.html', today_food=today_food, calories=total_calories)
+            else:
+                flash("We could not find the food you entered or the USDA Nutrients API key is missing.")
+                today_food = food.get_user_food(username)
+                total_calories = food.get_total_calories(username)
+                return render_template('nutrients.html', today_food=today_food, calories=total_calories)
     except:
         flash("You must be logged in to access this page.")
         return redirect('/')

@@ -5,12 +5,13 @@ Food
 {% endblock %}
 
 {% block content %}
+  {{ calories }} Calories consumed today.
   <form method="POST">
     What did you eat today?
     <input type="text" name="meal">
     <br>
-    How much did you eat? (cups)
-    <input type="number" name="amount">
+    How much did you eat? (grams)
+    <input type="number" step="0.1" name="amount">
     <input type="submit" name="submit" value="Submit">
   </form>
 {% endblock %}
