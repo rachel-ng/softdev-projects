@@ -13,7 +13,7 @@ def create_table():
     c = db.cursor() #facilitate db ops
 
     c.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, user TEXT, password TEXT)")
-    c.execute("CREATE TABLE IF NOT EXISTS basic_info (user_id INTEGER, height REAL, weight REAL, allergies TEXT, dietary_restrictions TEXT, expected_calories INTEGER, expected_carbs INTEGER, expected_protein INTEGER, expected_fat INTEGER)")
+    c.execute("CREATE TABLE IF NOT EXISTS basic_info (user_id INTEGER, age INTEGER, height REAL, weight REAL, allergies TEXT, dietary_restrictions TEXT, expected_calories INTEGER, expected_carbs INTEGER, expected_protein INTEGER, expected_fat INTEGER)")
     c.execute("CREATE TABLE IF NOT EXISTS water_log (user_id INTEGER, year INTEGER, month INTEGER, week_start_day INTEGER, intake_01 REAL, intake_02 REAL, intake_03 REAL, intake_04 REAL, intake_05 REAL, intake_06 REAL, intake_07 REAL)")
     c.execute("CREATE TABLE IF NOT EXISTS exercise_log (user_id INTEGER, year INTEGER, month INTEGER, day INTEGER, week_start_day INTEGER, hours_01 INTEGER, hours_02 INTEGER, hours_03 INTEGER, hours_04 INTEGER, hours_05 INTEGER, hours_06 INTEGER, hours_07 INTEGER, target_muscle_group_01 TEXT, target_muscle_group_02 TEXT, target_muscle_group_03 TEXT, target_muscle_group_04 TEXT, target_muscle_group_05 TEXT, target_muscle_group_06 TEXT, target_muscle_group_07 TEXT)")
     c.execute("CREATE TABLE IF NOT EXISTS sleep_log (user_id INTEGER, year INTEGER, month INTEGER, week_start_day INTEGER, hours_01 REAL, hours_02 REAL, hours_03 REAL, hours_04 REAL, hours_05 REAL, hours_06 REAL, hours_07 REAL)")
@@ -62,7 +62,7 @@ def authenticate(username, password):
     db.close()
     return False
 
-def add_info(height, weight, allergies, dietary_restrictions, username):
+def add_info(age, height, weight, allergies, dietary_restrictions, username):
     if height == '' or weight == '':
         return False
     db = sqlite3.connect(DB_FILE)
@@ -74,10 +74,10 @@ def add_info(height, weight, allergies, dietary_restrictions, username):
     c.execute(command)
 
     if c.fetchone() == None: # if user has not yet added their info
-        params = (user_id, height, weight, allergies, dietary_restrictions)
-        c.execute("INSERT INTO basic_info (user_id, height, weight) VALUES (?, ?, ?, ?, ?)", params)
+        params = (user_id, age, height, weight, allergies, dietary_restrictions)
+        c.execute("INSERT INTO basic_info (user_id, age, height, weight) VALUES (?, ?, ?, ?, ?, ?)", params)
     else:
-        command = "UPDATE basic_info SET height=\"{}\", weight=\"{}\", allergies=\"{}\", dietary_restrictions=\"{}\" WHERE user_id={}".format(height, weight, allergies, dietary_restrictions, user_id)
+        command = "UPDATE basic_info SET age=\"{}\", height=\"{}\", weight=\"{}\", allergies=\"{}\", dietary_restrictions=\"{}\" WHERE user_id={}".format(age, height, weight, allergies, dietary_restrictions, user_id)
         c.execute(command)
     db.commit()
     db.close()

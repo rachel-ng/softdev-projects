@@ -6,6 +6,7 @@
 {% block content %}
 	<h1> Welcome, {{ user }}! </h1>
 	<form action="/user_info" method="POST">
+    Age: <input type="number" name="age"> <br><br>
 		Height: <input type="number" name="height"> <br><br>
 		Weight: <input type="number" name="weight"> <br><br>
     Allergies (Please separate by commas): <input type="text" name="allergies"> <br><br>
