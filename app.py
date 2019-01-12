@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 
-from util import user, exercise, water, food #sleep
+from util import user, exercise, water, food, plotly_charts #sleep
 
 app = Flask(__name__) #create instance of class flask
 
