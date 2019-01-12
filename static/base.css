@@ -3,9 +3,14 @@
   padding-right: 5px;
 }
 
-.alertBox{
-  width: 30%;
+#alertBox{
+  width: 40%;
   padding: 8px;
+  margin:auto;
+}
+
+#errorBox{
+  margin:10px;
 }
 
 .center{

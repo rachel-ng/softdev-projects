@@ -59,10 +59,10 @@
     <br>
     <br>
 
-    <div class ="container-fluid center" style="margin:10px;">
+    <div class ="container-fluid center" id="errorBox">
     {% set msgs = get_flashed_messages() %}
       {% for each in msgs %}
-      <div class="alert alert-info alert-dismissible alertBox" style="margin:auto;" role="alert">
+      <div class="alert alert-info alert-dismissible" id="alertBox" role="alert">
       {{ each }}
       <button type="button" class="close" data-dismiss="alert" aria-label="Close" data-toggle="collapse" data-target="#demo">
         <span aria-hidden="true">&times;</span>
