@@ -14,7 +14,7 @@ def create_table():
 
     c.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, user TEXT, password TEXT)")
     c.execute("CREATE TABLE IF NOT EXISTS basic_info (user_id INTEGER, age INTEGER, height REAL, weight REAL, allergies TEXT, dietary_restrictions TEXT, expected_calories INTEGER, expected_carbs INTEGER, expected_protein INTEGER, expected_fat INTEGER)")
-    c.execute("CREATE TABLE IF NOT EXISTS water_log (user_id INTEGER, year INTEGER, month INTEGER, week_start_day INTEGER, intake_01 REAL, intake_02 REAL, intake_03 REAL, intake_04 REAL, intake_05 REAL, intake_06 REAL, intake_07 REAL)")
+    c.execute("CREATE TABLE IF NOT EXISTS water_log (user_id INTEGER, year INTEGER, month INTEGER, day INTEGER, week_start_day INTEGER, intake_01 REAL, intake_02 REAL, intake_03 REAL, intake_04 REAL, intake_05 REAL, intake_06 REAL, intake_07 REAL)")
     c.execute("CREATE TABLE IF NOT EXISTS exercise_log (user_id INTEGER, year INTEGER, month INTEGER, day INTEGER, week_start_day INTEGER, hours_01 INTEGER, hours_02 INTEGER, hours_03 INTEGER, hours_04 INTEGER, hours_05 INTEGER, hours_06 INTEGER, hours_07 INTEGER, target_muscle_group_01 TEXT, target_muscle_group_02 TEXT, target_muscle_group_03 TEXT, target_muscle_group_04 TEXT, target_muscle_group_05 TEXT, target_muscle_group_06 TEXT, target_muscle_group_07 TEXT)")
     c.execute("CREATE TABLE IF NOT EXISTS sleep_log (user_id INTEGER, year INTEGER, month INTEGER, week_start_day INTEGER, hours_01 REAL, hours_02 REAL, hours_03 REAL, hours_04 REAL, hours_05 REAL, hours_06 REAL, hours_07 REAL)")
     c.execute("CREATE TABLE IF NOT EXISTS food_log (user_id INTEGER, year INTEGER, month INTEGER, day INTEGER, time INTEGER, meal TEXT, calories INTEGER, carbs INTEGER, protein INTEGER, fat INTEGER)")
@@ -43,8 +43,12 @@ def register(username, password):
     current_month = datetime.now().month
     current_day = datetime.now().day
     current_weekday = datetime.now().weekday()
+    '''
     params = (user_id, current_year, current_month, current_day, current_weekday, 0, 0, 0, 0, 0, 0, 0)
     c.execute("INSERT INTO exercise_log (user_id, year, month, day, week_start_day, hours_01, hours_02, hours_03, hours_04, hours_05, hours_06, hours_07) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
+    '''
+    params = (user_id, current_year, current_month, current_day, current_weekday, 0, 0, 0, 0, 0, 0, 0)
+    c.execute("INSERT INTO water_log (user_id, year, month, day, week_start_day, intake_01, intake_02, intake_03, intake_04, intake_05, intake_06, intake_07) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
 
     db.commit()
     db.close()
@@ -84,3 +88,4 @@ def add_info(age, height, weight, allergies, dietary_restrictions, username):
     return True
 
 create_table()
+register("a", "a")

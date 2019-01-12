@@ -7,13 +7,14 @@ Water
 
 {% block content %}
 {# insert graph here! #}
-<p> You drank  </p>
+<p> You drank {{ total }} fluid ounces of water this week. </p>
+<p> You should drink 64 fluid ounces of water daily! </p>
+<p> You drank {{ percentage }}% of your recommended daily water. </p>
 <form method="POST">
   How much water did you drink today?
   <!-- <div class="form-group col-md-2"> -->
     <div class = "water input">
-       <label for="inputWater">Water</label>
-       <input type="text" class="form-control" id="inputWater">
+       <input type="number" name="inputW">
      </div>
   <select name="measure">
         <option value=0> cups </option>

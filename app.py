@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 
-from util import user, exercise, food, water_intake
+from util import user, exercise, water,food
 
 app = Flask(__name__) #create instance of class flask
 
@@ -92,13 +92,29 @@ def user_info():
         flash("Changes could not be saved.")
     return redirect(url_for('profile'))
 
-@app.route('/sleep')
+@app.route('/sleep', methods=["GET", "POST"])
 def sleep():
     return render_template('sleep.html')
 
-@app.route('/water')
+@app.route('/water', methods=["GET", "POST"])
 def water():
-    return render_template('water.html')
+    try:
+        username = session['username']
+        all_water = water.get_user_water(username)
+        if request.method == 'GET':
+            return render_template('water.html', total = all_water, percentage = water.calc_percentage(username))
+        else:
+            type = request.form['measure']
+            print(type)
+            input = request.form['inputW']
+            amount = water.convert_measure(input, type)
+            if (amount < 1 and water.update_user_log(username, amount) == True):
+                flash("Exercise log successfully updated!")
+            else:
+                flash("Input field cannot be empty.")
+    except:
+        flash("You must be logged in to access this page.")
+        return redirect('/')
 
 @app.route('/nutrients')
 def nutrients():
@@ -135,6 +151,8 @@ def exercise_options():
     except:
         flash("You must be logged in to access this page.")
         return redirect('/')
+
+
 
 if __name__ == "__main__":
     app.debug = True

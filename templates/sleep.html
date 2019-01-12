@@ -4,11 +4,16 @@
 Sleep
 {% endblock %}
 
+{# insert graph here! #}
+
 {% block content %}
 sleep calculator
 <div class="sleep">
-  <div id = "hours">
-  <select class="form-control">
+
+  What time do you want to wake up?
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Hour</label>
+  <select class="form-control" id = "hours">
     <option>01</option>
     <option>02</option>
     <option>03</option>
@@ -24,15 +29,16 @@ sleep calculator
   </select>
   </div>
 
-  <div id = "minutes">
-  <select class="form-control">
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Example select</label>
+  <select class="form-control" id = "minutes">
     <option>00</option>
     <option>15</option>
     <option>30</option>
     <option>45</option>
   </select>
   </div>
-
 
   <div id = "time">
   <label class="radio-inline">
@@ -43,8 +49,8 @@ sleep calculator
   </label>
   </div>
   <button id="x"> submit </button>
-
-
+  <h1 id = "display"> </h1>
+  <p id = "descrip"> </p>
 </div>
 <script type = "text/javascript" src="{{url_for('static', filename='js/sleep.js') }}"></script>
 
