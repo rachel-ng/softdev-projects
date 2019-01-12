@@ -27,6 +27,38 @@ def get_food_nutrients(ndbno):
     raw_json = json.loads(response.read())
 
     calories = raw_json['foods'][0]['food']['nutrients'][0]['value']
-    print(calories)
+    # print(calories)
+
+def add_food(meal, amount, username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "SELECT id from users WHERE user={}".format(repr(username))
+    c.execute(command)
+    user_id = c.fetchone()[0]
+
+    hour = datetime.now().hour
+    minute = datetime.now().minute
+    params = (user_id, hour, minute, meal, amount)
+    c.execute("INSERT INTO food_log (user_id, hour, minute, meal, amount) VALUES (?, ?, ?, ?, ?)", params)
+    db.commit()
+    db.close()
+    return True
+
+def get_user_food(username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "SELECT id from users WHERE user={}".format(repr(username))
+    c.execute(command)
+    user_id = c.fetchone()[0]
+
+    today_food = []
+    command = "SELECT hour, minute, meal, amount FROM food_log WHERE user_id={}".format(repr(user_id))
+    c.execute(command)
+    data = c.fetchall()
+    # print(data)
+    for row in data:
+        today_food.append(row)
+        # print(row[0])
+    return today_food
 # print(get_food_ndbno("milk"))
-get_food_nutrients(get_food_ndbno('milk'))
+# get_food_nutrients(get_food_ndbno('milk'))

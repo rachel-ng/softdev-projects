@@ -1,5 +1,16 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block title %}
+Food
+{% endblock %}
 
+{% block content %}
+  <form method="POST">
+    What did you eat today?
+    <input type="text" name="meal">
+    <br>
+    How much did you eat? (cups)
+    <input type="number" name="amount">
+    <input type="submit" name="submit" value="Submit">
+  </form>
 {% endblock %}

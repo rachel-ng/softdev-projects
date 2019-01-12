@@ -128,9 +128,23 @@ def water_disp():
         #print(session)
         return redirect('/')
 
-@app.route('/nutrients')
+@app.route('/nutrients', methods=["GET", "POST"])
 def nutrients():
-    return render_template('nutrients.html')
+    try:
+        username = session['username']
+        if request.method == 'GET':
+            today_food = food.get_user_food(username)
+            return render_template('nutrients.html', today_food=today_food)
+        else:
+            user_meal = request.form['meal']
+            user_amount = request.form['amount']
+            if food.add_food(user_meal, user_amount, username) == True:
+                flash("Food added to log!")
+                return render_template('nutrients.html')
+            return redirect('/')
+    except:
+        flash("You must be logged in to access this page.")
+        return redirect('/')
 
 @app.route('/exercise', methods=["GET", "POST"])
 def exercise_options():
@@ -163,8 +177,6 @@ def exercise_options():
     except:
         flash("You must be logged in to access this page.")
         return redirect('/')
-
-
 
 if __name__ == "__main__":
     app.debug = True

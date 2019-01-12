@@ -114,4 +114,10 @@ tinaW -- 2019-01-11 18:11
 
 rayO -- 2019-01-12 01:15
 - Added frontend for login/signup/profile pages
-- Added values to inputs in profile to autofill previously inputted information 
+- Added values to inputs in profile to autofill previously inputted information
+
+tinaW -- 2019-01-12 02:37
+- Started USDA Nutrients API work with getting food id and calories
+- Added food log frontend form
+- Added add food to database function
+- Added display food user ate today function
