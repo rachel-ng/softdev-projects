@@ -134,6 +134,7 @@ def nutrients():
         username = session['username']
         if request.method == 'GET':
             today_food = food.get_user_food(username)
+            print(today_food)
             return render_template('nutrients.html', today_food=today_food)
         else:
             user_meal = request.form['meal']

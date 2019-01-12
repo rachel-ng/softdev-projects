@@ -36,10 +36,13 @@ def add_food(meal, amount, username):
     c.execute(command)
     user_id = c.fetchone()[0]
 
+    year = datetime.now().year
+    month = datetime.now().month
+    day = datetime.now().day
     hour = datetime.now().hour
     minute = datetime.now().minute
-    params = (user_id, hour, minute, meal, amount)
-    c.execute("INSERT INTO food_log (user_id, hour, minute, meal, amount) VALUES (?, ?, ?, ?, ?)", params)
+    params = (user_id, year, month, day, hour, minute, meal, amount)
+    c.execute("INSERT INTO food_log (user_id, year, month, day, hour, minute, meal, amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", params)
     db.commit()
     db.close()
     return True
@@ -52,7 +55,10 @@ def get_user_food(username):
     user_id = c.fetchone()[0]
 
     today_food = []
-    command = "SELECT hour, minute, meal, amount FROM food_log WHERE user_id={}".format(repr(user_id))
+    year = datetime.now().year
+    month = datetime.now().month
+    day = datetime.now().day
+    command = "SELECT hour, minute, meal, amount FROM food_log WHERE user_id={} AND year={} AND month={} AND day={}".format(repr(user_id), repr(year), repr(month), repr(day))
     c.execute(command)
     data = c.fetchall()
     # print(data)
