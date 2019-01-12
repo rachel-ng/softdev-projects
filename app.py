@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 
-from util import user, exercise
+from util import user, exercise, food, water_intake
 
 app = Flask(__name__) #create instance of class flask
 
@@ -98,6 +98,10 @@ def sleep():
 @app.route('/water')
 def water():
     return render_template('water.html')
+
+@app.route('/nutrients')
+def nutrients():
+    return render_template('nutrients.html')
 
 @app.route('/exercise', methods=["GET", "POST"])
 def exercise_options():
