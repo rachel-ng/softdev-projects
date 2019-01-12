@@ -6,6 +6,17 @@ Food
 
 {% block content %}
   {{ calories }} Calories consumed today.
+  You should be getting 2000 Calories a day!
+  <br>
+  {{ carbs }} grams of carbohydrates consumed today.
+  You should be getting 275 grams of carbohydrates a day!
+  <br>
+  {{ protein }} grams of protein consumed today.
+  You should be getting 60 grams of protein a day!
+  <br>
+  {{ fat }} grams of fat consumed today.
+  You should be getting 51 grams of fat a day!
+  <br>
   <form method="POST">
     What did you eat today?
     <input type="text" name="meal">
