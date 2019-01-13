@@ -167,17 +167,30 @@ def nutrients():
         else:
             user_meal = request.form['meal']
             user_amount = request.form['amount']
+            if user_meal == '' or user_amount == '':
+                today_food = food.get_user_food(username)
+                total_calories = food.get_total_calories(username)
+                total_carbs = food.get_total_carbs(username)
+                total_protein = food.get_total_protein(username)
+                total_fat = food.get_total_fat(username)
+                print(today_food)
+                flash("Your meal or amount cannot be empty.")
+                return render_template('nutrients.html', today_food=today_food, calories=total_calories, carbs=total_carbs, fat=total_fat, protein=total_protein)
+
             if food.add_food(user_meal, user_amount, username) == True:
                 today_food = food.get_user_food(username)
                 total_calories = food.get_total_calories(username)
+                total_carbs = food.get_total_carbs(username)
+                total_protein = food.get_total_protein(username)
+                total_fat = food.get_total_fat(username)
                 print(today_food)
                 flash("Food added to log!")
-                return render_template('nutrients.html', today_food=today_food, calories=total_calories)
+                return render_template('nutrients.html', today_food=today_food, calories=total_calories, carbs=total_carbs, fat=total_fat, protein=total_protein)
             else:
                 flash("We could not find the food you entered or the USDA Nutrients API key is missing.")
                 today_food = food.get_user_food(username)
                 total_calories = food.get_total_calories(username)
-                return render_template('nutrients.html', today_food=today_food, calories=total_calories)
+                return render_template('nutrients.html', today_food=today_food, calories=total_calories, carbs=total_carbs, fat=total_fat, protein=total_protein)
     except:
         flash("You must be logged in to access this page.")
         return redirect('/')

@@ -127,3 +127,7 @@ tinaW -- 2019-01-12 14:24
 - Wrote function to display total calories consumed today.
 - Added checks for when API key is missing or food is not found.
 - Updated nutrients template to show expected amount of nutrients.
+
+tinaW -- 2019-01-12 21:24
+- Used USDA Nutrients API to get carbohydrates, fat, and protein based on user's meal and amount
+- Finished adding carbohydrates, fat, and protein to be displayed to user and added to database
