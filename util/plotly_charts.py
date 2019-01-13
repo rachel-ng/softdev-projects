@@ -121,11 +121,10 @@ def macros_chart() :
 
 def line_chart() :
     N = 7
-    random_x = np.linspace(0, 1, N)
     random_y = np.random.randn(N)
 
     trace = go.Scatter(
-        x = random_x,
+        x = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
         y = random_y
     )
 
