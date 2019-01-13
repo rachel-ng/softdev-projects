@@ -121,8 +121,6 @@ def macros_chart() :
         f.write(macros_c)
 
 def line_chart() :
-    N = 7
-    random_y = np.random.randn(N)
 
     trace = go.Scatter(
         x = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
