@@ -1,17 +1,8 @@
-import json
 import plotly
-import plotly.plotly as py
-import plotly.graph_objs as go
+import plotly.offline
+from plotly.graph_objs import *
 
 javascript = '<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>\n'
-
-def config() :
-    with open('data/keys.json', 'r') as f:
-        api_dict = json.load(f)
-
-    plotly.tools.set_credentials_file(username= api_dict["PLOTLY_USERNAME"], api_key=api_dict["PLOTLY_API"])
-
-    print("hooray!")
 
 def sleep_chart() :
     hours_axis = []
@@ -22,10 +13,6 @@ def sleep_chart() :
         hours_axis.append((i + 12) % 24)
         i += 2
 
-    print(ticks)
-    print(hours_axis)
-
-
     offset_x = [0, 2, 23, 3, 21, 1, 4]
     offset = []
     for n in offset_x:
@@ -34,7 +21,7 @@ def sleep_chart() :
         if n < 12:
             offset.append(n + 12)
 
-    offsetting  = go.Bar(
+    offsetting  = Bar(
         x=offset,
         y=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
         showlegend=False,
@@ -48,7 +35,7 @@ def sleep_chart() :
         )
     )
 
-    sleep = go.Bar(
+    sleep = Bar(
         name="Hours Slept",
         x=[8, 4, 7, 3, 6, 10, 18],
         y=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
@@ -66,7 +53,7 @@ def sleep_chart() :
 
     data = [offsetting, sleep]
 
-    layout = go.Layout(
+    layout = Layout(
         title='Sleep Log',
         height=400,
         autosize=True,
@@ -82,7 +69,7 @@ def sleep_chart() :
         )
     )
 
-    fig = go.Figure(data=data, layout=layout)
+    fig = dict(data=data, layout=layout)
 
     sleep_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
 
@@ -91,13 +78,13 @@ def sleep_chart() :
 
 def macros_chart() :
     data = [
-        go.Scatterpolar(
+        Scatterpolar(
             r = [39, 28, 8, 7],
             theta = ['calories','carbs','protein', 'fat'],
             fill = 'toself',
             name = 'Group A'
         ),
-        go.Scatterpolar(
+        Scatterpolar(
             r = [1.5, 152, 101, 38],
             theta = ['calories','carbs','protein', 'fat'],
             fill = 'toself',
@@ -105,7 +92,7 @@ def macros_chart() :
         )
     ]
 
-    layout = go.Layout(
+    layout = Layout(
         polar = dict(
             radialaxis = dict(
                 visible = True,
@@ -114,20 +101,18 @@ def macros_chart() :
         ),
         showlegend = False
     )
-    fig = go.Figure(data=data, layout=layout)
+
+    fig = dict(data=data, layout=layout)
     macros_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
 
     with open('templates/macros_chart.html', 'w') as f:
         f.write(macros_c)
 
 def line_chart() :
-
-    trace = go.Scatter(
+    data = [Scatter(
         x = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
         y = [20, 14, 23, 64, 23, 56, 100]
-    )
-
-    data = [trace]
+    )]
 
     line_c = javascript + plotly.offline.plot(data, include_plotlyjs=False, output_type='div')
 
@@ -135,7 +120,7 @@ def line_chart() :
         f.write(line_c)
 
 def bar_chart() :
-    data = [go.Bar(
+    data = [Bar(
         x= ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
         y= [20, 14, 23, 64, 23, 56, 100]
     )]
