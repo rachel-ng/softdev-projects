@@ -2,6 +2,7 @@ import json
 import plotly
 import plotly.plotly as py
 import plotly.graph_objs as go
+import numpy as np
 
 def config() :
     with open('data/keys.json', 'r') as f:
@@ -86,3 +87,68 @@ def sleep_chart() :
 
     with open('templates/sleep_chart.html', 'w') as f:
         f.write(uhoh)
+
+def macros_chart() :
+    data = [
+        go.Scatterpolar(
+            r = [39, 28, 8, 7],
+            theta = ['calories','carbs','protein', 'fat'],
+            fill = 'toself',
+            name = 'Group A'
+        ),
+        go.Scatterpolar(
+            r = [1.5, 152, 101, 38],
+            theta = ['calories','carbs','protein', 'fat'],
+            fill = 'toself',
+            name = 'Group B'
+        )
+    ]
+
+    layout = go.Layout(
+        polar = dict(
+            radialaxis = dict(
+                visible = True,
+                range = [0, 175]
+            )
+        ),
+        showlegend = False
+    )
+    fig = go.Figure(data=data, layout=layout)
+    macros_c = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+
+    with open('templates/macros_chart.html', 'w') as f:
+        f.write(macros_c)
+
+def line_chart() :
+    N = 7
+    random_x = np.linspace(0, 1, N)
+    random_y = np.random.randn(N)
+
+    trace = go.Scatter(
+        x = random_x,
+        y = random_y
+    )
+
+    data = [trace]
+
+    line_c = plotly.offline.plot(data, include_plotlyjs=False, output_type='div')
+
+    with open('templates/line_chart.html', 'w') as f:
+        f.write(line_c)
+
+def bar_chart() :
+    data = [go.Bar(
+        x=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
+        y=[20, 14, 23, 64, 23, 56, 100]
+    )]
+
+    bar_c = plotly.offline.plot(data, include_plotlyjs=False, output_type='div')
+
+    with open('templates/bar_chart.html', 'w') as f:
+        f.write(bar_c)
+
+
+sleep_chart()
+macros_chart()
+line_chart()
+bar_chart()
