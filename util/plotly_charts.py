@@ -1,4 +1,3 @@
-import plotly
 import plotly.offline
 from plotly.graph_objs import *
 
