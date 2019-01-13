@@ -2,7 +2,6 @@ import json
 import plotly
 import plotly.plotly as py
 import plotly.graph_objs as go
-import numpy as np
 
 javascript = '<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>\n'
 
@@ -127,7 +126,7 @@ def line_chart() :
 
     trace = go.Scatter(
         x = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
-        y = random_y
+        y = [20, 14, 23, 64, 23, 56, 100]
     )
 
     data = [trace]
@@ -139,15 +138,14 @@ def line_chart() :
 
 def bar_chart() :
     data = [go.Bar(
-        x=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
-        y=[20, 14, 23, 64, 23, 56, 100]
+        x= ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
+        y= [20, 14, 23, 64, 23, 56, 100]
     )]
 
     bar_c = javascript + plotly.offline.plot(data, include_plotlyjs=False, output_type='div')
 
     with open('templates/bar_chart.html', 'w') as f:
         f.write(bar_c)
-
 
 sleep_chart()
 macros_chart()
