@@ -13,5 +13,10 @@ rowSpacing{
 }
 
 .transparency {
-	opacity: .85;
+	opacity: .80;
+}
+
+#cardHolder{
+	width:85%;
+	margin:auto;
 }

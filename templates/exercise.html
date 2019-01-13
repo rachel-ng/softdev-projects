@@ -1,37 +1,80 @@
 {% extends "base.html" %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='generalStyles.css') }}">
+{% endblock %}
+
 {% block title %}
-	Exercise
+Exercise
 {% endblock %}
 
 {% block content %}
-{{ hours }} hours spent working out this week
-  <form method="POST">
-    Update exercise log: <br>
-    What did you exercise today?
-    <select name="user_category">
-      {% for category in all_categories %}
-      <option value="{{ category }}">{{ category }}</option>
-      {% endfor %}
-    </select>
-    <br>
-    How long did you exercise? <input type="number" name="hours"> <br><br>
+<div class="container-fluid">
+	<div id="mainCard">
+		<div class="card text-white bg-danger mb-3">
+			<div class="card-header">
+				Exercise
+			</div>
+			<div class="card-body">
+				<div class="row">
+					<div class="col-md-6">
+						<h2> Chart goes here </h2>
+						{# insert graph here! #}
+					</div>
+					<div class="col-md-3">
+						<h5 class="card-title">Exercise Log <i class="fas fa-dumbbell"></i></h5>
+						<p> You have spent <strong>{{ hours }}</strong> hours working out this week <br> {{category}}</p>
 
-    <input type="submit" name="submit" value="Submit">
-  </form>
-	<form method="POST">
-    {{ category }} Search for some exercise recommendations that you can do:
-    <select name="user_request">
-      {% for category in all_categories %}
-      <option value="{{ category }}">{{ category }}</option>
-      {% endfor %}
-    </select>
-    <input type="submit" name="submit" value="Search">
-  </form>
-
-  {% if can_view_results %}
-    {% for result in results %}
-    <p>{{ result }}</p>
-    {% endfor %}
-  {% endif %}
+						<form method="POST">
+							<strong>Update exercise log</strong><br>
+							<div class="form-group">
+								What did you exercise today?
+								<select class="form-control" name="user_category">
+									{% for category in all_categories %}
+									<option value="{{ category }}">{{ category }}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<div class="form-group">
+								How long did you exercise?
+								<input class="form-control" type="number" name="hours">
+							</div>
+							<button type="submit" class="btn btn-light btn-sm" name="submit">Submit</button>
+						</form>
+						<small>
+							<i>
+								The number inputted above is the <strong>total hours</strong> spent working out <strong>this week</strong>.
+								<br>
+								When updating your log, add the <strong>number of hours you worked out</strong> to the <strong>total number of hours</strong>.
+							</i>
+						</small>
+					</div>
+					<div class="col-md-3">
+						<h5 class="card-title">Recommendations</h5>
+						<form method="POST">
+							<div class="form-group">
+								Looking to find new exercises? <br>
+								Search for some exercise recommendations that you can do:
+								<select class="form-control" name="user_request">
+									{% for category in all_categories %}
+									<option value="{{ category }}">{{ category }}</option>
+									{% endfor %}
+								</select>
+							</div>
+							<button type="submit" class="btn btn-light btn-sm" name="submit">Search</button>
+						</form>
+						{% if can_view_results %}
+						<ul class="list-group">
+						{% for result in results %}
+						<li class="list-group-element">{{ result }}</li>
+						{% endfor %}
+						</ul>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
 {% endblock %}
