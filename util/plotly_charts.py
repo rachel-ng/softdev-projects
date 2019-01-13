@@ -4,6 +4,8 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import numpy as np
 
+javascript = '<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>\n'
+
 def config() :
     with open('data/keys.json', 'r') as f:
         api_dict = json.load(f)
@@ -83,10 +85,10 @@ def sleep_chart() :
 
     fig = go.Figure(data=data, layout=layout)
 
-    uhoh = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+    sleep_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
 
     with open('templates/sleep_chart.html', 'w') as f:
-        f.write(uhoh)
+        f.write(sleep_c)
 
 def macros_chart() :
     data = [
@@ -114,7 +116,7 @@ def macros_chart() :
         showlegend = False
     )
     fig = go.Figure(data=data, layout=layout)
-    macros_c = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+    macros_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
 
     with open('templates/macros_chart.html', 'w') as f:
         f.write(macros_c)
@@ -130,7 +132,7 @@ def line_chart() :
 
     data = [trace]
 
-    line_c = plotly.offline.plot(data, include_plotlyjs=False, output_type='div')
+    line_c = javascript + plotly.offline.plot(data, include_plotlyjs=False, output_type='div')
 
     with open('templates/line_chart.html', 'w') as f:
         f.write(line_c)
@@ -141,7 +143,7 @@ def bar_chart() :
         y=[20, 14, 23, 64, 23, 56, 100]
     )]
 
-    bar_c = plotly.offline.plot(data, include_plotlyjs=False, output_type='div')
+    bar_c = javascript + plotly.offline.plot(data, include_plotlyjs=False, output_type='div')
 
     with open('templates/bar_chart.html', 'w') as f:
         f.write(bar_c)
