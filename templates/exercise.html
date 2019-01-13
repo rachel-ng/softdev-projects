@@ -2,6 +2,7 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='generalStyles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='exercise.css') }}">
 {% endblock %}
 
 {% block title %}
@@ -63,12 +64,16 @@ Exercise
 							</div>
 							<button type="submit" class="btn btn-light btn-sm" name="submit" value="Search">Search</button>
 						</form>
+						<br>
 						{% if can_view_results %}
-						<ul class="list-group">
+						<div id="exerciseContainer">
+						<strong>Search results for {{requested}}</strong>
+						<ul class="list-group" id="exerciseList">
 						{% for result in results %}
-						<li class="list-group-element">{{ result }}</li>
+						<li class="list-group-item">{{ result }}</li>
 						{% endfor %}
 						</ul>
+						</div>
 						{% endif %}
 					</div>
 				</div>

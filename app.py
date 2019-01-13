@@ -212,7 +212,7 @@ def exercise_options():
             if request.form['submit'] == "Search":
                 user_request = request.form['user_request']
                 results = exercise.list_category_exercises(exercise.get_category_id(user_request))
-                return render_template('exercise.html', all_categories=all_categories, results=results, can_view_results=True, hours=hours, category=category)
+                return render_template('exercise.html', all_categories=all_categories, results=results, can_view_results=True, hours=hours, category=category,requested=user_request)
             else:
                 user_hours = request.form['hours']
                 user_category = request.form['user_category']
