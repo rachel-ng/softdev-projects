@@ -89,13 +89,13 @@ Install the dependencies with [requirements.txt](requirements.txt) by running th
 pip install -r requirements.txt
 ```
 
-- os
+- os  
 `os` is used for miscellaneous operating system dependent functions. A standard Python library that can be imported.
 
-- urllib
+- urllib  
 `urllib` is used to get JSON files from APIs. A standard Python library that can be imported. 
 
-- json
+- json  
 `json` is used to parse JSON files requested from APIs. A standard Python library that can be imported. 
 
 - flask  
