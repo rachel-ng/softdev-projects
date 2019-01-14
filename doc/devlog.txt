@@ -136,4 +136,9 @@ rayO -- 2019-01-13 16:11
 - Frontend work done on exercise/water pages, only charts left to be added
 - Added additional info on water/exercise pages to clarify how they work
 - Minor style change on profile page
-- Footer is now locked to the bottom 
+- Footer is now locked to the bottom
+
+rayO -- 2019-01-13 21:02
+- Frontend work done on nutrition page
+- Replaced placeholder items on home page for users not logged in but still lacks content
+- Minor change to navbar 

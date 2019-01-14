@@ -1,28 +1,54 @@
 {% extends "base.html" %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='generalStyles.css') }}">
+{% endblock %}
+
 {% block title %}
 Food
 {% endblock %}
 
 {% block content %}
-  {{ calories }} Calories consumed today.
-  You should be getting 2000 Calories a day!
-  <br>
-  {{ carbs }} grams of carbohydrates consumed today.
-  You should be getting 275 grams of carbohydrates a day!
-  <br>
-  {{ protein }} grams of protein consumed today.
-  You should be getting 60 grams of protein a day!
-  <br>
-  {{ fat }} grams of fat consumed today.
-  You should be getting 51 grams of fat a day!
-  <br>
-  <form method="POST">
-    What did you eat today?
-    <input type="text" name="meal">
-    <br>
-    How much did you eat? (grams)
-    <input type="number" step="0.1" name="amount">
-    <input type="submit" name="submit" value="Submit">
-  </form>
+<div class="container-fluid">
+  <div id="mainCard">
+    <div class="card text-white bg-success mb-3">
+      <div class="card-header">Nutrition</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h2> Chart goes here </h2>
+            {# insert graph here! #}
+            <hr>
+          </div>
+          <div class="col-md-3">
+            <h5 class="card-title">Nutrients Log</h5>
+
+            <p><strong>{{ calories }} Calories</strong> consumed today. You should be getting <strong>2000 Calories a day</strong>!</p>
+
+            <p><strong>{% if carbs %}{{ carbs }} {% else %} 0 {% endif %} grams of carbohydrates</strong> consumed today. You should be getting <strong>275 grams of carbohydrates a day</strong>!</p>
+
+            <p><strong>{% if protein %} {{ protein }} {% else %} 0 {% endif %} grams of protein</strong> consumed today. You should be getting <strong>60 grams of protein a day</strong>!</p>
+
+            <p><strong>{% if fat %}{{ fat }} {% else %} 0 {% endif %} grams of fat</strong> consumed today. You should be getting <strong>51 grams of fat a day</strong>!</p>
+            <hr>
+          </div>
+          <div class="col-md-3">
+            <h5 class="card-title">Update nutrients log</h5>
+            <form method="POST">
+              <div class="form-group">
+                What did you eat today?
+                <input class="form-control" type="text" name="meal">
+              </div>
+              <div class="form-group">
+              How much did you eat? (grams)
+              <input class="form-control" type="number" step="0.1" name="amount">
+              </div>
+              <button type="submit" class="btn btn-light btn-sm" name="submit" value="Submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
