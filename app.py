@@ -115,7 +115,7 @@ def sleep_disp():
             print(end_time)
             total_time = sleep.get_diff(start_time, end_time)
 
-            if (sleep.update_user_log(username, total_time) == True):
+            if (sleep.update_user_log(username, total_time, start_time) == True):
                 flash("Sleep log successfully updated!")
                 last_sleep = sleep.get_user_sleep(username)
             else:
