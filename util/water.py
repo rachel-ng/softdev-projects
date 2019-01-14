@@ -1,30 +1,38 @@
 import json
 import urllib.request
 import sqlite3
-from datetime import datetime
-#opens if db exist, otherwise create
-#remember to change route!
-DB_FILE = "data/health.db"
 
-#with open('data/keys.json', 'r') as f:
-#    api_dict = json.load(f)
+from datetime import datetime
+
+#opens if db exist, otherwise create
+DB_FILE = "data/health.db"
 
 def convert_measure(measurement, amount):
     '''Converts all liquid measurements to fluid ounces.'''
-
+    # measurement given in cups
     if measurement == 0:
+        # fl. oz = cups * 8
         return (amount * 8)
+    # measurement given in fl. oz
     elif measurement == 1:
+        # no converting necessary
         return amount
+    # measurement given in mL
     else:
+        # fl. oz = mL / 29.57,  rounded to two decimal places
         return (round(amount / 29.57) , 2)
 
 def calc_percentage(username):
+    '''Calculates percentage of recommended daily water intake user has drank on that day.'''
+
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+    # find user in database and get user_id
     command = "SELECT id from users WHERE user={}".format(repr(username))
     c.execute(command)
     user_id = c.fetchone()[0]
+
+    # 
     weekday = datetime.today().isoweekday()
     column = column = "intake_0" + str(weekday)
     #print(column)
@@ -38,6 +46,7 @@ def calc_percentage(username):
     return round((data/64.0 * 100), 2)
 
 def get_user_water(username):
+    '''Retrieves user's '''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))

@@ -28,8 +28,8 @@ def get_user_sleep(username):
     db.close()
     return total_sleep
 
-def update_user_log(username, input):
-    if input == '':
+def update_user_log(username, delta, start):
+    if delta == '' or start == '':
         return False
     else:
         db = sqlite3.connect(DB_FILE)
@@ -46,17 +46,39 @@ def update_user_log(username, input):
         month = data[1]
         day = data[2]
         weekday = data[3]
+        weekday = weekday
+        current_weekday = datetime.now().weekday()
 
         if datetime.now().year == year and datetime.now().month == month and datetime.now().day - day < 7:
-            column = "hours_0" + str(weekday + 1)
-            print("putting in user sleep")
-            print(column)
+            if current_weekday == weekday:
+                command = "UPDATE sleep_log SET hours_01=\"{}\", start_01=\"{}\" WHERE user_id={}".format(delta, start, user_id)
+                c.execute(command)
+            elif current_weekday == weekday + 1:
+                command = "UPDATE sleep_log SET hours_02=\"{}\", start_02=\"{}\" WHERE user_id={}".format(delta, start, user_id)
+                c.execute(command)
 
-            command = "UPDATE sleep_log SET {} = \"{}\" WHERE user_id = {}".format(column, input, user_id )
-            print(command)
-            c.execute(command)
+            elif current_weekday == weekday + 2:
+                command = "UPDATE sleep_log SET hours_03=\"{}\", start_03=\"{}\" WHERE user_id={}".format(delta, start, user_id)
+                c.execute(command)
+
+            elif current_weekday == weekday + 3:
+                command = "UPDATE sleep_log SET hours_04=\"{}\", start_04=\"{}\" WHERE user_id={}".format(delta, start, user_id)
+                c.execute(command)
+
+            elif current_weekday == weekday + 4:
+                command = "UPDATE sleep_log SET hours_05=\"{}\", start_05=\"{}\" WHERE user_id={}".format(delta, start, user_id)
+                c.execute(command)
+
+            elif current_weekday == weekday + 5:
+                command = "UPDATE sleep_log SET hours_06=\"{}\", start_06=\"{}\" WHERE user_id={}".format(delta, start, user_id)
+                c.execute(command)
+
+            elif current_weekday == weekday + 6:
+                command = "UPDATE sleep_log SET hours_07=\"{}\", start_07=\"{}\" WHERE user_id={}".format(delta, start, user_id)
+                c.execute(command)
+
         else:
-            command = "UPDATE sleep_log SET year=\"{}\", month=\"{}\", day=\"{}\", week_start_day=\"{}\", hours_01=\"{}\" WHERE user_id={}".format(year, month, day, week_start_day, hours, user_id)
+            command = "UPDATE sleep_log SET year=\"{}\", month=\"{}\", day=\"{}\", week_start_day=\"{}\", hours_01=\"{}\", start_01 WHERE user_id={}".format(year, month, day, week_start_day, delta, start, user_id)
             c.execute(command)
 
     db.commit()
