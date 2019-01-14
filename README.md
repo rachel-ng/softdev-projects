@@ -68,7 +68,7 @@ Roster: Rachel Ng (PM), Ray Onishi, Tina Wong, Maggie Zhao
     ```
 
 
-### Get your API Keys 
+## Get your API Keys 
 
 [Workout Manager](https://wger.de/en/user/api-key)
 
@@ -80,7 +80,7 @@ Roster: Rachel Ng (PM), Ray Onishi, Tina Wong, Maggie Zhao
 1. Sign up for an account
 2. Check your email for your new API key! 
 
-### Dependencies 
+## Dependencies 
 
 Install the dependencies with [requirements.txt](requirements.txt) by running the following command
 
