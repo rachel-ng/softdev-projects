@@ -10,13 +10,16 @@ DB_FILE = "data/health.db"
 #    api_dict = json.load(f)
 
 def get_user_sleep(username):
+    print(str(datetime.today().isoweekday()))
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))
     c.execute(command)
     user_id = c.fetchone()[0]
     #print(user_id)
-    column = "hours_0" + str(datetime.today().weekday())
+    column = "hours_0" + str(datetime.today().isoweekday())
+    print("getting user sleep")
+    print(column)
     command = "SELECT {} FROM sleep_log WHERE user_id={}".format(column, repr(user_id))
     c.execute(command)
     data = c.fetchone()[0]
@@ -38,14 +41,15 @@ def update_user_log(username, input):
         command = "SELECT year, month, day, week_start_day FROM sleep_log WHERE user_id={}".format(repr(user_id))
         c.execute(command)
         data = c.fetchone()
-        #print(data)
+        print(data)
         year = data[0]
         month = data[1]
         day = data[2]
         weekday = data[3]
 
         if datetime.now().year == year and datetime.now().month == month and datetime.now().day - day < 7:
-            column = "hours_0" + str(weekday)
+            column = "hours_0" + str(weekday + 1)
+            print("putting in user sleep")
             print(column)
 
             command = "UPDATE sleep_log SET {} = \"{}\" WHERE user_id = {}".format(column, input, user_id )

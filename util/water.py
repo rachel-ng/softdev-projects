@@ -25,10 +25,12 @@ def calc_percentage(username):
     command = "SELECT id from users WHERE user={}".format(repr(username))
     c.execute(command)
     user_id = c.fetchone()[0]
-    weekday = datetime.today().weekday()
+    weekday = datetime.today().isoweekday()
     column = column = "intake_0" + str(weekday)
     #print(column)
     command = "SELECT {} FROM water_log WHERE user_id={}".format(column, user_id)
+    print ("getting user water")
+    print(column)
     c.execute(command)
     data = c.fetchone()[0]
     #print(data)
@@ -43,6 +45,8 @@ def get_user_water(username):
     user_id = c.fetchone()[0]
     #print(user_id)
     column = "intake_0" + str(datetime.today().isoweekday())
+    print ("setting user water")
+    print(column)
     command = "SELECT {} FROM water_log WHERE user_id={}".format(column, repr(user_id))
     c.execute(command)
     data = c.fetchone()[0]
@@ -68,7 +72,7 @@ def update_user_log(username, input):
         year = data[0]
         month = data[1]
         day = data[2]
-        weekday = data[3]
+        weekday = data[3] + 1
 
         input = get_user_water(username) + input
         if datetime.now().year == year and datetime.now().month == month and datetime.now().day - day < 7:
