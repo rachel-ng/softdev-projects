@@ -61,7 +61,8 @@ Roster: Rachel Ng (PM), Ray Onishi, Tina Wong, Maggie Zhao
     python app.py
     ```
 
-7. Now type <sub>or copy and paste</sub> this into your browser of choice and start using Ambrosia! 
+7. Now type this into your browser of choice and start using Ambrosia!  
+<sup>or copy and paste</sup>
 
     ```
     http://127.0.0.1:500/
@@ -87,6 +88,15 @@ Install the dependencies with [requirements.txt](requirements.txt) by running th
 ```
 pip install -r requirements.txt
 ```
+
+- os
+`os` is used for miscellaneous operating system dependent functions. A standard Python library that can be imported.
+
+- urllib
+`urllib` is used to get JSON files from APIs. A standard Python library that can be imported. 
+
+- json
+`json` is used to parse JSON files requested from APIs. A standard Python library that can be imported. 
 
 - flask  
 `flask` allows the app to be run on `localhost`, needs `wheel`. Installed with [requirements.txt](requirements.txt) 
