@@ -11,7 +11,7 @@ Roster: Rachel Ng (PM), Ray Onishi, Tina Wong, Maggie Zhao
 1. Clone this repo into your folder of choice 
 
     ```
-    $ git clone git@github.com:rachel-ng/group-d-etat.git
+    $ git clone https://github.com/rachel-ng/group-d-etat.git
     ```
 
 2. Now open your folder
