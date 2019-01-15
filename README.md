@@ -39,7 +39,7 @@ Ambrosia uses user input to track how much sleep and exercise you get, how much 
 5. Attain your [API Keys (more info below)](#get-your-api-keys) and add them to `keys/[api_name].json` like so  
 
     ```
-    ~ nano keys/workout_manager.json
+    $ nano keys/workout_manager.json
     ```
     ```
     {
@@ -49,7 +49,7 @@ Ambrosia uses user input to track how much sleep and exercise you get, how much 
 
 
     ```
-    ~ nano keys/usda_nutrients.json
+    $ nano keys/usda_nutrients.json
     ```
     ```
     {
