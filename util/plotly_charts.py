@@ -1,32 +1,54 @@
+import datetime
+
 import plotly.offline
 from plotly.graph_objs import *
 
+
 javascript = '<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>\n'
 
-def sleep_chart() :
-    hours_axis = []
-    ticks = []
-    i = 0
-    while (i < 12 + 29):
-        ticks.append(i)
-        hours_axis.append((i + 12) % 24)
-        i += 2
+def sleep_chart(data, name) :
+    hours_axis = [12, 16, 20, 0, 4, 8, 12, 16, 20, 0]
+    ticks = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36]
 
-    offset_x = [0, 2, 23, 3, 21, 1, 4]
+    offset_x = [data[11], data[9], data[7], data[5], data[3], data[1], data[13]]
     offset = []
+    print("offset")
+    print(offset_x)
     for n in offset_x:
-        if n > 12:
-            offset.append(n - 12)
-        if n < 12:
-            offset.append(n + 12)
+        t = str(n).split(":")
+        if float(t[0]) == 0:
+            pass
+        else:
+            if float(t[0]) > 12:
+                offset.append(float(t[0]) - 12)
+            if float(t[0]) < 12:
+                offset.append(float(t[0]) + 12)
 
-    offsetting  = Bar(
+    days_y =  ['Saturday', 'Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday', 'Sunday']
+    days = []
+    d = 0
+
+    nap_time_x = [data[10], data[8], data[6], data[4], data[2], data[0], data[12]]
+    nap_time = []
+    print("nap time")
+    print(nap_time_x)
+    for n in nap_time_x:
+        t = str(n).split(":")
+        nap_time.append(float(t[0]))
+        days.append(days_y[d])
+        d += 1
+
+    print(days)
+    print(offset)
+    print(nap_time)
+
+    bedtime = Bar(
         x=offset,
-        y=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
+        y= days,
         showlegend=False,
         orientation = 'h',
         hoverinfo='skip',
-        opacity=0,
+        opacity=1,
         width= .5,
         marker=dict(
             color='rgb(255,255,255)',
@@ -36,30 +58,30 @@ def sleep_chart() :
 
     sleep = Bar(
         name="Hours Slept",
-        x=[8, 4, 7, 3, 6, 10, 18],
-        y=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
+        x= nap_time, # slept
+        y= days,
+        hovertext = nap_time,
         showlegend=False,
         orientation = 'h',
         opacity=.6,
         width= .5,
-        hoverinfo = 'x',
+        hoverinfo = 'text',
         marker=dict(
             color='rgb(23,53,98)',
             line=dict(color='rgb(248, 248, 249)')
         )
     )
 
-
-    data = [offsetting, sleep]
+    data = [bedtime, sleep]
 
     layout = Layout(
-        title='Sleep Log',
         height=400,
         autosize=True,
         barmode='stack',
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
         xaxis=dict(
-            ticks='outside',
-            tickmode='linear',
+            tickmode='array',
             dtick=1,
             tickvals=ticks,
             ticktext=hours_axis
@@ -69,67 +91,109 @@ def sleep_chart() :
     )
 
     fig = dict(data=data, layout=layout)
-
     sleep_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
 
-    with open('templates/sleep_chart.html', 'w') as f:
+    name_chart = 'templates/' + 'sleep' + '_chart.html'
+    with open(name_chart, 'w') as f:
         f.write(sleep_c)
 
-def macros_chart() :
-    data = [
-        Scatterpolar(
-            r = [39, 28, 8, 7],
-            theta = ['calories','carbs','protein', 'fat'],
-            fill = 'toself',
-            name = 'Group A'
-        ),
-        Scatterpolar(
-            r = [1.5, 152, 101, 38],
-            theta = ['calories','carbs','protein', 'fat'],
-            fill = 'toself',
-            name = 'Group B'
+def macros_chart(data, name) :
+    user_data = [Scatterpolar(
+        r = [275, 60, 51],
+        theta = ['carbs','protein', 'fat'],
+        hovertext = ['275g carbs','60g protein', '51g fat'],
+        hoverinfo = 'text',
+        fill = 'toself',
+        name = 'What you were supposed to eat',
+        marker=dict(
+            color='rgb(244, 211, 94)',
+            line=dict(color='rgb(255,255,255)')
         )
-    ]
+    ),
+    Scatterpolar(
+        r = data,
+        theta = ['carbs','protein', 'fat'],
+        hovertext = [str(data[0]) + 'g carbs', str(data[1]) + 'g protein', str(data[2]) + 'g fat'],
+        hoverinfo = 'text',
+        fill = 'toself',
+        name = 'What you actually ate',
+        opacity=.6,
+        marker=dict(
+            color='rgb(94,180,103)',
+            line=dict(color='rgb(255,255,255)')
+        )
+    )]
+
 
     layout = Layout(
-        polar = dict(
+        paper_bgcolor='rgba(255,255,255,1)',
+        legend=dict(
+            orientation='h'
+        ),
+        polar=dict(
             radialaxis = dict(
                 visible = True,
-                range = [0, 175]
+                range = [0, 300]
             )
-        ),
-        showlegend = False
+        )
+    )
+
+    fig = Figure(data=user_data, layout=layout)
+    macros_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+
+    name_chart = 'templates/' + name + '_chart.html'
+    with open(name_chart, 'w') as f:
+        f.write(macros_c)
+
+def line_chart(data, name) :
+    data = [Scatter(
+        x = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        y = [data[6], data[0], data[1], data[2], data[3], data[4], data[5]]
+    )]
+
+    layout = Layout(
+        showlegend = False,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)'
     )
 
     fig = dict(data=data, layout=layout)
-    macros_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+    line_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
 
-    with open('templates/macros_chart.html', 'w') as f:
-        f.write(macros_c)
-
-def line_chart() :
-    data = [Scatter(
-        x = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
-        y = [20, 14, 23, 64, 23, 56, 100]
-    )]
-
-    line_c = javascript + plotly.offline.plot(data, include_plotlyjs=False, output_type='div')
-
-    with open('templates/line_chart.html', 'w') as f:
+    name_chart = 'templates/' + name + '_chart.html'
+    with open(name_chart, 'w') as f:
         f.write(line_c)
 
-def bar_chart() :
+
+def bar_chart(data, name) :
     data = [Bar(
-        x= ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday','Saturday'],
-        y= [20, 14, 23, 64, 23, 56, 100]
+        x= ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        y= [data[5], data[6], data[0], data[1], data[2], data[3], data[4]],
+        opacity=.6,
+        hoverinfo = 'y',
+        marker=dict(
+            color='rgb(87,176,193)',
+            line=dict(color='rgb(248, 248, 249)')
+        )
     )]
 
-    bar_c = javascript + plotly.offline.plot(data, include_plotlyjs=False, output_type='div')
+    layout = Layout(
+        showlegend = False,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        yaxis=dict(
+            tick0=0
+        )
+    )
 
-    with open('templates/bar_chart.html', 'w') as f:
+    fig = dict(data=data, layout=layout)
+    bar_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+
+    name_chart = 'templates/' + name + '_chart.html'
+    with open(name_chart, 'w') as f:
         f.write(bar_c)
 
-sleep_chart()
-macros_chart()
-line_chart()
-bar_chart()
+#sleep_chart()
+#macros_chart()
+#line_chart()
+#bar_chart()
