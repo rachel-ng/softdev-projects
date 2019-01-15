@@ -103,37 +103,37 @@ pip install -r requirements.txt
 - flask  
 `flask` allows the app to be run on `localhost`, needs `wheel`. Installed with [requirements.txt](requirements.txt) 
 
-```
-pip install flask
-```
+    ```
+    pip install flask
+    ```
 
 - wheel  
 `wheel` is needed to use `flask`. Installed with [requirements.txt](requirements.txt) 
 
-```
-pip install wheel
-```
+    ```
+    pip install wheel
+    ```
 
 - Jinja2  
-`Jinja2` is used for templating HTML pages. Installed with [requirements.txt](requirements.txt), comes with `flask`
+`Jinja2` is used for templating HTML pages. Installed with [requirements.txt](requirements.txt), installed when you install `flask`
 
 - DateTime  
 `DateTime` is used to get the current date and time. Installed with [requirements.txt](requirements.txt) 
 
-```
-pip install DateTime
-```
+    ```
+    pip install DateTime
+    ```
 
 - passlib  
 `passlib` is used to hash your password. Installed with [requirements.txt](requirements.txt) 
 
-```
-pip install passlib
-```
+    ```
+    pip install passlib
+    ```
 
 - plotly  
 `plotly` is used to render your graphs. Installed with [requirements.txt](requirements.txt) 
 
-```
-pip install plotly
-```
+    ```
+    pip install plotly
+    ```
