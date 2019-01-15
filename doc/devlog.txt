@@ -93,7 +93,7 @@ rachelN -- 2019-01-11 02:50
 
 rachelN -- 2019-01-11 10:45
 - Added plotly api kb card
-- Added plotly to keys.json
+- Added plotly to keys.json (placeholder file made) 
     - PLOTLY_USERNAME
     - PLOTLY_API
 - Added plotly_charts with config(), must be run in at least once in order to set credentials and use plotly
@@ -122,6 +122,9 @@ tinaW -- 2019-01-12 02:37
 - Added add food to database function
 - Added display food user ate today function
 
+rachelN -- 2019-01-12 05:25 
+- Got gantt styled sleep chart to work
+
 tinaW -- 2019-01-12 14:24
 - Finished using USDA Nutrients API to get calories of food submitted by user in form
 - Wrote function to display total calories consumed today.
@@ -137,6 +140,14 @@ rayO -- 2019-01-13 16:11
 - Added additional info on water/exercise pages to clarify how they work
 - Minor style change on profile page
 - Footer is now locked to the bottom
+
+rachelN -- 2019-01-13 18:00
+- Finished remaining charts with static data, will begin to get data from databases
+- Fixed days for line chart
+- Added JS CDN for plotly charts (should move that to head)
+
+rachelN -- 2019-01-13 20:30
+- Updated README.md
 
 rayO -- 2019-01-13 21:02
 - Frontend work done on nutrition page
