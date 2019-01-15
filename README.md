@@ -84,7 +84,7 @@ Ambrosia uses user input to track how much sleep and exercise you get, how much 
 ### [Plotly](https://plot.ly/)
 
 Renders all your charts with JavaScript, no API key necessary!  
-Your chart is stored locally offline as HTML, so no account creation or API hunting necessary unless you want to publish them online. 
+Your charts are stored locally offline as HTML, so no account creation or API key hunting necessary unless you want to publish them online. 
 
 ### [Workout Manager](https://wger.de/en/user/api-key)
 
