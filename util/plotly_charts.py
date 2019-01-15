@@ -34,8 +34,11 @@ def sleep_chart(data, name) :
     print(nap_time_x)
     for n in nap_time_x:
         t = str(n).split(":")
-        nap_time.append(float(t[0]))
-        days.append(days_y[d])
+        if float(t[0]) == 0:
+            pass
+        else:
+            nap_time.append(float(t[0]))
+            days.append(days_y[d])
         d += 1
 
     print(days)
