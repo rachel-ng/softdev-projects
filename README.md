@@ -12,6 +12,7 @@ Ambrosia uses user input to track how much sleep and exercise you get, how much 
 ### [Check out our video demo here](https://www.youtube.com/)  
 <sup>Not yet uploaded, stay tuned!</sup>
 
+
 ## How to Run
 
 1. Clone this repo into your folder of choice 
@@ -35,7 +36,7 @@ Ambrosia uses user input to track how much sleep and exercise you get, how much 
     
     (venv) $ pip install --upgrade pip
     ```
-    
+
 4. Install the [dependencies](#dependencies) with [requirements.txt](requirements.txt) by running the following command  
 <sup>It includes Flask, Wheel, *the stuff we use to keep your password safe*, *render your graphs*, and all that other good stuff!!</sup>
 
@@ -54,7 +55,6 @@ Ambrosia uses user input to track how much sleep and exercise you get, how much 
         "WORKOUT_MANAGER_API": "[API_KEY_ATTAINED]"
     }
     ```
-
 
     ```
     $ nano keys/usda_nutrients.json
@@ -78,7 +78,13 @@ Ambrosia uses user input to track how much sleep and exercise you get, how much 
     http://127.0.0.1:500/
     ```
 
+
 ## APIs 
+
+### [Plotly](https://plot.ly/)
+
+Renders all your charts with JavaScript, no API key necessary!  
+Your chart is stored locally offline as HTML, so no account creation or API hunting necessary unless you want to publish them online. 
 
 ### [Workout Manager](https://wger.de/en/user/api-key)
 
