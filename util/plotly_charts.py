@@ -216,7 +216,7 @@ def line_chart(data, name) :
 def bar_chart(data, name) :
     data = [Bar(
         x= ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        y= [data[5], data[6], data[0], data[1], data[2], data[3], data[4]],
+        y= [data[6], data[0], data[1], data[2], data[3], data[4], data[5]],
         opacity=.6,
         hoverinfo = 'y',
         marker=dict(

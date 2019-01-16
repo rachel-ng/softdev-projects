@@ -86,3 +86,25 @@ def get_user_food(username):
         # print(row[0])
     db.close()
     return today_food
+
+def get_user_exercise(username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "SELECT id from users WHERE user={}".format(repr(username))
+    c.execute(command)
+    user_id = c.fetchone()[0]
+    year = datetime.now().year
+    month = datetime.now().month
+    day = datetime.now().day
+
+    command = "SELECT hours_01, hours_02, hours_03, hours_04, hours_05, hours_06, hours_07 FROM exercise_log WHERE user_id={} AND year={} AND month={}".format(repr(user_id), repr(year), repr(month))
+    c.execute(command)
+    data = c.fetchall()
+    print(data)
+
+    exercise_data = []
+    for row in data:
+        exercise_data = row
+
+    db.close()
+    return (exercise_data)
