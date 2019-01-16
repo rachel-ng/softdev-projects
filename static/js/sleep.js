@@ -1,3 +1,4 @@
+var listFull = false;
 
 var sleepDisp = function() {
   var hrdrop = document.getElementById("hours");
@@ -9,7 +10,7 @@ var sleepDisp = function() {
 
   //var time;
   var timechoice;
-  if (document.getElementById('o1').checked) {
+  if (document.getElementById('calc1').checked) {
     timechoice = 0
     //document.getElementById('o1').value;
   }
@@ -17,7 +18,7 @@ var sleepDisp = function() {
     timechoice = 1
     //document.getElementById('o2').value;
   }
-  console.log(timechoice);
+  console.log("Time choice:" + timechoice);
   //console.log(timechoice)
   hourchoice = parseInt(hrchoice) + timechoice * 12;
   console.log(hourchoice);
@@ -28,6 +29,7 @@ var sleepDisp = function() {
 };
 
 var calcTime = function(n) {
+  document.getElementById("sleepList").innerHTML = "";
   var start = Date.now();
   var end  = sleepDisp();
   var milliseconds = 90 * 60000; // 90 minutes
@@ -68,6 +70,7 @@ var calcTime = function(n) {
       sleepTimes.appendChild(sleepTime);
       numSleep++;
     }
+
   }
   string = string.slice(0, -2);
   console.log(string);
