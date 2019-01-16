@@ -22,7 +22,8 @@ def index():
         carbs = food.get_total_carbs(session['username'])
         protein = food.get_total_protein(session['username'])
         fat = food.get_total_fat(session['username'])
-        return render_template("index.html", session=session, exercise_hours=exercise_hours, exercise_last_category=exercise_last_category, calories=calories, carbs=carbs, protein=protein, fat=fat)
+        all_water = water.get_user_water(session['username'])
+        return render_template("index.html", session=session, all_water=all_water,exercise_hours=exercise_hours, exercise_last_category=exercise_last_category, calories=calories, carbs=carbs, protein=protein, fat=fat)
     return render_template("index.html", session=session)
 
 @app.route('/signup')
