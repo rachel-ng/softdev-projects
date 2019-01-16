@@ -135,13 +135,14 @@ Install the dependencies with [requirements.txt](requirements.txt) by running th
 ```
 
 - venv  
-`venv` is used to create an isolated environment for whatever version of Python (and whatever libraries you're installing) you're using to wreak havoc in. `venv` allows you to use different versions of Python so you don't need to worry about compatibility issues or breaking your computer. Run the following to install if you don't already have it: 
+`venv` is used to create an isolated environment for whatever version of Python (and whatever libraries you're installing) you're using to wreak havoc in. `venv` allows you to use different versions of Python so you don't need to worry about compatibility issues or somehow breaking your computer.  
+`venv` is a standard Python library in Python 3 with no further action required. Run the following to make a virtual environment if you do not already have one: 
 
     ```
     $ python3 -m venv venv_name 
     ```
     
-    For versions older than Python 3.0.0:  
+    For versions older than Python 3.0.0 run the following:  
     ```
     $ pip install virtualenv
     $ virtualenv venv_name  
