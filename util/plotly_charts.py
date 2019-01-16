@@ -127,7 +127,6 @@ def macros_chart(data, name) :
         )
     )]
 
-
     layout = Layout(
         paper_bgcolor='rgba(255,255,255,1)',
         legend=dict(
@@ -136,7 +135,7 @@ def macros_chart(data, name) :
         polar=dict(
             radialaxis = dict(
                 visible = True,
-                range = [0, 300]
+                range = [0, max(data)]
             )
         )
     )
@@ -147,6 +146,52 @@ def macros_chart(data, name) :
     name_chart = 'templates/' + name + '_chart.html'
     with open(name_chart, 'w') as f:
         f.write(macros_c)
+
+def calorie_chart(data, name) :
+
+    food_times = []
+    daily_calories = []
+    food_names = []
+
+    current_cal = 0
+
+    for i in data:
+        time = i[0] + (i[1] / 60)
+        food_times.append(time)
+        daily_calories.append(current_cal + i[3])
+        food_names.append(str(i[0]) + ":" + str(i[1]) + "    " + str(i[2]) + ": " + str(i[3]))
+
+        current_cal += i[3]
+
+    print (food_times)
+    print (daily_calories)
+    print (food_names)
+
+
+    data = [Scatter(
+        x = food_times,
+        y = daily_calories,
+        hovertext = food_names,
+        hoverinfo = 'text',
+    )]
+
+    layout = Layout(
+        showlegend = False,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        xaxis=dict(
+            dtick=1
+        ),
+        yaxis=dict(
+        )
+    )
+
+    fig = dict(data=data, layout=layout)
+    line_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+
+    name_chart = 'templates/' + name + '_chart.html'
+    with open(name_chart, 'w') as f:
+        f.write(line_c)
 
 def line_chart(data, name) :
     data = [Scatter(
