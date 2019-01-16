@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+        Chart
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 mb-5">
+      <div class="card">
+        <div class="card-header">
+          Sleep
+        </div>
+        <div class="card-body">
+          {% include ['sleep_chart.html'] %}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          Nutrition
+        </div>
+        <div class="card-body">
+          {% include ['macros_chart.html'] %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6 mb-5">
+      <div class="card">
+        <div class="card-header">
+          Calories
+        </div>
+        <div class="card-body">
+          {% include ['calories_chart.html'] %}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          Water
+        </div>
+        <div class="card-body">
+          {% include ['water_chart.html'] %}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          Exercise
+        </div>
+        <div class="card-body">
+          {% include ['exercise_chart.html'] %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
