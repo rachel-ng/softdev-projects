@@ -17,14 +17,16 @@ def get_user_sleep(username):
     c.execute(command)
     user_id = c.fetchone()[0]
     #print(user_id)
-    column = "hours_0" + str(datetime.today().isoweekday())
-    print("getting user sleep")
-    print(column)
+    command = "SELECT week_start_day FROM sleep_log WHERE user_id={}".format(repr(user_id))
+    c.execute(command)
+    start = c.fetchone()[0]
+    current_weekday = int(datetime.now().weekday())
+    difference = int(start) - current_weekday
+    column = "hours_0" + str(difference+1)
     command = "SELECT {} FROM sleep_log WHERE user_id={}".format(column, repr(user_id))
     c.execute(command)
     data = c.fetchone()[0]
     total_sleep = data
-
     db.close()
     return total_sleep
 
@@ -32,6 +34,7 @@ def update_user_log(username, delta, start):
     if delta == '' or start == '':
         return False
     else:
+        print(delta)
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
         command = "SELECT id from users WHERE user={}".format(repr(username))
@@ -41,16 +44,19 @@ def update_user_log(username, delta, start):
         command = "SELECT year, month, day, week_start_day FROM sleep_log WHERE user_id={}".format(repr(user_id))
         c.execute(command)
         data = c.fetchone()
-        print(data)
         year = data[0]
         month = data[1]
         day = data[2]
         weekday = data[3]
-        weekday = weekday
         current_weekday = datetime.now().weekday()
-
+        current_hours = 0
         if datetime.now().year == year and datetime.now().month == month and datetime.now().day - day < 7:
             if current_weekday == weekday:
+                command = "SELECT hours_01 from sleep_log WHERE user_id={}".format(repr(user_id))
+                c.execute(command)
+                current_hours = c.fetchone()[0]
+                delta = float(delta)
+                delta += float(current_hours)
                 command = "UPDATE sleep_log SET hours_01=\"{}\", start_01=\"{}\" WHERE user_id={}".format(delta, start, user_id)
                 c.execute(command)
             elif current_weekday == weekday + 1:
@@ -80,17 +86,19 @@ def update_user_log(username, delta, start):
         else:
             command = "UPDATE sleep_log SET year=\"{}\", month=\"{}\", day=\"{}\", week_start_day=\"{}\", hours_01=\"{}\", start_01 WHERE user_id={}".format(year, month, day, week_start_day, delta, start, user_id)
             c.execute(command)
-
-    db.commit()
-    db.close()
-    return True
+        db.commit()
+        db.close()
+        return True
 
 def get_diff(start, end):
     FMT = '%H:%M'
-    tdelta = datetime.strptime(end, FMT) - datetime.strptime(start, FMT)
-    if tdelta.days < 0:
-        tdelta = timedelta(days=0, seconds=tdelta.seconds, microseconds=tdelta.microseconds)
-    print (tdelta)
+    tdelta = (datetime.strptime(end, FMT) - datetime.strptime(start, FMT))
+    # print(type(tdelta))
+    tdelta = tdelta / timedelta(hours=1)
+    # print(tdelta)
+    # print(tdelta.minutes)
+    # if tdelta.days < 0:
+    #     tdelta = timedelta(days=0, seconds=tdelta.seconds, microseconds=tdelta.microseconds)
     return tdelta
 
 def convert(hour, min, time):
@@ -101,8 +109,9 @@ def convert(hour, min, time):
     else:
         hour = (time * 12) + hour
     final = str(hour) + ":" + "{:02d}".format(min)
-    print (final)
+    # print (final)
     return final
 
 
-get_user_sleep("a");
+# get_user_sleep("a");
+# print(convzert())

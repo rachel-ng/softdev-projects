@@ -169,3 +169,6 @@ tinaW -- 2019-01-16 10:04
 
 rayO -- 2019-01-15 13:06
 - Added summary for nutrition, water, and exercise section on index
+
+tinaW -- 2019-01-16 17:57
+- Fixed issues with sleep log and database

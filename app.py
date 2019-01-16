@@ -119,13 +119,13 @@ def sleep_disp():
             startmin = int(request.form['minutes1'])
             startx = int(request.form['group1'])
             start_time = sleep.convert(starthr, startmin, startx)
-            print(start_time)
+            # print("Start time: "+start_time)
 
             endhr = int(request.form['hour2'])
             endmin = int(request.form['minutes2'])
             endx = int(request.form['group2'])
             end_time = sleep.convert(endhr, endmin, endx)
-            print(end_time)
+            # print("End Time: "+end_time)
             total_time = sleep.get_diff(start_time, end_time)
 
             if (sleep.update_user_log(username, total_time, start_time) == True):
