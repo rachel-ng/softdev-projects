@@ -17,9 +17,10 @@ var sleepDisp = function() {
     timechoice = 1
     //document.getElementById('o2').value;
   }
+  console.log(timechoice);
   //console.log(timechoice)
   hourchoice = parseInt(hrchoice) + timechoice * 12;
-  console.log(hourchoice)
+  console.log(hourchoice);
 
   var ans = hourchoice.toString() + ":" + minchoice ;
   //console.log(ans);
@@ -53,15 +54,25 @@ var calcTime = function(n) {
   }
   console.log(x);
 
+  var sleepTimes = document.getElementById("sleepList");
   var string = "";
+  var numSleep = 0;
+  // Button can be pressed multiple times resulting in the user being able to keep on appending the list
+  // NEEDS TO BE FIXED
   for (var obj in x) {
-    string += obj + ", "
+    string += x[obj] + ", ";
+    if (numSleep < 4) {
+      var sleepTime = document.createElement("li");
+      sleepTime.className = "list-group-item";
+      sleepTime.innerHTML = x[obj];
+      sleepTimes.appendChild(sleepTime);
+      numSleep++;
+    }
   }
   string = string.slice(0, -2);
   console.log(string);
 
-  var write = document.getElementById("display");
-  write.innerHTML = string;
+  console.log("hello");
   return date3;
 }
 

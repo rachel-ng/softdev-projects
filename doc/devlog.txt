@@ -93,7 +93,7 @@ rachelN -- 2019-01-11 02:50
 
 rachelN -- 2019-01-11 10:45
 - Added plotly api kb card
-- Added plotly to keys.json (placeholder file made) 
+- Added plotly to keys.json (placeholder file made)
     - PLOTLY_USERNAME
     - PLOTLY_API
 - Added plotly_charts with config(), must be run in at least once in order to set credentials and use plotly
@@ -122,7 +122,7 @@ tinaW -- 2019-01-12 02:37
 - Added add food to database function
 - Added display food user ate today function
 
-rachelN -- 2019-01-12 05:25 
+rachelN -- 2019-01-12 05:25
 - Got gantt styled sleep chart to work
 
 tinaW -- 2019-01-12 14:24
@@ -152,4 +152,8 @@ rachelN -- 2019-01-13 20:30
 rayO -- 2019-01-13 21:02
 - Frontend work done on nutrition page
 - Replaced placeholder items on home page for users not logged in but still lacks content
-- Minor change to navbar 
+- Minor change to navbar
+
+rayO -- 2019-01-15 22:17
+- Frontend work mostly done on sleep page
+- Made sleep.js generate Bootstrap list group items for sleep calculator
