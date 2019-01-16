@@ -166,3 +166,6 @@ rayO -- 2019-01-15 23:32
 
 tinaW -- 2019-01-16 10:04
 - Fixed bug with exercise, changed display of page
+
+rayO -- 2019-01-15 13:06
+- Added summary for nutrition, water, and exercise section on index
