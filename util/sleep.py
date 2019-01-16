@@ -49,14 +49,8 @@ def update_user_log(username, delta, start):
         day = data[2]
         weekday = data[3]
         current_weekday = datetime.now().weekday()
-        current_hours = 0
         if datetime.now().year == year and datetime.now().month == month and datetime.now().day - day < 7:
             if current_weekday == weekday:
-                command = "SELECT hours_01 from sleep_log WHERE user_id={}".format(repr(user_id))
-                c.execute(command)
-                current_hours = c.fetchone()[0]
-                delta = float(delta)
-                delta += float(current_hours)
                 command = "UPDATE sleep_log SET hours_01=\"{}\", start_01=\"{}\" WHERE user_id={}".format(delta, start, user_id)
                 c.execute(command)
             elif current_weekday == weekday + 1:
@@ -99,7 +93,7 @@ def get_diff(start, end):
     # print(tdelta.minutes)
     # if tdelta.days < 0:
     #     tdelta = timedelta(days=0, seconds=tdelta.seconds, microseconds=tdelta.microseconds)
-    return tdelta
+    return abs(tdelta)
 
 def convert(hour, min, time):
     if hour == 12 and time == 0:
