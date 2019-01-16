@@ -27,75 +27,96 @@ Sleep
             <h5 class="card-title">Sleep Log</h5>
             You slept {{past}} hours last night.
             Record your sleeping
+            <br>
 
             <form method="POST">
               When did you go to sleep?
-              <!-- <div class="form-group col-md-2"> -->
-              <select name="hour1">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>
-                <option>08</option>
-                <option>09</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-              </select>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" name="hour1">
+                      <option>01</option>
+                      <option>02</option>
+                      <option>03</option>
+                      <option>04</option>
+                      <option>05</option>
+                      <option>06</option>
+                      <option>07</option>
+                      <option>08</option>
+                      <option>09</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+                    </select>
+                  </div>
+                </div>
 
-              <select name = "minutes1">
-                <option>00</option>
-                <option>15</option>
-                <option>30</option>
-                <option>45</option>
-              </select>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" name = "minutes1">
+                      <option>00</option>
+                      <option>15</option>
+                      <option>30</option>
+                      <option>45</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
 
-              <div id = "time1">
-                <label class="radio-inline">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active radio-inline">
                   <input type="radio" name="group1" id="o1" value="0"> a.m.
                 </label>
-                <label class="radio-inline">
+                <label class="btn btn-secondary radio-inline">
                   <input type="radio" name="group1" id="o2" value="1" checked> p.m.
                 </label>
               </div>
-
-              <hr>
+              <br>
+              <br>
               When did you wake up?
-              <select name="hour2">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-                <option>07</option>
-                <option>08</option>
-                <option>09</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-              </select>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" name="hour2">
+                      <option>01</option>
+                      <option>02</option>
+                      <option>03</option>
+                      <option>04</option>
+                      <option>05</option>
+                      <option>06</option>
+                      <option>07</option>
+                      <option>08</option>
+                      <option>09</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+                    </select>
+                  </div>
+                </div>
 
-              <select name = "minutes2">
-                <option>00</option>
-                <option>15</option>
-                <option>30</option>
-                <option>45</option>
-              </select>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" name = "minutes2">
+                      <option>00</option>
+                      <option>15</option>
+                      <option>30</option>
+                      <option>45</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
 
-              <div id = "time2">
-                <label class="radio-inline">
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active radio-inline">
                   <input type="radio" name="group2" id="o1" value="0"checked> a.m.
                 </label>
-                <label class="radio-inline">
+                <label class="btn btn-secondary radio-inline">
                   <input type="radio" name="group2" id="o2" value="1" > p.m.
                 </label>
               </div>
-
-              <input type="submit" name="submit" value="submit">
+              <br>
+              <br>
+              <button type="submit" name="submit" value="submit" class="btn btn-light btn-sm">Submit</button>
             </form>
           </div>
 
@@ -103,7 +124,7 @@ Sleep
             <h5 class="card-title">Sleep Calculator</h5>
             What time do you want to wake up?
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Hour</label>
+              <label>Hour</label>
               <select class="form-control" id = "hours">
                 <option>01</option>
                 <option>02</option>
@@ -122,7 +143,7 @@ Sleep
 
 
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Example select</label>
+              <label>Example select</label>
               <select class="form-control" id = "minutes">
                 <option>00</option>
                 <option>15</option>
@@ -145,8 +166,9 @@ Sleep
             <br>
             <br>
             <ul class="list-group" id="sleepList">
-          </div>
+            </div>
 
+          </div>
         </div>
       </div>
     </div>

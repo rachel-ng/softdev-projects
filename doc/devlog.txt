@@ -157,3 +157,6 @@ rayO -- 2019-01-13 21:02
 rayO -- 2019-01-15 22:17
 - Frontend work mostly done on sleep page
 - Made sleep.js generate Bootstrap list group items for sleep calculator
+
+rayO -- 2019-01-15 23:09
+- Finished sleep frontend
