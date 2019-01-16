@@ -203,7 +203,7 @@ def exercise_options():
         hours = exercise.get_user_exercise(username)
         category = exercise.get_user_category(username)
         if category != None:
-            category = "You worked on "+category+" today."
+            category = "You last worked on "+category+" today."
         else:
             category = "You haven't worked out today."
         if request.method == 'GET':
