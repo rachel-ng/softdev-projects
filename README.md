@@ -48,15 +48,6 @@ Ambrosia uses user input to track how much sleep and exercise you get, how much 
 5. Attain your [API keys (more info below)](#APIs) and add them to `keys/[api_name].json` like so  
 
     ```
-    $ nano keys/workout_manager.json
-    ```
-    ```
-    {
-        "WORKOUT_MANAGER_API": "[API_KEY_ATTAINED]"
-    }
-    ```
-
-    ```
     $ nano keys/usda_nutrients.json
     ```
     ```
@@ -86,24 +77,10 @@ Ambrosia uses user input to track how much sleep and exercise you get, how much 
 Renders all your charts with JavaScript, no API key necessary!  
 Your charts are stored locally offline as HTML, so no account creation or API key hunting necessary unless you want to publish them online. 
 
-### [Workout Manager](https://wger.de/en/user/api-key)
+### [Wger Workout Manager](https://wger.de/en/user/api-key)
 
-Workout Manager is used to recommend exercises for different areas of the body. 
-
-**How to attain your API key**
-
-1. Sign up for an account
-2. On their [API key page](https://wger.de/en/user/api-key), click on the button "Generate new API key" and it should show up in the box "Your API key" 
-3. Add it to `keys/workout_manager.json` 
-
-    ```
-    $ nano keys/workout_manager.json
-    ```
-    ```
-    {
-        "WORKOUT_MANAGER_API": "[API_KEY_ATTAINED]"
-    }
-    ```
+Wger Workout Manager is used to recommend exercises for different areas of the body.  
+Doesn't require an API key because only the public endpoints are used in Ambrosia. 
 
 ### [USDA Nutrients](https://api.data.gov/signup/)
 
