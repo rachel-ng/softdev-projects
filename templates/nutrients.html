@@ -30,6 +30,13 @@ Food
             <p><strong>{% if protein %} {{ protein }} {% else %} 0 {% endif %} grams of protein</strong> consumed today. You should be getting <strong>60 grams of protein a day</strong>!</p>
 
             <p><strong>{% if fat %}{{ fat }} {% else %} 0 {% endif %} grams of fat</strong> consumed today. You should be getting <strong>51 grams of fat a day</strong>!</p>
+
+            So far today, you have eaten
+            <ul>
+              {% for food in today_food %}
+                <li>{{food[3]}} grams of <strong>{{food[2]}}</strong></li>
+              {% endfor %}
+            </ul>
             <hr>
           </div>
           <div class="col-md-3">

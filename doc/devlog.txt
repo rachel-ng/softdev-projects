@@ -160,3 +160,6 @@ rayO -- 2019-01-15 22:17
 
 rayO -- 2019-01-15 23:09
 - Finished sleep frontend
+
+rayO -- 2019-01-15 23:32
+- Added food consumed today on nutrients page
