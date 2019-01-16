@@ -81,9 +81,18 @@ def update_user_log(hours, category, username):
         month = data[1]
         day = data[2]
         weekday = data[3]
+        current_hours = 0
         if datetime.now().year == year and datetime.now().month == month and datetime.now().day - day < 7:
             if current_weekday == weekday:
-                command = "UPDATE exercise_log SET hours_01=\"{}\", target_muscle_group_01=\"{}\" WHERE user_id={}".format(hours, category, user_id)
+                command = "SELECT hours_01 from exercise_log WHERE user_id={}".format(repr(user_id))
+                c.execute(command)
+                current_hours = c.fetchone()[0]
+                print(current_hours)
+                # print(hours)
+                hours = int(hours)
+                hours += int(current_hours)
+                # print(hours)
+                command = "UPDATE exercise_log SET hours_01=\"{}\", target_muscle_group_01=\"{}\" WHERE user_id={}".format(repr(hours), category, user_id)
                 c.execute(command)
             elif current_weekday == weekday + 1:
                 command = "UPDATE exercise_log SET hours_02=\"{}\", target_muscle_group_02=\"{}\" WHERE user_id={}".format(hours, category, user_id)

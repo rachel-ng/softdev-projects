@@ -11,7 +11,19 @@ app.secret_key = os.urandom(32)
 
 @app.route("/", methods = ["GET", "POST"])
 def index():
-    return render_template("index.html",session = session)
+    if 'username' in session:
+        exercise_hours = exercise.get_user_exercise(session['username'])
+        exercise_last_category = exercise.get_user_category(session['username'])
+        if exercise_last_category != None:
+            exercise_last_category = "You last worked on "+exercise_last_category+" today."
+        else:
+            exercise_last_category = "You haven't worked out today."
+        calories = food.get_total_calories(session['username'])
+        carbs = food.get_total_carbs(session['username'])
+        protein = food.get_total_protein(session['username'])
+        fat = food.get_total_fat(session['username'])
+        return render_template("index.html", session=session, exercise_hours=exercise_hours, exercise_last_category=exercise_last_category, calories=calories, carbs=carbs, protein=protein, fat=fat)
+    return render_template("index.html", session=session)
 
 @app.route('/signup')
 def signup():
@@ -162,7 +174,7 @@ def nutrients():
         if request.method == 'GET':
             today_food = food.get_user_food(username)
             total_calories = food.get_total_calories(username)
-            print(today_food)
+            # print(today_food)
             return render_template('nutrients.html', today_food=today_food, calories=total_calories)
         else:
             user_meal = request.form['meal']
@@ -203,7 +215,7 @@ def exercise_options():
         hours = exercise.get_user_exercise(username)
         category = exercise.get_user_category(username)
         if category != None:
-            category = "You worked on "+category+" today."
+            category = "You last worked on "+category+" today."
         else:
             category = "You haven't worked out today."
         if request.method == 'GET':

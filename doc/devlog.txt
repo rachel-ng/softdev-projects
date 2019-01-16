@@ -163,3 +163,6 @@ rayO -- 2019-01-15 23:09
 
 rayO -- 2019-01-15 23:32
 - Added food consumed today on nutrients page
+
+tinaW -- 2019-01-16 10:04
+- Fixed bug with exercise, changed display of page

@@ -31,6 +31,7 @@ Food
 
             <p><strong>{% if fat %}{{ fat }} {% else %} 0 {% endif %} grams of fat</strong> consumed today. You should be getting <strong>51 grams of fat a day</strong>!</p>
 
+            {% if today_food %}
             So far today, you have eaten
             <ul>
               {% for food in today_food %}
@@ -38,6 +39,7 @@ Food
               {% endfor %}
             </ul>
             <hr>
+            {% endif %}
           </div>
           <div class="col-md-3">
             <h5 class="card-title">Update nutrients log</h5>
