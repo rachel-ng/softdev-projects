@@ -132,12 +132,16 @@ def sleep_disp():
             starthr = int(request.form['hour1'])
             startmin = int(request.form['minutes1'])
             startx = int(request.form['group1'])
-            start_time = sleep.convert(starthr, startmin, startx)
             # print("Start time: "+start_time)
 
             endhr = int(request.form['hour2'])
             endmin = int(request.form['minutes2'])
             endx = int(request.form['group2'])
+            if endx == 0 and startx == 1:
+                endx = 1
+                startx = 0
+            start_time = sleep.convert(starthr, startmin, startx)
+
             end_time = sleep.convert(endhr, endmin, endx)
             # print("End Time: "+end_time)
             total_time = sleep.get_diff(start_time, end_time)
