@@ -154,6 +154,19 @@ rayO -- 2019-01-13 21:02
 - Replaced placeholder items on home page for users not logged in but still lacks content
 - Minor change to navbar
 
+rachelN -- 2019-01-14 16:45
+- Fixed API keys
+- Updated README.md
+- Fixed requirements.txt
+
+rachelN -- 2019-01-15 12:51
+- Got sleep chart to work!! 
+- Updated README.md
+- Removed spoonacular kb card from doc/
+
+rachelN -- 2019-01-15 19:20
+- Updated README.md
+
 rayO -- 2019-01-15 22:17
 - Frontend work mostly done on sleep page
 - Made sleep.js generate Bootstrap list group items for sleep calculator
@@ -169,6 +182,10 @@ tinaW -- 2019-01-16 10:04
 
 rayO -- 2019-01-15 13:06
 - Added summary for nutrition, water, and exercise section on index
+
+rachelN -- 2019-01-16 16:20
+- Worked on calorie and exercise charts 
+- Removed extra API key json files 
 
 tinaW -- 2019-01-16 17:57
 - Fixed issues with sleep log and database
