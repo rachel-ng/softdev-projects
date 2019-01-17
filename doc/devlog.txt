@@ -160,7 +160,7 @@ rachelN -- 2019-01-14 16:45
 - Fixed requirements.txt
 
 rachelN -- 2019-01-15 12:51
-- Got sleep chart to work!! 
+- Got sleep chart to work!!
 - Updated README.md
 - Removed spoonacular kb card from doc/
 
@@ -184,8 +184,13 @@ rayO -- 2019-01-15 13:06
 - Added summary for nutrition, water, and exercise section on index
 
 rachelN -- 2019-01-16 16:20
-- Worked on calorie and exercise charts 
-- Removed extra API key json files 
+- Worked on calorie and exercise charts
+- Removed extra API key json files
 
 tinaW -- 2019-01-16 17:57
 - Fixed issues with sleep log and database
+
+tinaW -- 2019-01-17 12:04
+- Added daily goal feature
+- Added update goal functionality
+- Fixed sleep log!

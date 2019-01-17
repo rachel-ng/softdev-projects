@@ -13,7 +13,7 @@ def create_table():
     c = db.cursor() #facilitate db ops
 
     c.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, user TEXT, password TEXT)")
-    c.execute("CREATE TABLE IF NOT EXISTS basic_info (user_id INTEGER, age INTEGER, height REAL, weight REAL, allergies TEXT, dietary_restrictions TEXT, expected_calories INTEGER, expected_carbs INTEGER, expected_protein INTEGER, expected_fat INTEGER)")
+    c.execute("CREATE TABLE IF NOT EXISTS basic_info (user_id INTEGER, goal TEXT, age INTEGER, height REAL, weight REAL, allergies TEXT, dietary_restrictions TEXT, expected_calories INTEGER, expected_carbs INTEGER, expected_protein INTEGER, expected_fat INTEGER)")
     c.execute("CREATE TABLE IF NOT EXISTS water_log (user_id INTEGER, year INTEGER, month INTEGER, day INTEGER, week_start_day INTEGER, intake_01 REAL, intake_02 REAL, intake_03 REAL, intake_04 REAL, intake_05 REAL, intake_06 REAL, intake_07 REAL)")
     c.execute("CREATE TABLE IF NOT EXISTS exercise_log (user_id INTEGER, year INTEGER, month INTEGER, day INTEGER, week_start_day INTEGER, hours_01 INTEGER, hours_02 INTEGER, hours_03 INTEGER, hours_04 INTEGER, hours_05 INTEGER, hours_06 INTEGER, hours_07 INTEGER, target_muscle_group_01 TEXT, target_muscle_group_02 TEXT, target_muscle_group_03 TEXT, target_muscle_group_04 TEXT, target_muscle_group_05 TEXT, target_muscle_group_06 TEXT, target_muscle_group_07 TEXT)")
     c.execute("CREATE TABLE IF NOT EXISTS sleep_log (user_id INTEGER, year INTEGER, month INTEGER, day INTEGER, week_start_day INTEGER, hours_01 REAL, start_01 REAL, hours_02 REAL, start_02 REAL, hours_03 REAL, start_03 REAL, hours_04 REAL, start_04 REAL, hours_05 REAL, start_05 REAL, hours_06 REAL, start_06 REAL, hours_07 REAL, start_07 REAL)")
@@ -106,5 +106,37 @@ def get_info(username):
             info.append(item)
     db.close()
     return info
+
+def get_user_goal(username):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "SELECT id from users WHERE user={}".format(repr(username))
+    c.execute(command)
+    user_id = c.fetchone()[0]
+    command = "SELECT goal FROM basic_info WHERE user_id={}".format(user_id)
+    c.execute(command)
+    goal = c.fetchone()[0]
+    return goal
+
+def update_user_goal(username, goal):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    command = "SELECT id from users WHERE user={}".format(repr(username))
+    c.execute(command)
+    user_id = c.fetchone()[0]
+
+    command = "SELECT goal FROM basic_info WHERE user_id={}".format(user_id)
+    c.execute(command)
+
+    if c.fetchone() == None: # if user has not yet added their info
+        params = (user_id, goal)
+        c.execute("INSERT INTO basic_info (user_id, goal) VALUES (?, ?)", params)
+    else:
+        command = "UPDATE basic_info SET goal=\"{}\" WHERE user_id={}".format(goal, user_id)
+        c.execute(command)
+    db.commit()
+    db.close()
+    return True
+    
 create_table()
 register("a", "a")
