@@ -9,8 +9,6 @@ def sleep_chart(data, name) :
 
     offset_x = [data[11], data[9], data[7], data[5], data[3], data[1], data[13]]
     offset = []
-    print("offset")
-    print(offset_x)
     for n in offset_x:
         t = str(n).split(":")
         if float(t[0]) == 0:
@@ -27,8 +25,6 @@ def sleep_chart(data, name) :
 
     nap_time_x = [data[10], data[8], data[6], data[4], data[2], data[0], data[12]]
     nap_time = []
-    print("nap time")
-    print(nap_time_x)
     for n in nap_time_x:
         t = str(n).split(":")
         if float(t[0]) == 0:
@@ -37,10 +33,6 @@ def sleep_chart(data, name) :
             nap_time.append(float(t[0]))
             days.append(days_y[d])
         d += 1
-
-    print(days)
-    print(offset)
-    print(nap_time)
 
     bedtime = Bar(
         x=offset,
@@ -78,8 +70,6 @@ def sleep_chart(data, name) :
         height=400,
         autosize=True,
         barmode='stack',
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
         xaxis=dict(
             tickmode='array',
             dtick=1,
@@ -125,7 +115,6 @@ def macros_chart(data, name) :
     )]
 
     layout = Layout(
-        paper_bgcolor='rgba(255,255,255,1)',
         legend=dict(
             orientation='h'
         ),
@@ -153,17 +142,15 @@ def calorie_chart(data, name) :
     current_cal = 0
 
     for i in data:
-        time = str(i[0]) + ":" + str(i[1])
+        if i[1] < 10:
+            time = str(i[0]) + ":0" + str(i[1])
+        else:
+            time = str(i[0]) + ":" + str(i[1])
+
         food_times.append(time)
         daily_calories.append(current_cal + i[3])
-        food_names.append(str(i[0]) + ":" + str(i[1]) + "    " + str(i[2]) + ": " + str(i[3]) + "calories consumed: " + str(current_cal + i[3]))
-
+        food_names.append(str(i[0]) + ":" + str(i[1]) + "  " + str(i[2]) + ": " + str(i[3]) + "calories consumed: " + str(current_cal + i[3]))
         current_cal += i[3]
-
-    print (food_times)
-    print (daily_calories)
-    print (food_names)
-
 
     data = [Scatter(
         x = food_times,
@@ -174,12 +161,8 @@ def calorie_chart(data, name) :
 
     layout = Layout(
         showlegend = False,
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
         xaxis=dict(
             dtick=1
-        ),
-        yaxis=dict(
         )
     )
 
@@ -197,9 +180,7 @@ def line_chart(data, name) :
     )]
 
     layout = Layout(
-        showlegend = False,
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)'
+        showlegend = False
     )
 
     fig = dict(data=data, layout=layout)
@@ -210,22 +191,20 @@ def line_chart(data, name) :
         f.write(line_c)
 
 
-def bar_chart(data, name) :
+def bar_chart(data, name, color) :
     data = [Bar(
         x= ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         y= [data[6], data[0], data[1], data[2], data[3], data[4], data[5]],
         opacity=.6,
         hoverinfo = 'y',
         marker=dict(
-            color='rgb(87,176,193)',
+            color=chart_color,
             line=dict(color='rgb(248, 248, 249)')
         )
     )]
 
     layout = Layout(
         showlegend = False,
-        paper_bgcolor='rgba(0,0,0,0)',
-        plot_bgcolor='rgba(0,0,0,0)',
         yaxis=dict(
             tick0=0
         )
@@ -237,8 +216,3 @@ def bar_chart(data, name) :
     name_chart = 'templates/' + name + '_chart.html'
     with open(name_chart, 'w') as f:
         f.write(bar_c)
-
-#sleep_chart()
-#macros_chart()
-#line_chart()
-#bar_chart()
