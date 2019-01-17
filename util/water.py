@@ -20,7 +20,8 @@ def convert_measure(measurement, amount):
     # measurement given in mL
     else:
         # fl. oz = mL / 29.57,  rounded to two decimal places
-        return (round(amount / 29.57) , 2)
+        #print (str(round((amount / 29.57) , 2)))
+        return (round((amount / 29.57) , 2))
 
 def calc_percentage(username):
     '''Calculates percentage of recommended daily water intake user has drank on that day.'''
@@ -32,7 +33,7 @@ def calc_percentage(username):
     c.execute(command)
     user_id = c.fetchone()[0]
 
-    # 
+    #
     weekday = datetime.today().isoweekday()
     column = column = "intake_0" + str(weekday)
     #print(column)
@@ -95,3 +96,5 @@ def update_user_log(username, input):
     db.commit()
     db.close()
     return True
+
+convert_measure(2,1000);
