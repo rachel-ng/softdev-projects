@@ -1,5 +1,3 @@
-var listFull = false;
-
 var sleepDisp = function() {
   var hrdrop = document.getElementById("hours");
   var hrchoice =  hrdrop.options[hrdrop.selectedIndex].value;
@@ -59,18 +57,18 @@ var calcTime = function(n) {
   var sleepTimes = document.getElementById("sleepList");
   var string = "";
   var numSleep = 0;
+  var sleepGoal = x.length - 7
   // Button can be pressed multiple times resulting in the user being able to keep on appending the list
   // NEEDS TO BE FIXED
   for (var obj in x) {
     string += x[obj] + ", ";
-    if (numSleep < 4) {
+    if (numSleep > sleepGoal) {
       var sleepTime = document.createElement("li");
       sleepTime.className = "list-group-item";
       sleepTime.innerHTML = x[obj];
       sleepTimes.appendChild(sleepTime);
-      numSleep++;
     }
-
+    numSleep++;
   }
   string = string.slice(0, -2);
   console.log(string);
