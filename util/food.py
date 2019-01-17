@@ -12,6 +12,7 @@ with open('keys/usda_nutrients_api.json', 'r') as f:
 API_KEY = api_dict["USDA_NUTRIENTS_API_KEY"]
 
 def get_food_ndbno(food):
+    '''This function gets the food's ndbno, which is the food's id in the API. It is necessary for getting all the nutrition information on the food.'''
     query = food.replace(' ','%20')
     # print(food)
     url = ('https://api.nal.usda.gov/ndb/search/?format=json&q='+query+'&sort=r&max=10&offset=0&api_key='+API_KEY)
@@ -29,6 +30,7 @@ def get_food_ndbno(food):
     return -1
 
 def get_food_calories(ndbno):
+    '''This function gets the total calories of the food by getting the json from the USDA Nutrients API.'''
     info = []
     if ndbno == -1:
         return False
@@ -45,6 +47,7 @@ def get_food_calories(ndbno):
         return calories
 
 def get_food_carbs(ndbno):
+    '''This function gets the total carbohydrates of the food by getting the json from the USDA Nutrients API.'''
     info = []
     if ndbno == -1:
         return False
@@ -61,6 +64,7 @@ def get_food_carbs(ndbno):
         return carbs
 
 def get_food_protein(ndbno):
+    '''This function gets the total protein of the food by getting the json from the USDA Nutrients API.'''
     info = []
     if ndbno == -1:
         return False
@@ -77,6 +81,7 @@ def get_food_protein(ndbno):
         return protein
 
 def get_food_fat(ndbno):
+    '''This function iterates through the json file, adding each kind of fat to the total amount of fat the food has after getting the json from the USDA Nutrients API.'''
     info = []
     if ndbno == -1:
         return False
@@ -93,6 +98,7 @@ def get_food_fat(ndbno):
         return fat
 
 def add_food(meal, amount, username):
+    '''This function adds all the information about the food that the user has eaten into the database.'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))
@@ -124,6 +130,7 @@ def add_food(meal, amount, username):
     return True
 
 def get_user_food(username):
+    '''This function retrieves the meal, amount, and the time it was eaten about all the food the user has eaten today and returns it as a list.'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))
@@ -145,6 +152,7 @@ def get_user_food(username):
     return today_food
 
 def convert_calories(meal, amount):
+    '''This function converts the amount of calories consumed by the user based on the proportion given by the USDA Nutrients API.'''
     calories = get_food_calories(get_food_ndbno(meal))
     # print(calories)
     calories = calories * float(amount) / 100
@@ -152,6 +160,7 @@ def convert_calories(meal, amount):
     return calories
 
 def convert_carbs(meal, amount):
+    '''This function converts the amount of carbohydrates consumed by the user based on the proportion given by the USDA Nutrients API.'''
     carbs = get_food_carbs(get_food_ndbno(meal))
     # print(carbs)
     carbs = carbs * float(amount) / 100
@@ -159,6 +168,7 @@ def convert_carbs(meal, amount):
     return carbs
 
 def convert_protein(meal, amount):
+    '''This function converts the amount of protein consumed by the user based on the proportion given by the USDA Nutrients API.'''
     protein = get_food_protein(get_food_ndbno(meal))
     # print(protein)
     protein = protein * float(amount) / 100
@@ -166,6 +176,7 @@ def convert_protein(meal, amount):
     return protein
 
 def convert_fat(meal, amount):
+    '''This function converts the amount of fat consumed by the user based on the proportion given by the USDA Nutrients API.'''
     fat = get_food_fat(get_food_ndbno(meal))
     # print(fat)
     fat = fat * float(amount) / 100
@@ -173,6 +184,7 @@ def convert_fat(meal, amount):
     return fat
 
 def get_total_calories(username):
+    '''This function retrieves the total amount of calories based on all the food the user has eaten today.'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))
@@ -196,6 +208,7 @@ def get_total_calories(username):
     return total
 
 def get_total_carbs(username):
+    '''This function retrieves the total amount of carbohydrates based on all the food the user has eaten today.'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))
@@ -219,6 +232,7 @@ def get_total_carbs(username):
     return total
 
 def get_total_protein(username):
+    '''This function retrieves the total amount of protein based on all the food the user has eaten today.'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))
@@ -242,6 +256,7 @@ def get_total_protein(username):
     return total
 
 def get_total_fat(username):
+    '''This function retrieves the total amount of fat based on all the food the user has eaten today.'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))
