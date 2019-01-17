@@ -6,10 +6,10 @@ from datetime import datetime
 #opens if db exist, otherwise create
 DB_FILE = "data/health.db"
 
-with open('keys/keys.json', 'r') as f:
+with open('keys/usda_nutrients_api.json', 'r') as f:
     api_dict = json.load(f)
 
-API_KEY = api_dict["USDA_NUTRIENTS_API"]
+API_KEY = api_dict["USDA_NUTRIENTS_API_KEY"]
 
 def get_food_ndbno(food):
     query = food.replace(' ','%20')
