@@ -21,6 +21,11 @@ rowSpacing{
 	margin:auto;
 }
 
+.goalButton{
+	opacity: .75;
+}
+
 #goal{
-	
+	width:85%;
+	margin:auto;
 }

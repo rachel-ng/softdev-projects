@@ -32,20 +32,18 @@ Home
         {% if goal %}
         <form action="/" method="POST">
           <div class="form-group">
-            <label for="goal">Update your goal:</label>
-            <input type="text" id="goal" name="goal" class="form-control">
-            <button type="submit" class="btn btn-primary" name="Save">Submit</button>
+            <p class="lead">Update your goal:</p>
+            <input type="text" id="goal" name="goal" class="form-control form-control-sm">
+            <button type="submit" class="btn btn-secondary btn-sm goalButton" name="Save">Submit</button>
           </div>
-        <!-- <p class="lead">Daily Goal:</p> -->
         </form>
         {% else %}
             <form action="/" method="POST">
               <div class="form-group">
-                <label for="goal">Add goal:</label>
-                <input type="text" id="goal" name="goal" class="form-control">
-                <button type="submit" class="btn btn-primary" name="Save">Submit</button>
+                <p class="lead">Add a goal:</p>
+                <input type="text" id="goal" name="goal" class="form-control form-control-sm">
+                <button type="submit" class="btn btn-secondary btn-sm goalButton" name="Save">Submit</button>
               </div>
-            <!-- <p class="lead">Daily Goal:</p> -->
             </form>
         {% endif %}
       </div>
@@ -53,7 +51,7 @@ Home
       <div class="col-md-6">
         <div class="card bg-light mb-3">
           <div class="card-header">
-            <p class="lead">Your goal for today is to: {{goal}}</p>
+            <p class="lead">Your daily goal: <br>{{goal}}</p>
           </div>
         </div>
       </div>

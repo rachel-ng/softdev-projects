@@ -196,4 +196,7 @@ tinaW -- 2019-01-17 12:04
 - Fixed sleep log!
 
 rayO -- 2019-01-17 12:52
-- Sleep calculator and sleep log are fully fixed 
+- Sleep calculator and sleep log are fully fixed
+
+rayO - 2019-01-17 17:57
+- Finished goal on index page
