@@ -6,11 +6,6 @@ from datetime import datetime
 #opens if db exist, otherwise create
 DB_FILE = "data/health.db"
 
-with open('keys/keys.json', 'r') as f:
-    api_dict = json.load(f)
-
-API_KEY = api_dict["WORKOUT_MANAGER_API"]
-
 def get_category_id(category):
     url = ('https://wger.de/api/v2/exercisecategory/?format=json')
     response = urllib.request.urlopen(url)

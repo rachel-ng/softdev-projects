@@ -193,8 +193,11 @@ def nutrients():
         if request.method == 'GET':
             today_food = food.get_user_food(username)
             total_calories = food.get_total_calories(username)
+            total_carbs = food.get_total_carbs(username)
+            total_protein = food.get_total_protein(username)
+            total_fat = food.get_total_fat(username)
             # print(today_food)
-            return render_template('nutrients.html', today_food=today_food, calories=total_calories)
+            return render_template('nutrients.html', today_food=today_food, calories=total_calories, carbs=total_carbs, fat=total_fat, protein=total_protein)
         else:
             user_meal = request.form['meal']
             user_amount = request.form['amount']
