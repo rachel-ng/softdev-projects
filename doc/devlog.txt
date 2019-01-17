@@ -189,3 +189,7 @@ rachelN -- 2019-01-16 16:20
 
 tinaW -- 2019-01-16 17:57
 - Fixed issues with sleep log and database
+
+tinaW -- 2019-01-17 12:04
+- Added daily goal feature
+- Added update goal functionality

@@ -12,6 +12,7 @@ app.secret_key = os.urandom(32)
 @app.route("/", methods = ["GET", "POST"])
 def index():
     if 'username' in session:
+        username = session['username']
         exercise_hours = exercise.get_user_exercise(session['username'])
         exercise_last_category = exercise.get_user_category(session['username'])
         if exercise_last_category != None:
@@ -23,7 +24,20 @@ def index():
         protein = food.get_total_protein(session['username'])
         fat = food.get_total_fat(session['username'])
         all_water = water.get_user_water(session['username'])
-        return render_template("index.html", session=session, all_water=all_water,exercise_hours=exercise_hours, exercise_last_category=exercise_last_category, calories=calories, carbs=carbs, protein=protein, fat=fat)
+        goal = user.get_user_goal(username)
+        if goal != None:
+            goal = ""
+        if request.method == 'GET':
+            return render_template("index.html", session=session, all_water=all_water,exercise_hours=exercise_hours, exercise_last_category=exercise_last_category, calories=calories, carbs=carbs, protein=protein, fat=fat, goal=goal)
+        else:
+            goal = request.form['goal']
+            if (user.update_user_goal(username, goal) == True):
+                flash("Daily goal successfully updated!")
+                goal = user.get_user_goal(username)
+            else:
+                flash("Something went wrong! Uh oh")
+        return render_template("index.html", session=session, all_water=all_water,exercise_hours=exercise_hours, exercise_last_category=exercise_last_category, calories=calories, carbs=carbs, protein=protein, fat=fat, goal=goal)
+
     return render_template("index.html", session=session)
 
 @app.route('/signup')
