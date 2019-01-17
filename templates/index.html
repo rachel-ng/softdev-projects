@@ -30,7 +30,6 @@ Home
       <h2 class="font-weight-light">Welcome {{session['username']}}<h2>
         {% endif %}
         {% if goal %}
-        <p>Goal: {{ goal}}</p>
         <form action="/" method="POST">
           <div class="form-group">
             <label for="goal">Update your goal:</label>
@@ -52,9 +51,9 @@ Home
       </div>
 
       <div class="col-md-6">
-        <div class="card text-white bg-dark mb-3">
+        <div class="card bg-light mb-3">
           <div class="card-header">
-            To be filled with more stuff later
+            <p class="lead">Your goal for today is to: {{goal}}</p>
           </div>
         </div>
       </div>
