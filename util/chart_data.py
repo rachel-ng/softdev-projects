@@ -11,9 +11,7 @@ def get_user_water (username):
 
     c.execute(command)
     user_id = c.fetchone()[0]
-    #print (user_id)
     current_weekday = datetime.now().weekday()
-    #print(current_weekday)
     command = "SELECT year, month, day, week_start_day FROM water_log WHERE user_id={}".format(repr(user_id))
     c.execute(command)
     data = c.fetchone()
@@ -31,7 +29,6 @@ def get_user_water (username):
     for row in data:
         water_data = row
 
-    #print(water_data)
     db.close()
     return (water_data)
 
@@ -42,9 +39,7 @@ def get_user_sleep (username):
 
     c.execute(command)
     user_id = c.fetchone()[0]
-    #print (user_id)
     current_weekday = datetime.now().weekday()
-    #print(current_weekday)
     command = "SELECT year, month, day, week_start_day FROM sleep_log WHERE user_id={}".format(repr(user_id))
     c.execute(command)
     data = c.fetchone()
@@ -62,7 +57,6 @@ def get_user_sleep (username):
     for row in data:
         sleep_data = row
 
-    #print (sleep_data)
     db.close()
     return (sleep_data)
 
@@ -80,10 +74,8 @@ def get_user_food(username):
     command = "SELECT hour, minute, meal, calories FROM food_log WHERE user_id={} AND year={} AND month={} AND day={}".format(repr(user_id), repr(year), repr(month), repr(day))
     c.execute(command)
     data = c.fetchall()
-    # print(data)
     for row in data:
         today_food.append(row)
-        # print(row[0])
     db.close()
     return today_food
 
