@@ -3,9 +3,6 @@ import datetime
 import plotly.offline
 from plotly.graph_objs import *
 
-
-javascript = '<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>\n'
-
 def sleep_chart(data, name) :
     hours_axis = [12, 16, 20, 0, 4, 8, 12, 16, 20, 0]
     ticks = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36]
@@ -51,7 +48,7 @@ def sleep_chart(data, name) :
         showlegend=False,
         orientation = 'h',
         hoverinfo='skip',
-        opacity=1,
+        opacity=0,
         width= .5,
         marker=dict(
             color='rgb(255,255,255)',
@@ -94,7 +91,7 @@ def sleep_chart(data, name) :
     )
 
     fig = dict(data=data, layout=layout)
-    sleep_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+    sleep_c = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
 
     name_chart = 'templates/' + 'sleep' + '_chart.html'
     with open(name_chart, 'w') as f:
@@ -141,7 +138,7 @@ def macros_chart(data, name) :
     )
 
     fig = Figure(data=user_data, layout=layout)
-    macros_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+    macros_c = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
 
     name_chart = 'templates/' + name + '_chart.html'
     with open(name_chart, 'w') as f:
@@ -156,10 +153,10 @@ def calorie_chart(data, name) :
     current_cal = 0
 
     for i in data:
-        time = i[0] + (i[1] / 60)
+        time = str(i[0]) + ":" + str(i[1])
         food_times.append(time)
         daily_calories.append(current_cal + i[3])
-        food_names.append(str(i[0]) + ":" + str(i[1]) + "    " + str(i[2]) + ": " + str(i[3]))
+        food_names.append(str(i[0]) + ":" + str(i[1]) + "    " + str(i[2]) + ": " + str(i[3]) + "calories consumed: " + str(current_cal + i[3]))
 
         current_cal += i[3]
 
@@ -187,7 +184,7 @@ def calorie_chart(data, name) :
     )
 
     fig = dict(data=data, layout=layout)
-    line_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+    line_c = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
 
     name_chart = 'templates/' + name + '_chart.html'
     with open(name_chart, 'w') as f:
@@ -206,7 +203,7 @@ def line_chart(data, name) :
     )
 
     fig = dict(data=data, layout=layout)
-    line_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+    line_c = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
 
     name_chart = 'templates/' + name + '_chart.html'
     with open(name_chart, 'w') as f:
@@ -235,7 +232,7 @@ def bar_chart(data, name) :
     )
 
     fig = dict(data=data, layout=layout)
-    bar_c = javascript + plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
+    bar_c = plotly.offline.plot(fig, include_plotlyjs=False, output_type='div')
 
     name_chart = 'templates/' + name + '_chart.html'
     with open(name_chart, 'w') as f:
