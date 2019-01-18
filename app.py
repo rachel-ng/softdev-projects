@@ -11,6 +11,7 @@ app.secret_key = os.urandom(32)
 
 @app.route("/", methods = ["GET", "POST"])
 def index():
+    '''This function renders the home page, which includes all the user's information if logged in. It also allows the user to input a daily goal.'''
     if 'username' in session:
         username = session['username']
         exercise_hours = exercise.get_user_exercise(session['username'])
@@ -24,6 +25,8 @@ def index():
         protein = food.get_total_protein(session['username'])
         fat = food.get_total_fat(session['username'])
         all_water = water.get_user_water(session['username'])
+
+        # handle updating the user's daily goal on the page
         goal = user.get_user_goal(username)
         if goal != None:
             goal = ""
@@ -108,6 +111,7 @@ def profile():
 
 @app.route('/user_info', methods = ['POST'])
 def user_info():
+    '''This function calls the add_info function to update the user's basic information in the database based on the form submitted by the user.'''
     username = session['username']
     age = request.form['age']
     height = request.form['height']

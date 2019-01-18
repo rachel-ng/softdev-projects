@@ -69,6 +69,7 @@ def authenticate(username, password):
     return False
 
 def add_info(age, height, weight, allergies, dietary_restrictions, username):
+    '''This function adds the basic information (height, age, weight, allergies, dietary restrictions) for each user to the database by taking the user's username as a parameter.'''
     if height == '' or weight == '':
         return False
     db = sqlite3.connect(DB_FILE)
@@ -90,6 +91,7 @@ def add_info(age, height, weight, allergies, dietary_restrictions, username):
     return True
 
 def get_info(username):
+    '''This function gets all the basic information of the user to be presented on the profile page.'''
     info = []
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -108,6 +110,7 @@ def get_info(username):
     return info
 
 def get_user_goal(username):
+    '''This function gets the user's daily goal from the database to show on the page.'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))
@@ -119,6 +122,7 @@ def get_user_goal(username):
     return goal
 
 def update_user_goal(username, goal):
+    '''This function updates the user's existing daily goal with a new one in the database.'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))
@@ -137,6 +141,6 @@ def update_user_goal(username, goal):
     db.commit()
     db.close()
     return True
-    
+
 create_table()
-register("a", "a")
+# register("a", "a")

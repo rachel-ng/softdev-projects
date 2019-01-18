@@ -7,6 +7,7 @@ from datetime import datetime
 DB_FILE = "data/health.db"
 
 def get_category_id(category):
+    '''This function takes in the category and gets the id that the category is in the Workout Manager API.'''
     url = ('https://wger.de/api/v2/exercisecategory/?format=json')
     response = urllib.request.urlopen(url)
     raw_json = json.loads(response.read())
@@ -16,6 +17,7 @@ def get_category_id(category):
     return -1
 
 def list_category_exercises(id):
+    '''This function lists all the exercises that are in the category selected to show as recommendations for the user.'''
     url = ('https://wger.de/api/v2/exercise/?format=json&language=2&category='+str(id))
     response = urllib.request.urlopen(url)
     raw_json = json.loads(response.read())
@@ -29,6 +31,7 @@ def list_category_exercises(id):
     return exercises
 
 def get_all_categories():
+    '''This function gets all the available muscle group categories to allow the user to select which category to search for recommendations or select as the muscle group they worked out.'''
     url = ('https://wger.de/api/v2/exercisecategory/?format=json')
     response = urllib.request.urlopen(url)
     raw_json = json.loads(response.read())
@@ -39,6 +42,7 @@ def get_all_categories():
     return categories
 
 def get_user_exercise(username):
+    '''This function gets the total hours of exercise the user has done this week.'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))
@@ -58,6 +62,7 @@ def get_user_exercise(username):
     return total_exercise
 
 def update_user_log(hours, category, username):
+    '''This function updates the exercise log in the database based on the user's input on the hours exercised and the category.'''
     if hours == '' or category == '':
         return False
     else:
@@ -115,6 +120,7 @@ def update_user_log(hours, category, username):
     return True
 
 def get_user_category(username):
+    '''This function gets the muscle group category that the user has last worked out today.'''
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     command = "SELECT id from users WHERE user={}".format(repr(username))
