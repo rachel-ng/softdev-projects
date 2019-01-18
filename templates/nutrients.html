@@ -16,8 +16,9 @@ Food
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <h2> Chart goes here </h2>
-            {# insert graph here! #}
+            <!-- ><h2> Chart goes here </h2> -->
+            {% include ['calories_chart.html'] %}
+            {% include ['macros_chart.html'] %}
             <hr>
           </div>
           <div class="col-md-3">

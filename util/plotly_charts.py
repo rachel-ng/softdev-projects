@@ -3,10 +3,14 @@ import datetime
 import plotly.offline
 from plotly.graph_objs import *
 
-def sleep_chart(data, name) :
+def sleep_chart(data, name):
+    '''Creates a horizontal bar chart (gantt style) for sleep'''
+
+    # for the x axes
     hours_axis = [12, 16, 20, 0, 4, 8, 12, 16, 20, 0]
     ticks = [0, 4, 8, 12, 16, 20, 24, 28, 32, 36]
 
+    # for when they go to sleep, ignores the minutes
     offset_x = [data[11], data[9], data[7], data[5], data[3], data[1], data[13]]
     offset = []
     for n in offset_x:
@@ -19,10 +23,12 @@ def sleep_chart(data, name) :
             if float(t[0]) < 12:
                 offset.append(float(t[0]) + 12)
 
+    # for the days, only adds to chart when there's data for it
     days_y =  ['Saturday', 'Friday', 'Thursday', 'Wednesday', 'Tuesday', 'Monday', 'Sunday']
     days = []
     d = 0
 
+    # for how long they slept, once again ignores the minutes
     nap_time_x = [data[10], data[8], data[6], data[4], data[2], data[0], data[12]]
     nap_time = []
     for n in nap_time_x:
@@ -87,7 +93,9 @@ def sleep_chart(data, name) :
     with open(name_chart, 'w') as f:
         f.write(sleep_c)
 
-def macros_chart(data, name) :
+def macros_chart(data, name):
+    '''Creates a radar chart for macronutrient data (carbs, protein, fat)'''
+
     user_data = [Scatterpolar(
         r = [275, 60, 51],
         theta = ['carbs','protein', 'fat'],
@@ -133,8 +141,10 @@ def macros_chart(data, name) :
     with open(name_chart, 'w') as f:
         f.write(macros_c)
 
-def calorie_chart(data, name) :
+def calorie_chart(data, name):
+    '''Creates a line chart specifically for calories'''
 
+    # processes the data
     food_times = []
     daily_calories = []
     food_names = []
@@ -148,7 +158,11 @@ def calorie_chart(data, name) :
             time = str(i[0]) + ":" + str(i[1])
 
         food_times.append(time)
+
+        # adds current calories to how many you've eaten so far to visually represent your calorie intaje
         daily_calories.append(current_cal + i[3])
+
+        # formatting for the text displayed when hovering over those data points
         food_names.append(str(i[0]) + ":" + str(i[1]) + "  " + str(i[2]) + ": " + str(i[3]) + "calories consumed: " + str(current_cal + i[3]))
         current_cal += i[3]
 
@@ -157,6 +171,7 @@ def calorie_chart(data, name) :
         y = daily_calories,
         hovertext = food_names,
         hoverinfo = 'text',
+        line = dict(color = 'rgb(95,184,104)')
     )]
 
     layout = Layout(
@@ -173,10 +188,13 @@ def calorie_chart(data, name) :
     with open(name_chart, 'w') as f:
         f.write(line_c)
 
-def line_chart(data, name) :
+def line_chart(data, name, chart_color):
+    '''Creates a line chart'''
+
     data = [Scatter(
         x = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        y = [data[6], data[0], data[1], data[2], data[3], data[4], data[5]]
+        y = [data[6], data[0], data[1], data[2], data[3], data[4], data[5]],
+        line = dict(color = chart_color)
     )]
 
     layout = Layout(
@@ -191,7 +209,9 @@ def line_chart(data, name) :
         f.write(line_c)
 
 
-def bar_chart(data, name, color) :
+def bar_chart(data, name, chart_color):
+    '''Creates a bar chart'''
+
     data = [Bar(
         x= ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         y= [data[6], data[0], data[1], data[2], data[3], data[4], data[5]],
