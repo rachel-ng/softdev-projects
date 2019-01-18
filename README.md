@@ -10,8 +10,6 @@ Ambrosia is a website for keeping track of your eating, sleeping, exercising, an
 Ambrosia uses user input to track how much sleep and exercise you get, how much water you drink, what you eat, and more! Ambrosia also encourages a healthier lifestyle by suggesting workouts to exercise different parts of the body and recipes to fix nutritional deficiencies from the user's diet. 
 
 ### [Check out our video demo here](https://www.youtube.com/)  
-<sup>Not yet uploaded, stay tuned!</sup>
-
 
 ## How to Run
 
@@ -62,11 +60,12 @@ Ambrosia uses user input to track how much sleep and exercise you get, how much 
     (venv) $ python app.py
     ```
 
-7. Now type this into your browser of choice and start using Ambrosia!  
+7. Now type one of these into your browser of choice and start using Ambrosia!  
 <sup>or copy and paste</sup>
 
     ```
-    http://127.0.0.1:500/
+    http://127.0.0.1:5000/
+    http://localhost:5000/
     ```
 
 
