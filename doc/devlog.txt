@@ -107,6 +107,10 @@ rayO -- 2019-01-11 16:47
 - Added footer (doesn't stick to bottom yet)
 - Stylized alert message
 
+maggieZ -- 2019-01-11 17:48
+- Started sleep frontend
+- Water template & frontend- input & diff choices for measurement(mL/fl.oz/cups)
+
 tinaW -- 2019-01-11 18:11
 - Finished all of exercise backend, including:
   - user's exercise log
@@ -125,11 +129,22 @@ tinaW -- 2019-01-12 02:37
 rachelN -- 2019-01-12 05:25
 - Got gantt styled sleep chart to work
 
+maggieZ -- 2019-01-12 13:14
+- Fixed water backend- need to conver HTML inputs to integers
+- Fixed water conversions
+
 tinaW -- 2019-01-12 14:24
 - Finished using USDA Nutrients API to get calories of food submitted by user in form
 - Wrote function to display total calories consumed today.
 - Added checks for when API key is missing or food is not found.
 - Updated nutrients template to show expected amount of nutrients.
+
+maggieZ -- 2019-01-12 18:27
+- Connected sleep page to homepage, adding sleep info to database
+- Fixed water input from page 
+- Started sleep calculator
+- Sleep front end (buttons/dropdown menus to select sleep times)
+- Added function for calculating the difference between two times
 
 tinaW -- 2019-01-12 21:24
 - Used USDA Nutrients API to get carbohydrates, fat, and protein based on user's meal and amount
@@ -154,10 +169,17 @@ rayO -- 2019-01-13 21:02
 - Replaced placeholder items on home page for users not logged in but still lacks content
 - Minor change to navbar
 
+maggieZ -- 2019-01-13 21:30
+- Added bulk of work to sleep calculator
+- Watch out for: differing week_start_days
+
 rachelN -- 2019-01-14 16:45
 - Fixed API keys
 - Updated README.md
 - Fixed requirements.txt
+
+maggieZ -- 2019-01-14 17:20
+- Changed database and appropriate functions to include start hours for sleep.
 
 rachelN -- 2019-01-15 12:51
 - Got sleep chart to work!!
@@ -198,9 +220,14 @@ tinaW -- 2019-01-17 12:04
 rayO -- 2019-01-17 12:52
 - Sleep calculator and sleep log are fully fixed
 
+maggieZ -- 2019-01-17 13:30
+- Fixed bug with water conversion for mL
+
 rayO - 2019-01-17 17:57
 - Finished goal on index page
 
 tinaW -- 2019-01-17 19:15
 - Fixed goal bug
 - Added comments
+
+
