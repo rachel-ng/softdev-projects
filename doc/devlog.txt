@@ -200,3 +200,7 @@ rayO -- 2019-01-17 12:52
 
 rayO - 2019-01-17 17:57
 - Finished goal on index page
+
+tinaW -- 2019-01-17 19:15
+- Fixed goal bug
+- Added comments

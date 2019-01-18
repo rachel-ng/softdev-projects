@@ -28,7 +28,7 @@ def index():
 
         # handle updating the user's daily goal on the page
         goal = user.get_user_goal(username)
-        if goal != None:
+        if goal == None:
             goal = ""
         if request.method == 'GET':
             return render_template("index.html", session=session, all_water=all_water,exercise_hours=exercise_hours, exercise_last_category=exercise_last_category, calories=calories, carbs=carbs, protein=protein, fat=fat, goal=goal)
@@ -127,6 +127,7 @@ def user_info():
 
 @app.route('/sleep', methods=["GET", "POST"])
 def sleep_disp():
+    '''This function renders the sleep page with the user's information displayed. It receives the form submitted by the user and passes it to the sleep functions to update sleep log and calculate sleep.'''
     try:
         username = session['username']
         last_sleep = sleep.get_user_sleep(username)
@@ -158,7 +159,7 @@ def sleep_disp():
 
             return render_template('sleep.html', past = last_sleep)
 
-
+    # if there are errors, redirect to the home page
     except:
         flash("You must be logged in to access this page.")
         #print(session)
@@ -166,7 +167,7 @@ def sleep_disp():
 
 @app.route('/water', methods=["GET", "POST"])
 def water_disp():
-    #print(session)
+    '''This function renders the water intake page with the user's information displayed. It receives the form submitted by the user and passes it to the water functions to convert the measure and update water log.'''
     try:
         username = session['username']
         all_water = water.get_user_water(username)
@@ -185,6 +186,7 @@ def water_disp():
 
             return render_template('water.html', total = all_water, percentage = water.calc_percentage(username))
 
+    # if there are errors, redirect to the home page
     except:
         flash("You must be logged in to access this page.")
         #print(session)
@@ -192,6 +194,7 @@ def water_disp():
 
 @app.route('/nutrients', methods=["GET", "POST"])
 def nutrients():
+    '''This function renders the nutrition page with the user's information displayed. It receives the form submitted by the user and passes it to the food functions to update the food log with the meal and the amount eaten.'''
     try:
         username = session['username']
         if request.method == 'GET':
@@ -225,16 +228,19 @@ def nutrients():
                 flash("Food added to log!")
                 return render_template('nutrients.html', today_food=today_food, calories=total_calories, carbs=total_carbs, fat=total_fat, protein=total_protein)
             else:
+                # catch errors with API key or empty query
                 flash("We could not find the food you entered or the USDA Nutrients API key is missing.")
                 today_food = food.get_user_food(username)
                 total_calories = food.get_total_calories(username)
                 return render_template('nutrients.html', today_food=today_food, calories=total_calories, carbs=total_carbs, fat=total_fat, protein=total_protein)
+    # if there are errors, redirect to the home page
     except:
         flash("You must be logged in to access this page.")
         return redirect('/')
 
 @app.route('/exercise', methods=["GET", "POST"])
 def exercise_options():
+    '''This function renders the exercise page with the user's information displayed. It receives the form submitted by the user and passes it to the exercise functions to update the exercise log with the hours spent working out and the category.'''
     try:
         username = session['username']
         all_categories = exercise.get_all_categories()
@@ -255,12 +261,13 @@ def exercise_options():
                 user_hours = request.form['hours']
                 user_category = request.form['user_category']
                 if exercise.update_user_log(user_hours, user_category, username) == True:
-                    category = "You worked on "+exercise.get_user_category(username)+" today."
+                    category = "You last worked on "+exercise.get_user_category(username)+" today."
                     flash("Exercise log successfully updated!")
                     hours = exercise.get_user_exercise(username)
                 else:
                     flash("Hours and category cannot be empty.")
                 return render_template('exercise.html', all_categories=all_categories, can_view_results=False, hours=hours, category=category)
+    # if there are errors, redirect to the home page
     except:
         flash("You must be logged in to access this page.")
         return redirect('/')
