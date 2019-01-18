@@ -14,6 +14,11 @@ def index():
     '''This function renders the home page, which includes all the user's information if logged in. It also allows the user to input a daily goal.'''
     if 'username' in session:
         username = session['username']
+        plotly_charts.sleep_chart(chart_data.get_user_sleep(username), "sleep")
+        plotly_charts.bar_chart(chart_data.get_user_water(username), "water", "rgb(88,180,197)")
+        plotly_charts.macros_chart([food.get_total_carbs(username), food.get_total_protein(username), food.get_total_fat(username)], "macros")
+        plotly_charts.calorie_chart(chart_data.get_user_food(username), "calories")
+        plotly_charts.bar_chart(chart_data.get_user_exercise(username), "exercise", "rgb(224,75,101)")
         exercise_hours = exercise.get_user_exercise(session['username'])
         exercise_last_category = exercise.get_user_category(session['username'])
         if exercise_last_category != None:
@@ -25,13 +30,13 @@ def index():
         protein = food.get_total_protein(session['username'])
         fat = food.get_total_fat(session['username'])
         all_water = water.get_user_water(session['username'])
-
+        last_sleep = sleep.get_user_sleep(session['username'])
         # handle updating the user's daily goal on the page
         goal = user.get_user_goal(username)
         if goal == None:
             goal = ""
         if request.method == 'GET':
-            return render_template("index.html", session=session, all_water=all_water,exercise_hours=exercise_hours, exercise_last_category=exercise_last_category, calories=calories, carbs=carbs, protein=protein, fat=fat, goal=goal)
+            return render_template("index.html", session=session, all_water=all_water,exercise_hours=exercise_hours, exercise_last_category=exercise_last_category, calories=calories, carbs=carbs, protein=protein, fat=fat, goal=goal,last_sleep=last_sleep)
         else:
             goal = request.form['goal']
             if (user.update_user_goal(username, goal) == True):

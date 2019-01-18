@@ -71,12 +71,13 @@ Home
           </div>
           <div class="card-body">
             <div class="row">
-              <div class = "col-sm-6">
+              <div class = "col-sm-12">
                 {% include ['sleep_chart.html'] %}
+                <br>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-12">
                 <blockquote class="blockquote mb-0">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                  <p class="lead">You slept <strong>{{last_sleep}}</strong> hours last night.</p>
                 </blockquote>
               </div>
             </div>
@@ -90,10 +91,11 @@ Home
           </div>
           <div class="card-body">
             <div class="row">
-              <div class = "col-sm-6">
+              <div class = "col-sm-12">
                {% include ['exercise_chart.html'] %}
+               <br>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-12">
                 <blockquote class="blockquote mb-0">
                   <p class="lead">You have worked out <strong>{{exercise_hours}}</strong> hours this week!</p>
                   <p class="lead"> {{exercise_last_category}} </p>
@@ -112,10 +114,11 @@ Home
           </div>
           <div class="card-body">
             <div class="row">
-              <div class = "col-sm-6">
+              <div class = "col-sm-12">
                 {% include ['macros_chart.html'] %}
+                <br>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-12">
                 <blockquote class="blockquote mb-0">
                   <p class="lead">You have consumed <strong>{{calories}}</strong> and <strong>{{carbs}}</strong> grams of carbs and <strong>{{protein}}</strong> grams of protein and <strong>{{fat}}</strong> grams of fat today.</p>
                 </blockquote>
@@ -131,10 +134,11 @@ Home
           </div>
           <div class="card-body">
             <div class="row">
-              <div class = "col-sm-6">
+              <div class = "col-sm-12">
                 {% include ['water_chart.html'] %}
+                <br>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-12">
                 <blockquote class="blockquote mb-0">
                   <p class="lead">You have drank <strong>{{all_water}} fluid ounces</strong> of water today!</p>
                 </blockquote>
