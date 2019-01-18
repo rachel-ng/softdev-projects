@@ -143,4 +143,4 @@ def update_user_goal(username, goal):
     return True
 
 create_table()
-# register("a", "a")
+register("a", "a")
