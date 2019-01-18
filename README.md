@@ -9,7 +9,7 @@ Ambrosia is a website for keeping track of your eating, sleeping, exercising, an
 
 Ambrosia uses user input to track how much sleep and exercise you get, how much water you drink, what you eat, and more! Ambrosia also encourages a healthier lifestyle by suggesting workouts to exercise different parts of the body and recipes to fix nutritional deficiencies from the user's diet. 
 
-### [Check out our video demo here](https://www.youtube.com/)  
+### [Check out our video demo here](https://youtu.be/scxOejkwvTg)  
 
 ## How to Run
 

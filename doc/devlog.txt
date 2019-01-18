@@ -226,8 +226,31 @@ maggieZ -- 2019-01-17 13:30
 rayO - 2019-01-17 17:57
 - Finished goal on index page
 
+rachelN - 2019-01-17 18:07
+- Chart stuff 
+- Added in a dummy db so data/ shows up 
+
 tinaW -- 2019-01-17 19:15
 - Fixed goal bug
 - Added comments
 
+rachelN - 2019-01-18 06:13
+- YouTube video link! 
+- Design Doc Updates: 
+    - health.db
+          - users: id, username, hashed pw (passlib ftw)
+          - basic_info: user_id, goal, age, height, weight, allergies, dietary restrictions, expected macros
+          - sleep_log: no longer has an end time, just start and # of hours 
+          - weekly_diet: was not used 
+          - water_log, exercise_log, food_log: largely remained the same
+    - APIs
+          - not using Spoonacular
+          - usingly Plotly instead of Chart.js
+          - surprisingly few API keys actually used / needed 
+    - component map
+          - spoonacular was taken out of the back end
+          - plotly_charts.py and chart_data were added to the back end 
+          - no edit page- all editing is done in the normal pages (e.g. sleep or nutrition) 
+    - site map was the same except for the names and the editing stuff which is d≈one in the pages 
+    - notes: the way dates (and days) were implemented throughout our code was different so they may start on a different day, we recommend you test ambrosia on a sunday 
 
