@@ -122,6 +122,8 @@ def macros_chart(data, name):
         )
     )]
 
+    data.append(275)
+
     layout = Layout(
         legend=dict(
             orientation='h'
