@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, request, session, redirect, url_for, flash
 
-from util import user, exercise, water, food, sleep, plotly_charts
+from util import user, exercise, water, food, sleep, plotly_charts, chart_data
 
 app = Flask(__name__) #create instance of class flask
 
@@ -131,6 +131,9 @@ def sleep_disp():
     try:
         username = session['username']
         last_sleep = sleep.get_user_sleep(username)
+
+        plotly_charts.sleep_chart(chart_data.get_user_sleep(username), "sleep")
+
         if request.method == 'GET':
             return render_template('sleep.html', past = last_sleep)
         else:
@@ -154,6 +157,8 @@ def sleep_disp():
             if (sleep.update_user_log(username, total_time, start_time) == True):
                 flash("Sleep log successfully updated!")
                 last_sleep = sleep.get_user_sleep(username)
+
+                plotly_charts.sleep_chart(chart_data.get_user_sleep(username), "sleep")
             else:
                 flash("Something went wrong! Uh oh")
 
@@ -171,6 +176,9 @@ def water_disp():
     try:
         username = session['username']
         all_water = water.get_user_water(username)
+
+        plotly_charts.bar_chart(chart_data.get_user_water(username), "water", "rgb(88,180,197)")
+
         if request.method == 'GET':
             return render_template('water.html', total = all_water, percentage = water.calc_percentage(username))
         else:
@@ -181,6 +189,8 @@ def water_disp():
             if (water.update_user_log(username, amount) == True):
                 flash("Water log successfully updated!")
                 all_water = water.get_user_water(username)
+
+                plotly_charts.bar_chart(chart_data.get_user_water(username), "water", "rgb(88,180,197)")
             else:
                 flash("Input amount of water")
 
@@ -197,6 +207,10 @@ def nutrients():
     '''This function renders the nutrition page with the user's information displayed. It receives the form submitted by the user and passes it to the food functions to update the food log with the meal and the amount eaten.'''
     try:
         username = session['username']
+
+        plotly_charts.macros_chart([food.get_total_carbs(username), food.get_total_protein(username), food.get_total_fat(username)], "macros")
+        plotly_charts.calorie_chart(chart_data.get_user_food(username), "calories")
+
         if request.method == 'GET':
             today_food = food.get_user_food(username)
             total_calories = food.get_total_calories(username)
@@ -225,6 +239,10 @@ def nutrients():
                 total_protein = food.get_total_protein(username)
                 total_fat = food.get_total_fat(username)
                 print(today_food)
+
+                plotly_charts.macros_chart([food.get_total_carbs(username), food.get_total_protein(username), food.get_total_fat(username)], "macros")
+                plotly_charts.calorie_chart(chart_data.get_user_food(username), "calories")
+
                 flash("Food added to log!")
                 return render_template('nutrients.html', today_food=today_food, calories=total_calories, carbs=total_carbs, fat=total_fat, protein=total_protein)
             else:
@@ -246,6 +264,9 @@ def exercise_options():
         all_categories = exercise.get_all_categories()
         hours = exercise.get_user_exercise(username)
         category = exercise.get_user_category(username)
+
+        plotly_charts.bar_chart(chart_data.get_user_exercise(username), "exercise", "rgb(224,75,101)")
+
         if category != None:
             category = "You last worked on "+category+" today."
         else:
@@ -262,6 +283,8 @@ def exercise_options():
                 user_category = request.form['user_category']
                 if exercise.update_user_log(user_hours, user_category, username) == True:
                     category = "You last worked on "+exercise.get_user_category(username)+" today."
+                    plotly_charts.bar_chart(chart_data.get_user_exercise(username), "exercise", "rgb(224,75,101)")
+
                     flash("Exercise log successfully updated!")
                     hours = exercise.get_user_exercise(username)
                 else:
