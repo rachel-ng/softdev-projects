@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <!-- CDN --->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <!-- FONT AWESOME ICONS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+  <style>
+  body{
+    background-color: #E0EEEE;
+    font-family: Verdana, sans-serif;
+  }
+  h1{
+    color: #7fffd4;
+  }
+  li {
+    list-style-type: none;
+  }
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  .dropdown-menu {
+    min-width: 500px;
+  }
+  </style>
+
+  <!-- TITLE ICON -->
+  <link rel="icon" type="image/png" href="https://cdn3.iconfinder.com/data/icons/nature-animals/512/turkey-512.png">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title> Daily Updates! </title>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #008080;">
+    <a class="navbar-brand" href="#"><h1 style="color: white; font-weight:bold;">Daily Updates!</h1></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+    <!-- NAVBAR: LINKS -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <!-- NAVBAR: DROPDOWN -->
+        <li class="nav-item dropdown">
+          <button class="btn btn-primary dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; font-weight:bold;">Update Your Stocks</button>
+          <!-- STOCKS: DROPDOWN -->
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="padding: 20px;">
+            <form action="/choices">
+              <div class="form-group">
+                <label for="stock" style="font-weight:bold">Stock Symbol</label><br>
+                <small>(some stocks that show up may not exist in the AlphaVantage API)</small><br>
+                <input name="stock" type="text" pattern="[A-Za-z0-9]{1,}" class="form-control" id="stock" placeholder="Enter your stock code here...">
+                <small class="form-text text-muted">
+                  Please only enter alphabet or number characters.
+                </small>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item justify-content-right">
+        <a class="btn btn-primary" style="font-weight:bold;" href="/news_choice" role="button">Customize Your News</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<br><br>
+<div class="container">
+  {% with msgs = get_flashed_messages(category_filter=["message"]) %}
+  {% if msgs %}
+  {% for message in msgs %}
+  <div class="alert alert-danger justify-content-center">
+    {{ message }}
+    <br>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+</div>
+
+<br>
+
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="row">
+
+        <div class="card" style="width: 20rem;">
+          <div class="card-header"><h1 style="color:#000000;">{{location}}</h1></div>
+          <div class="card-body">
+            <!-- CURRENT WEATHER -->
+            <div class="row">
+              <div class="col-sm align-bottom"><h1 style="color:#000000;">{{temp_now|int}}°F</h1></div>
+              <div class="col-sm text-right align-bottom"><h2>{% for i in weather_main %}<i class="fas fa-{{icons[i.icon]}}"></i>{% if not loop.last %} {% endif %}{% endfor %}</h2></div> <!-- ICON(S) -->
+            </div>
+            <div class="row">
+              <div class="col-auto" style="margin-top: -8px; padding-bottom: 10px;">
+                <h6 class="text-muted">{% for i in weather_main %}{{ i.main }}{% if not loop.last %}, {% endif %}{% endfor %}</h6>
+              </div>
+            </div>
+            <!-- HI / LOW TEMPS -->
+            <div class="row" style="padding-bottom: 10px;">
+              <div class="col-sm align-bottom"><h5><i class="fas fa-temperature-high text-danger"></i> {{temp_max|int}}°F</h5></div>
+              <div class="col-sm align-bottom"><h5><i class="fas fa-temperature-low text-primary"></i> {{temp_min|int}}°F</h5></div>
+            </div>
+
+            {% set msgs = get_flashed_messages(category_filter=["location"]) %}
+            {% for msg in msgs %}
+            <div class="alert-danger text-center" style="padding: 5px; margin-bottom: 20px; "><small>{{ msg }}</small></div>
+            {% endfor %}
+
+            <!-- UPDATE WEATHER -->
+            <form action="/" method="POST">
+              <div class="form-row" style="margin: 0 auto;">
+                <div class="col-auto"><input type="text" name="new_location" placeholder="Search for a city..." class="form-control form-control-sm" style="width: 14rem;"></input></div>
+                <div class="col-auto"><button type="submit" class="btn btn-info btn-sm" style="width: 2rem;"><i class="fas fa-cog"></i></button></div> <!-- fa-redo -->
+              </div>
+            </form>
+          </div>
+      </div>
+
+      <!-- NEWS -->
+      {%for j in category %}
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          <!--News category:<br>-->
+          <h2 style="color: #0028e4; font-weight:bold;">
+            {{j}}
+          </h2>
+        </div>
+        <div class="card-body">
+
+          <ul class = "list-group">
+            {%for i in news['response']['results'] %}
+
+            {%if i['sectionName'] == j %}
+            <li class = "list-group-item">
+              <a href={{i['webUrl']}}>{{i['webTitle']}}</a>
+            </li>
+            {%endif%}
+            {%endfor%}
+          </ul>
+        </div>
+      </div>
+
+      {%endfor%}
+    </div>
+  </div>
+</div>
+
+<br>
+
+<!-- STOCKS -->
+<div class="container">
+  <div  class="d-flex justify-content-center">
+    <div class="row">
+      <!-- STOCK CARDS -->
+      {% for item in entry %}
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          <h1 style="font-weight:bold; color:#3CB371">{{item[0]}}</h1><!-- STOCK SYMBOLS -->
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{item[5]}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{where_sold}}</h6>
+          <div class="row">
+          </div>
+          <div class="col-sm align-bottom"><i class="price"></i> Current Price:  ${{item[1]}} </div><!-- CURRENT PRICE -->
+          <div class="col-sm align-bottom"><i class="change_in_price"></i>Change In Price:   ${{item[3]}}</div><!-- CHANGE IN PRICE-->
+          <div class="col-sm align-bottom"><i class="percent_change"></i>Percent Change:  {{item[2]}}%</div>
+        </div>
+      </div>
+
+      {% endfor %}
+      <br/>
+      <br/>
+    </div>
+
+  </div>
+</div>
+
+<br>
+<br>
+
+<div class = "row justify-content-center">
+  &copy; Ryan Aday, Clara Mohri, Rachel Ng, Qian Zhou (Team RanQuoR-Turkey)
+</div>
+<div class = "row justify-content-center">
+  <p>Stock Data provided for free by <a href="https://iextrading.com/developer/">IEX</a>. View <a href="https://iextrading.com/developer">IEX’s Terms of Use</a>.</p>
+</div>
+</div>
+
+</body>
+</html>

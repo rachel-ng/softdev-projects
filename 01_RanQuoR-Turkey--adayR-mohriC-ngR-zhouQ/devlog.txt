@@ -1,0 +1,164 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+USAGE:
+* Replace all fields, angle brackets included, with specified info.
+  eg, pd <pd#> --> pd 3
+* Delete these instructions once all teammates understand usage.
+  (from tilde bar above to tilde bar below)
+* rename this file devlog.txt
+
+devlog--
+Use keyboard shortcut to jump to end,
+ replicate entry template, (Ctrl-Shift up x5, Ctrl-X, Ctrl-V x2)
+ modify appropriately.
+Each entry should begin with the following format:
+ firstL -- TIMESTAMP\n
+e.g.:
+clydeS -- 2999-12-31 23:59
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Team RanQuoR-Turkey
+Ryan Aday
+Clara Mohri
+Qian Zhou
+Rachel Ng
+pd 7
+---------------------
+Use of API for daily updates in news, weather, and train arrivals
+
+ ______   ______   __   __   __       ______   _______
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+fristL -- TIMESTAMP
+--------------------------------------------------------------
+<Thing fristL did.>
+==============================================================
+
+
+ryanA -- 2018-11-18 23:40
+Edited devlog
+
+ryanA -- 2018-11-18 23:44
+Added app.py template to work off of later
+
+
+ryanA -- 2018-11-19 12:24
+Made Guardian testing folder to explore API
+
+rachelN -- 2018-11-19 21:00
+Made weather_tests folder to explore OpenWeatherMap API.
+Currently includes weather, description of weather, temperature in F, icon of weather, low and high temps.
+Temperatures cast to integers.
+Uses IPAPI to get location from IP address, passes to OpenWeatherMap API.
+
+ryanA -- 2018-11-19 23:32
+Created basic template, used Rachel's example to test template using app.py.
+Decided on waiting for Tuesday to verity if we can use a certain stock API.
+Temperature API decided upon.
+
+qianZ -- 2018-11-20 01:00
+Made stock_test folder to explore the two stock apis (IEX, Alpha Vantage)
+methods to search in alpha vantage, and pulling down data from IEX, templates to choose stocks
+To Do: figure out how to retrieve checkbox info!!! & other things.
+
+claraM -- 2018-11-20 20:30
+Continued working on contents of news_tests folder. Made buttons that are according to the different current categories of news, such that they don't repeat. Worked on form input handling, although form is still not functional yet.
+
+qianZ -- 2018-11-20 23:39
+changed checkbox to radio; debug how to display multiple stocks, put stock folder's content to main webpage
+
+ryanA -- 2018-11-20 23:32
+Finished design.pdf.  Still have problems with Weather API on personal laptop, will download new key to try later.
+
+rachelN -- 2018-11-20 10:00
+Fixed weather card in templates. Moved stock cards into a different row.
+
+qianZ -- 2018-11-26
+experiment with database stocks display
+
+claraM -- 2018-11-27 13:19
+Form now retrieves the appropriate information from the API. Created a new template file, selection.html, that displays this requested information.
+
+ryanA -- 2018-11-27 12:35
+Can't use collapse, sticking to using dropdowns for the form.  Added mock for weather to be finished later.
+
+claraM - 2018-11-27 17:10
+Added database functionality.
+Added a function to add an entry to database
+Added a function to create table in database
+Added a function to clear database
+Json pulled from The Guardian API is stored in the database
+
+qianZ - 2018-11-27 10:49
+incorporated trial remove function to remove unwanted stocks; bad aesthetical display
+tried to add some preemptive measures against potential bugs
+
+rachelN -- 2018-11-28 16:45
+Finished fixing form for changing location of weather report. Stores location in sessions.
+
+claraM - 2018-11-27
+Continued working on storing data in database and fixed errors.
+
+claraM - 2018-11-28
+Created second template file called selections.html to display the requested informations from the file.
+
+qianZ -- 2018-11-29 23:31
+experiment with quota of AlphaVantage search, merge with api_to_db
+
+qianZ -- 2018-12-1 14:35
+templating for Choices.html
+
+ALL: 2018-11-30
+Decided against storing JSON data in database because of the difficulty of storing
+a dictionary as a string and then getting the string back into a dictionary. 
+(besides stock symbols, which are already thus implemented)
+
+claraM - 2018-12-03
+Integrated news with main app.py, and made changed to index.html to allow for this
+
+rachelN -- 2018-12-03 23:00
+Fixed weather card in app.py, the form now works! With sessions! Uses "GET" method.
+Added some comments + fixed formatting in templates/index.html and app.py
+
+claraM - 2018-12-04
+Integrated the news form with app.py, and created news_form.html to facilitate this in templates
+Added bootstrap to news_form.html
+
+rachelN -- 2018-12-04 12:53
+Changed weather form method back to "POST"
+
+qianZ - 2018-12-05
+apiKey error flashing
+
+rachelN -- 2018-12-05 10:30
+Location error flashing within weather card, doesn't flash to apiKey error flashing
+
+claraM -- 2018-12-05
+Worked on creating a session['category'] list for the user.
+This is in order to save which categories the user wants to have, and so that there can be multiple categories.
+
+ryanA -- 2018-12-06 06:05
+Made requirements.txt.  Reformatted news_form, added remove category form.
+Issues with seeing removed categories on index.html.
+
+ryanA -- 2018-12-06 07:35
+Reformatted the templates.  Fixed removing category issue to rmnews fxn
+by adding sessions.modified=TRUE.  Thinking of keeping news in cards, but must
+change card column width to fit cards better.
+
+ryanA -- 2018-12-06 09:57
+Reformatted index.html, moved weather up next to news and stocks down, edited
+colors.
+
+claraM -- 2018-12-06
+Worked on bug fixes for when news categories are more than one word.
+
+qianZ -- 2018-12-06 21:56
+Exception handling and some comments
