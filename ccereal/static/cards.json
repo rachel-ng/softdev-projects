@@ -1,0 +1,308 @@
+[
+    {
+	"card_name" : "babypink",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "babyorange",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "babyyellow",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "babygreen",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "babyblue",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "babypurple",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "babyblack",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "babywhite",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "babybrown",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "babydeath",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "babynarwhal",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "babyshotgun",
+	"card_type" : "baby_uni",
+	"quantity" : 1,
+	"description" : "If this card would be sacrificed, destroyed, or returned to your hand, return it to the Nursery instead.",
+	"phases" :
+	{
+	    "sacrificed" : ["ret_nursery"],
+	    "destroyed" : ["ret_nursery"],
+	    "ret_hand" : ["ret_nursery"]
+	}
+    },
+    {
+	"card_name" : "basicred",
+	"card_type" : "basic_uni",
+	"quantity" : 4,
+	"description" : "Beards are like, so hot."
+    },
+    {
+	"card_name" : "basicorange",
+	"card_type" : "basic_uni",
+	"quantity" : 4,
+	"description" : "Pumpkin spice is the pumpkin spice of life."
+    },
+    {
+	"card_name" : "basicyellow",
+	"card_type" : "basic_uni",
+	"quantity" : 4,
+	"description" : "Dance like nobody’s watching."
+    },
+    {
+	"card_name" : "basicgreen",
+	"card_type" : "basic_uni",
+	"quantity" : 4,
+	"description" : "Vinyl records and mixtapes only."
+    },
+    {
+	"card_name" : "basicblue",
+	"card_type" : "basic_uni",
+	"quantity" : 4,
+	"description" : "Popped collars are for date nights only."
+    },
+    {
+	"card_name" : "basicindigo",
+	"card_type" : "basic_uni",
+	"quantity" : 4,
+	"description" : "💖🙌💅💖💁‍♀️💁‍♀️😂😂😂"
+    },
+    {
+	"card_name" : "basicpurple",
+	"card_type" : "basic_uni",
+	"quantity" : 4,
+	"description" : "#nomakeup #nofilter #sunnies #shameless #selfie #basic #TGIF #unicornhairdontcare"
+    },
+    {
+	"card_name" : "basicnarwhal",
+	"card_type" : "basic_uni",
+	"quantity" : 2,
+	"description" : "This card has no special powers, but it sure is cute!"
+    },
+    {
+	"card_name" : "extremelyfertile",
+	"card_type" : "magical_uni",
+	"quantity" : 1,
+	"description" : "If this card is in your Stable at the beginning of your turn, you may DISCARD a card. If you do, bring a Baby Unicorn card from the Nursery directly into your Stable.",
+	"phases" :
+	{
+	    "in_stable" : ["choice", "discard_all", "add_baby_frm_nursery"]
+	}
+    },
+    {
+	"card_name" : "stabby",
+	"card_type" : "magical_uni",
+	"quantity" : 2,
+	"description" : "If this card is sacrificed or destroyed, you may DESTROY a Unicorn card.",
+	"phases" :
+	{
+	    "sacrificed" : ["choice", "destroy_uni"],
+	    "destroyed" : ["choice", "destroy_uni"]
+	}
+    },
+    {
+	"card_name" : "rainbow",
+	"card_type" : "magical_uni",
+	"quantity" : 2,
+	"description" : "When this card enters your Stable, you may bring a Basic Unicorn card from your hand directly into your Stable.",
+	"phases" :
+	{
+	    "enter" : ["choice", "add_basic_frm_hand"]
+	}
+    },
+    {
+	"card_name" : "greedyflying",
+	"card_type" : "magical_uni",
+	"quantity" : 2,
+	"description" : "When this card enters your Stable, DRAW a card. If this card would be sacrificed or destroyed, return it to your hand instead.",
+	"phases" :
+	{
+	    "enter" : ["draw"],
+	    "sacrificed" : ["ret_hand"],
+	    "destroyed" : ["ret_hand"]
+	}
+    },
+    {
+	"card_name" : "annoying",
+	"card_type" : "magical_uni",
+	"quantity" : 1,
+	"description" : "When this card enters your Stable, you may choose any player. That player must DISCARD a card. If this card would be sacrificed or destroyed, return it to your hand instead.",
+	"phases" :
+	{
+	    "enter" : ["choice", "other_discard_all"],
+	    "sacrificed" : ["ret_hand"],
+	    "destroyed" : ["ret_hand"]
+	}
+    },
+    {
+	"card_name" : "unicornonthecob",
+	"card_type" : "magical_uni",
+	"quantity" : 1,
+	"description" : "When this card enters your Stable, DRAW 2 cards and DISCARD a card.",
+	"phases" :
+	{
+	    "enter" : ["draw", "draw", "discard_all"]
+	}
+    },
+    {
+	"card_name" : "sharkwithahorn",
+	"card_type" : "magical_uni",
+	"quantity" : 2,
+	"description" : "When this card enters your Stable, you may SACRIFICE this card. If you do, DESTROY a Unicorn card.",
+	"phases" :
+	{
+	    "enter" : ["choice", "sacrifice_this", "destroy_uni"]
+	}
+    },
+    {
+	"card_name" : "mermaid",
+	"card_type" : "magical_uni",
+	"quantity" : 1,
+	"description" : "When this card enters your Stable, you may choose any player. Return a card in that player's Stable to their hand.",
+	"phases" :
+	{
+	    "enter" : ["choice", "other_ret_all_to_hand"]
+	}
+    },
+    {
+	"card_name" : "unicornpoison",
+	"card_type" : "magic",
+	"quantity" : 5,
+	"description" : "DESTROY a Unicorn card.",
+	"effect" : ["destroy_uni"]
+    },
+    {
+	"card_name" : "unfairbargain",
+	"card_type" : "magic",
+	"quantity" : 4,
+	"description" : "Trade hands with any other player.",
+	"effect" : ["switch_hand"]
+    },
+    {
+	"card_name" : "twoforone",
+	"card_type" : "magic",
+	"quantity" : 4,
+	"description" : "SACRIFICE a card, then DESTROY 2 cards.",
+	"effect" : ["sacrifice_all", "destroy_uni", "destroy_uni"]
+    },
+    {
+	"card_name" : "gooddeal",
+	"card_type" : "magic",
+	"quantity" : 4,
+	"description" : "DRAW 3 cards and DISCARD a card.",
+	"effect" : ["draw", "draw", "draw", "discard_all"]
+    }
+
+]

@@ -1,0 +1,187 @@
+cereal mafia
+
+T Fabiha
+Imad Belkebir
+Rachel Ng
+Mai Rachlevsky
+pd 07
+---------------------
+P #05: Fin
+
+ ______   ______   __   __   __       ______   _______
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+fabihaT -- 2019-05-07 18:00
+- created devlog
+
+fabihaT -- 2019-05-13 1:45
+- addressed feedback on design doc
+- updated sitemap
+  - added timeout
+- updated component map
+- fixed database schema
+- updated roles (made more specific)
+- added timeline
+
+imadB -- 2019-05-13 9:50
+- created simple chatroom server using sockets
+
+maiR -- 2019-05-14 11:13
+- Created database table and wrote functions for db
+
+rachelN -- 2019-05-14 0:52
+- created a few (very) basic templates, will work on styling later
+- static/base.css
+- templates/base.html
+           /lobby.html
+           /login.html
+
+maiR -- 2019-05-15 20:32
+- Worked on basic login and log out on flask
+- got all the images of the cereals for the cards
+
+rachelN -- 2019-05-15 22:45
+- made and updated templates and css
+- templates/register.html
+- flask routing for login, registration, creating game invite code
+
+maiR -- 2019-05-16 13:06
+- created basic template for game page and updated flask routing
+- added button for register
+
+rachelN -- 2019-05-16 13:15
+- flash error messages
+- more flask routing
+
+rachelN -- 2019-05-16 22:45
+- fixed / updated more templates
+- apache stuff!!
+
+rachelN -- 2019-05-17 11:00
+- app.py -> __init__.py
+  python __init__.py to run on localhost
+- apache stuff!! (cont.)
+- added docstrings
+
+maiR -- 2019-05-20 13:17
+- added to index.html and sockets.js- made button for drawing card
+
+imadB -- 2019-05-20 13:20
+- added comments on sockets and made chatroom send to specific room
+
+fabihaT -- 2019-05-21 18:00
+- fixed bugs
+- added game mechanisms using sockets
+
+rachelN -- 2019-05-22 22:48
+- requirements.txt
+
+fabihaT -- 2019-05-25 11:00
+- continued to explore implementation of sockets on droplet
+- consulted team write illegibly to figure out how they implemented
+  sockets
+
+fabihaT -- 2019-05-27 23:00
+- created cards.json file that contains the name, quantity, type,
+  description, and keywords that will be used to display cards
+- planned out implementations of these keywords for effects
+- fixed bugs
+
+imadB -- 2019-05-27 23:30
+- Started game functionality
+- Made cards and deck
+- Made player hands
+
+rachelN -- 2019-05-28 16:19
+- card spacing
+- added descriptions to box
+
+imadB -- 2019-05-30 22:00
+- Created turns between player and opponent
+- Drawing cards works
+- Discarding cards works
+
+rachelN -- 2019-05-30 23:19
+- removed descriptions of card on hover
+
+fabihaT -- 2019-05-31 12:00
+- planned beg_of_phase, draw_phase, action_phase, and end_phase and
+  how to implement these functions
+
+rachelN -- 2019-05-31 19:30
+- rearranged cards
+
+imadB -- 2019-06-03 22:30
+- Can play unicorn cards to stable
+- Can play magic cards to discard
+- Setting up for card effects
+
+rachelN -- 2019-06-05 20:54
+- modularized code
+- added functions so it's easier to read
+
+imadB -- 2019-06-05 21:00
+- Opponent plays card or draws on turn
+- Reading effects from cards
+
+imadB -- 2019-06-06 1:00
+- Basic card effects: shuffle, draw, and discard using async functions
+- Cleaned up code
+
+fabihaT -- 2019-06-06 18:00
+- rewrote implementations of game mechanics to make it easier to add
+  effects of cards
+- fixed readme
+
+imadB -- 2019-06-07 2:00
+- Tried to rework effects back in to new implementation
+- Reworked opponent mechanics
+
+rachelN -- 2019-06-07 3:00
+- action phase stuff
+- functions for magic / action cards
+
+imadB -- 2019-06-08 12:00
+- Implemented promises for async functions
+- Implemented new effects
+
+fabihaT -- 2019-06-08 15:00
+- researched async, await, and promise
+- implemented effects
+- implemented effects upon enter for both opponent and player
+
+imadB -- 2019-06-09 12:00
+- Implemented/improved more effects
+
+fabihaT -- 2019-06-09 15:00
+- implemented some effect functions
+- edited cards.json
+
+rachelN -- 2019-06-10 23:44
+- leaderboard (sqlite rip)
+- design of website (logo!!)
+- static header, links, etc.
+- fixed joining games
+- won / lost pages
+- logout
+
+imadB -- 2019-06-011 00:30
+- Implemented/improved more effects
+- More async functions/promises
+- Allows for user choice
+
+fabihaT -- 2019-06-11 00:28
+- fixed typos and other bugs
+- implemented some more effects
+- enabled effects in beginning of turn for both opponent and
+  player
+- wrote the script
+- reworked cards.json by removing some cards and adding more of others
+- wrote out instructions for game
