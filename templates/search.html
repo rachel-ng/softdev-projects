@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{query}} ({{result_count}})
+{% endblock %}
+
+{% block content %}
+    {% if result_count > 0 %}
+        {% include "post_list.html" %}
+    {% else %}
+        <h3>No results found</h3>
+    {% endif %}
+{% endblock %}

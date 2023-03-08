@@ -1,0 +1,7 @@
+{% extends "index.html" %}
+
+{% block content %}
+    Welcome, {{logged_in}}! <br>
+    <a href="/logout">Log out</a> <br> <br>
+    {% include "post_list.html" %}
+{% endblock %}

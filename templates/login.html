@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+  {% block content %}
+    <form action="/login" method = "POST">
+      Username: <br>
+      <input type="text" name="username"> <br>
+      Password: <br>
+      <input type="password" name="password">
+      <br>
+      <button type="submit"> Log In </button>
+    </form>
+    <br>
+
+    {% set msgs = get_flashed_messages() %}
+    {% for msg in msgs %}
+      <font color="red"> {{ msg }} </font>
+    <br>
+    {% endfor %}
+    <br>
+    Don't have an account? <br>
+    <a href="/signup">Sign Up</a> <br>
+
+{% endblock %}

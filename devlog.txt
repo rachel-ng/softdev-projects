@@ -1,0 +1,295 @@
+Bourbon Chocolate
+Daniel Keriazis
+Karen Li
+Rachel Ng
+Vincent Lin
+pd 7
+---------------------
+Blog
+
+
+ ______   ______   __   __   __       ______   _______
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+danielK -- 2018-10-16 13:19
+--------------------------------------------------------------
+1. Began devlog
+==============================================================
+
+karenL -- 2018-10-16 23:40
+--------------------------------------------------------------
+1. Modified component map to be more specific to our project
+2. Made breakdown of roles more thorough
+==============================================================
+
+rachelN -- 2018-10-16 23:44
+--------------------------------------------------------------
+(Team response to reading)
+1. We should attempt to maintain backwards compatibility between updates.
+2. We will attempt to do this by practicing semantic versioning (https://semver.org/).
+3. We will also set standards for our code to make it as easy as possible to work with as a team.
+==============================================================
+
+rachelN -- 2018-10-17 12:53
+--------------------------------------------------------------
+1. Added design.pdf to repo
+==============================================================
+
+keriazisD -- 2018-10-17 12:59
+--------------------------------------------------------------
+1. Added flask starter kit
+==============================================================
+
+karenL -- 2018-10-17 13:08
+--------------------------------------------------------------
+1. Devlog formatting
+==============================================================
+
+vincentL -- 2018-10-17 13:18
+--------------------------------------------------------------
+1. Added basic app routes
+==============================================================
+
+danielK -- 2018-10-17 20:40
+--------------------------------------------------------------
+1. Began work on accounts.py
+2. Added empty data directory
+==============================================================
+
+rachelN -- 2018-10-17 21:45
+--------------------------------------------------------------
+1. Added posts.py
+
+	Functions:
+   	 - create_table() -- makes posts table if not already present
+   	 - create_post(id, title, content, author) -- adds post to posts
+   	 - get_post(id) -- gets post from posts (only prints for now)
+         - NOTE: get_post() should only get 1 post provided that there are NO REPEATING IDs
+   	 - delete_post(title) -- deletes post from posts
+         - while I did not make whether or not it exists a condition, it doesn't delete things that don't exist either
+    	 - edit_post(id, title, content) -- edits post from posts
+
+    	 - has tests to check functions
+         	- uses random.SystemRandom().getrandbits(n) to generate 16 bit random integers to use as IDs for the posts
+    	 - prints statements while functions run for checking -- comment out later
+
+2. Moved data.db to data folder
+==============================================================
+
+danielK -- 2018-10-17 22:22
+--------------------------------------------------------------
+1. Added functions to add_user and check if user_exists
+==============================================================
+
+rachelN -- 2018-10-17 23:15
+--------------------------------------------------------------
+1. Fixed issues with test cases -- added tests() and put into main()
+==============================================================
+
+danielK -- 2018-10-18 00:16
+--------------------------------------------------------------
+1. Added auth_user and remove_user as well as basic tests
+==============================================================
+
+rachelN -- 2018-10-18 13:15
+--------------------------------------------------------------
+1. delete_post() takes an id
+2. t_posts.py contains test cases for posts
+==============================================================
+
+danielK -- 2018-10-18 13:23
+--------------------------------------------------------------
+1. Began sessioning
+==============================================================
+
+vincentL -- 2018-10-18 23:26
+--------------------------------------------------------------
+1. Made error messages that tell user why they failed to log in
+2. Hardcoded a username and password for testing purposes
+==============================================================
+
+danielK -- 2018-10-19 13:14
+--------------------------------------------------------------
+1. Got accounts working in the frontend
+2. Added basis for creating accounts
+==============================================================
+
+karenL -- 2018-10-19 13:19
+--------------------------------------------------------------
+1. Added templates for index, signup, edit, and blog
+2. Added templates for when user is logged in and when user is
+logged out
+==============================================================
+
+danielK -- 2018-10-19 18:42
+--------------------------------------------------------------
+1. Implemented logging out
+2. Removed duplicate signup route
+3. Updated database management
+4. Updated copyright information
+5. Creating an account now logs you in
+==============================================================
+
+rachelN -- 2018-10-20 01:10
+--------------------------------------------------------------
+1. Added functions to posts.py
+    - modularity:
+          - NEW      now (further) modularized
+                - connect_db() -- opens the database and connects the cursor, returns db, c
+                      - added to pretty much every function that has to do database stuff
+                - close_db(db) -- commits to and closes connection to database
+                      - added to pretty much every function that has to do database stuff
+                - get_db() -- gets all rows from posts
+                - db_file() -- prints the database location somewhere
+          - post_exists(id) -- determines if post exists, fixed ver.
+          - NEW      author_exists(author) -- determines if author exists
+                - posts.author should be the same as users.username
+          - NEW      get_author_posts(author) -- I think we're going to need this to get all of an author's posts for *any* author's blog page
+
+    - create_post(id) -- checks if the post id is already used, if it is then it doesn't make the post (for now)
+    - get_post(id) -- checks see if the post exists, returns contents of post
+    - delete_post(id) -- if the post doesn't exist it doesn't get deleted
+    - edit_post(id, title, content) -- if the post doesn't exist it doesn't get edited
+    - main() has been deleted and all the stuff that was in it was just moved under the if statement ig
+
+2. Tested using
+   -t_posts.py -- now works!!
+   -t _posts2.py -- currently trying to make a more quantifiable driver or something like that
+==============================================================
+
+danielK -- 2018-10-20 13:43
+--------------------------------------------------------------
+1. Started a proper testing suite for accounts
+2. Fixed import error
+==============================================================
+
+danielK -- 2018-10-21 00:26
+--------------------------------------------------------------
+1. Added to test suite
+==============================================================
+
+karenL -- 2018-10-22 13:23
+--------------------------------------------------------------
+1. Formatting for signup page
+==============================================================
+
+danielK -- 2018-10-22 14:25
+--------------------------------------------------------------
+1. Added /create and /post routes
+2. Fixed template
+3. Added startup scripts to make tables
+4. Updated posts.py
+==============================================================
+
+rachelN -- 2018-10-22 23:05
+--------------------------------------------------------------
+1. Added get_title(id)
+2. Implemented titles
+==============================================================
+
+karenL -- 2018-10-22 23:53
+--------------------------------------------------------------
+1. Replaced create.html with template that does not use CSS.
+2. Minor edits to templates for user convenience
+==============================================================
+
+karenL -- 2018-10-23 00:27
+--------------------------------------------------------------
+1. Created README.md
+==============================================================
+
+vincentL -- 2018-10-23 01:43
+--------------------------------------------------------------
+1. Added breaks to indicate a navbar and footer
+2. Removed CSS in base.html
+     -some css in other templates still needs to be taken out
+==============================================================
+
+rachelN -- 2018-10-23 22:09
+--------------------------------------------------------------
+1. Added get_all_posts()
+2. Added post_mult.html -- template for multiple posts (for /<author> and home).
+3. Added comments to posts.py
+4. Removed testing files from util/
+5. Added /<author> route -- has all of <author>'s posts
+    - e.g. http://127.0.0.1:5000/anon
+6. Added /home route -- has all posts
+	-Fun fact: they're out of order
+==============================================================
+
+danielK -- 2018-10-23 23:43
+--------------------------------------------------------------
+1. Added integrity checks
+==============================================================
+
+rachelN -- 2018-10-24 21:30
+--------------------------------------------------------------
+1. Added /edit route
+    - uses a hidden input field to pass along the post's id
+2. Added links to edit page and author to posts_mult.html
+3. Moved all posts to root route, removed /home route
+4. /<author> -> /author/<author> for more clarity
+==============================================================
+
+danielK -- 2018-10-25 03:32
+--------------------------------------------------------------
+1. Refactored a lot of HTML and stylized a bit
+==============================================================
+
+karenL -- 2018-10-25 13:21
+--------------------------------------------------------------
+1. Fixed bug username missing on welcome
+2. Fixed edit ValueError: too many values to unpack 
+3. Fixed bug where the edit text field is populated with html code
+4. Removed CSS and formatted templates for easier user interaction
+==============================================================
+
+rachelN -- 2018-10-25 19:11
+--------------------------------------------------------------
+1. Changed links to /<some>/<thing> format
+    - e.g. /post/<post_id>
+           /edit/<post_id>
+2. No longer shows edit links if you're not the author
+3. Removed hidden field from edit.html
+==============================================================
+
+danielK -- 2018-10-25 19:41
+--------------------------------------------------------------
+1. Added links for individual posts from post_list.html
+2. Updated README with To-Do section
+3. Code refactoring in app.py
+==============================================================
+
+karenL -- 2018-10-26 09:43
+--------------------------------------------------------------
+1. Standardized devlog updates
+==============================================================
+
+karenL -- 2018-10-26 10:55
+--------------------------------------------------------------
+1. Added an edit link (depending on if the user is the owner
+of the post) on each post page.
+==============================================================
+
+danielK -- 2018-10-26 10:59
+--------------------------------------------------------------
+1. Added minimum width for tables
+==============================================================
+
+karenL -- 2018-10-28 02:12
+--------------------------------------------------------------
+1. Updated README.md with explanation for unittest
+==============================================================
+
+karenL -- 2018-10-28 23:27
+--------------------------------------------------------------
+1. Moved blog title and content into a table
+==============================================================
