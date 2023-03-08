@@ -1,0 +1,31 @@
+rowSpacing{
+	margin-bottom: 10px;
+}
+
+.center {
+	text-align:center;
+}
+#rowTop{
+  width:90%;
+  background-color: rgba(176, 176, 176, 0.25);
+  padding: 3%;
+  border-radius: 12px;
+}
+
+.transparency {
+	opacity: .80;
+}
+
+#cardHolder{
+	width:85%;
+	margin:auto;
+}
+
+.goalButton{
+	opacity: .75;
+}
+
+#goal{
+	width:85%;
+	margin:auto;
+}

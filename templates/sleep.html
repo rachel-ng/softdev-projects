@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='generalStyles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='sleep.css') }}">
+{% endblock %}
+
+{% block title %}
+Sleep
+{% endblock %}
+
+{# insert graph here! #}
+
+{% block content %}
+<!-- insert graph on left side -->
+<!-- to be put on the right side -->
+<div class="container-fluid">
+  <div id="mainCard">
+    <div class="card text-white bg-dark mb-3">
+      <div class="card-header"><h3>Sleep</h3></div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            {% include ['sleep_chart.html'] %}
+          </div>
+          <div class="col-md-3">
+            <h5 class="card-title">Sleep Log <i class="fas fa-bed"></i></h5>
+            You slept {{past}} hours last night.
+            Record your sleeping:
+            <br>
+
+            <form method="POST">
+              When did you go to sleep?
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" name="hour1">
+                      <option>01</option>
+                      <option>02</option>
+                      <option>03</option>
+                      <option>04</option>
+                      <option>05</option>
+                      <option>06</option>
+                      <option>07</option>
+                      <option>08</option>
+                      <option>09</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" name = "minutes1">
+                      <option>00</option>
+                      <option>15</option>
+                      <option>30</option>
+                      <option>45</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active radio-inline">
+                  <input type="radio" name="group1" id="o1" value="0" checked> a.m.
+                </label>
+                <label class="btn btn-secondary radio-inline">
+                  <input type="radio" name="group1" id="o2" value="1"> p.m.
+                </label>
+              </div>
+              <br>
+              <br>
+              When did you wake up?
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" name="hour2">
+                      <option>01</option>
+                      <option>02</option>
+                      <option>03</option>
+                      <option>04</option>
+                      <option>05</option>
+                      <option>06</option>
+                      <option>07</option>
+                      <option>08</option>
+                      <option>09</option>
+                      <option>10</option>
+                      <option>11</option>
+                      <option>12</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select class="form-control" name = "minutes2">
+                      <option>00</option>
+                      <option>15</option>
+                      <option>30</option>
+                      <option>45</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active radio-inline">
+                  <input type="radio" name="group2" id="o1" value="0"checked> a.m.
+                </label>
+                <label class="btn btn-secondary radio-inline">
+                  <input type="radio" name="group2" id="o2" value="1" > p.m.
+                </label>
+              </div>
+              <br>
+              <br>
+              <button type="submit" name="submit" value="submit" class="btn btn-light btn-sm">Submit</button>
+            </form>
+          </div>
+
+          <div class="col-md-3">
+            <h5 class="card-title">Sleep Calculator</h5>
+            What time do you want to wake up?
+            <div class="form-group">
+              <label>Hour</label>
+              <select class="form-control" id = "hours">
+                <option>01</option>
+                <option>02</option>
+                <option>03</option>
+                <option>04</option>
+                <option>05</option>
+                <option>06</option>
+                <option>07</option>
+                <option>08</option>
+                <option>09</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+              </select>
+            </div>
+
+
+            <div class="form-group">
+              <label>Minutes</label>
+              <select class="form-control" id = "minutes">
+                <option>00</option>
+                <option>15</option>
+                <option>30</option>
+                <option>45</option>
+              </select>
+            </div>
+
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-secondary active radio-inline">
+                <input type="radio" name="group0" id="calc1" value="am" checked> am
+              </label>
+              <label class="btn btn-secondary radio-inline">
+                <input type="radio" name="group0" id="o2" value="pm" > pm
+              </label>
+            </div>
+            <br>
+            <br>
+            <button id="x" class="btn btn-light btn-sm">Submit</button>
+            <br>
+            <br>
+            <ul class="list-group" id="sleepList">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type = "text/javascript" src="{{url_for('static', filename='js/sleep.js') }}"></script>
+
+
+{% endblock %}

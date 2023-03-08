@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+{% endblock %}
+
+{% block title %}
+	Login
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="shadow-sm p-3 mb-5 bg-white rounded" id="loginBox">
+
+  <h5 class="display-4">Welcome to Ambrosia!</h5>
+
+  <form action ="/login_auth" method="POST">
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" class="form-control" name="username" placeholder="Username" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+    </div>
+
+    <i>Don't have an account? Register <a href="/signup">here</a>! </i> <br>
+
+    <br>
+
+    <button type="submit" class="btn btn-primary" value="Login">Submit</button> <br> <br>
+
+		</form>
+		</div>
+</div>
+
+{% endblock %}

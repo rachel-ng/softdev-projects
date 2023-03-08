@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+{% endblock %}
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+{% if 'username' not in session %}
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="display-4">Welcome to Ambrosia</h1>
+    <p class="lead">Ambrosia is a web app designed to help you keep track of your health!</p>
+    <hr class="my-4">
+    <p>Comes with features such as a sleep calculator, exercise tracker, nutrition tracker and more!</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="/signup" role="button">Get started!</a>
+    </p>
+  </div>
+</div>
+
+{% else %}
+
+<div class="container d-flex justify-content-center">
+  <div class="row center" id="rowTop">
+    <div class="col-md-6">
+      {% if 'username' in session %}
+      <h2 class="font-weight-light">Welcome {{session['username']}}<h2>
+        {% endif %}
+        {% if goal %}
+        <form action="/" method="POST">
+          <div class="form-group">
+            <p class="lead">Update your goal:</p>
+            <input type="text" id="goal" name="goal" class="form-control form-control-sm">
+            <button type="submit" class="btn btn-secondary btn-sm goalButton" name="Save">Submit</button>
+          </div>
+        </form>
+        {% else %}
+            <form action="/" method="POST">
+              <div class="form-group">
+                <p class="lead">Add a goal:</p>
+                <input type="text" id="goal" name="goal" class="form-control form-control-sm">
+                <button type="submit" class="btn btn-secondary btn-sm goalButton" name="Save">Submit</button>
+              </div>
+            </form>
+        {% endif %}
+      </div>
+
+      <div class="col-md-6">
+        <div class="card bg-light mb-3">
+          <div class="card-header">
+            <p class="lead">Your daily goal: <br>{{goal}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="container-fluid center">
+    <div id="cardHolder">
+    <div class="row">
+      <div class="col-sm-6 mb-5">
+        <div class="card text-white bg-dark mb-3 transparency">
+          <div class="card-header">
+            Sleep
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class = "col-sm-12">
+                {% include ['sleep_chart.html'] %}
+                <br>
+              </div>
+              <div class="col-sm-12">
+                <blockquote class="blockquote mb-0">
+                  <p class="lead">You slept <strong>{{last_sleep}}</strong> hours last night.</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-5">
+        <div class="card text-white bg-danger mb-3 transparency">
+          <div class="card-header">
+            Exercise
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class = "col-sm-12">
+               {% include ['exercise_chart.html'] %}
+               <br>
+              </div>
+              <div class="col-sm-12">
+                <blockquote class="blockquote mb-0">
+                  <p class="lead">You have worked out <strong>{{exercise_hours}}</strong> hours this week!</p>
+                  <p class="lead"> {{exercise_last_category}} </p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" >
+      <div class="col-sm-6 mb-5">
+        <div class="card text-white bg-success mb-3 transparency">
+          <div class="card-header">
+            Nutrition
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class = "col-sm-12">
+                {% include ['macros_chart.html'] %}
+                <br>
+              </div>
+              <div class="col-sm-12">
+                <blockquote class="blockquote mb-0">
+                  <p class="lead">You have consumed <strong>{{calories}}</strong> and <strong>{{carbs}}</strong> grams of carbs and <strong>{{protein}}</strong> grams of protein and <strong>{{fat}}</strong> grams of fat today.</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 mb-5">
+        <div class="card text-white bg-info mb-3 transparency">
+          <div class="card-header">
+            Water
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class = "col-sm-12">
+                {% include ['water_chart.html'] %}
+                <br>
+              </div>
+              <div class="col-sm-12">
+                <blockquote class="blockquote mb-0">
+                  <p class="lead">You have drank <strong>{{all_water}} fluid ounces</strong> of water today!</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock %}

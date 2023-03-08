@@ -1,0 +1,256 @@
+group d'etat
+Rachel Ng
+Ray Onishi
+Tina Wong
+Maggie Zhao
+pd 07
+---------------------
+P #02: The End
+Your team has been contracted to showcase your proficiency with all things covered this term.
+
+You have secured creative freedom of expressions, constrained only by the bounds of scholarly discourse
+
+ ______   ______   __   __   __       ______   _______
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/
+==============================================================
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+tinaW -- 2019-01-04 15:27
+- Added devlog
+
+tinaW -- 2019-01-07 15:45
+- Added list of components, database schema, and component map on design doc
+
+maggieZ -- 2019-01-08 00:45
+- Created sitemap and sample web pages.
+
+tinaW -- 2019-01-08 17:11
+- Fixed component map by organizing it by front end and back end to provide more clarity
+- Added basic templates
+- Added database creation
+- Added back end for registration, login and authentication
+- Added page templating for login and register
+
+maggieZ -- 2019-01-08 21:45
+- Fixed sitemap by adding bidirectional arrows for pages that link to the homepage and for user profile/edit user info.
+- Digitized sitemap.
+
+rayO -- 2019-01-08 23:03
+- Added navbar to base
+- Created static folder to hold css/images
+- Created index.css and base.css
+- Added some placeholder items to index.html to test organization of items
+
+rachelN -- 2019-01-09 00:15
+- Added ideal timeline with dates and tasks in order of priority
+- Updated database schema: now includes tables user_information, water_log, sleep_log, exercise_log, food_log, weekly_diet
+    - user_information -- user id, username and hashed password, height and weight
+          - now includes allergies and dietary restrictions, and expected macros (from diet: carbs, protein, fat)
+    - water_log -- dates, daily intake
+          - now weekly
+    - sleep_log -- dates, start and end, hours slept
+    - exercise_log -- dates, hours exercised, targeted muscle groups
+    - food_log -- dates, time, meal / what you ate, takes calories, carbs, protein, fat
+          - easier adding of calories + macros in the weekly_diet table
+    - weekly_diet -- dates, daily calories + macros
+- Added updated design doc to repo
+
+tinaW -- 2019-01-09 01:07
+- Added profile template
+- Added backend for getting user's height and weight into database
+
+rayO -- 2019-01-09 13:05
+- Facilitated passing session to index to show different items for logged in users
+
+tinaW -- 2019-01-09 15:11
+- Fixed database to reflect design doc changes
+- Added allergies and dietary restrictions to user profile
+
+rayO -- 2019-01-09 15:40
+- Added cards to index in the grid, to be designed/worked on later
+
+rachelN -- 2019-01-09 21:55
+- Tested out chart.js, made a chart for sleep
+- Added requirements.txt
+- Added updated design doc to repo, now comes with reasoning behind Bootstrap!
+
+tinaW -- 2019-01-10 13:28
+- Added search functionality for exercise categories
+
+rayO -- 2019-01-10 19:08
+- Cards now have colors and some styling
+- Added basics of summary section at top
+
+rachelN -- 2019-01-11 02:50
+- Updated requirements.txt
+- Began testing plotly for charts
+
+rachelN -- 2019-01-11 10:45
+- Added plotly api kb card
+- Added plotly to keys.json (placeholder file made)
+    - PLOTLY_USERNAME
+    - PLOTLY_API
+- Added plotly_charts with config(), must be run in at least once in order to set credentials and use plotly
+
+$ pip install plotly
+$ python
+>>> import util.plotly_charts
+>>> util.plotly_charts.config()
+
+rayO -- 2019-01-11 16:47
+- Added footer (doesn't stick to bottom yet)
+- Stylized alert message
+
+maggieZ -- 2019-01-11 17:48
+- Started sleep frontend
+- Water template & frontend- input & diff choices for measurement(mL/fl.oz/cups)
+
+tinaW -- 2019-01-11 18:11
+- Finished all of exercise backend, including:
+  - user's exercise log
+  - muscle group user worked on
+
+rayO -- 2019-01-12 01:15
+- Added frontend for login/signup/profile pages
+- Added values to inputs in profile to autofill previously inputted information
+
+tinaW -- 2019-01-12 02:37
+- Started USDA Nutrients API work with getting food id and calories
+- Added food log frontend form
+- Added add food to database function
+- Added display food user ate today function
+
+rachelN -- 2019-01-12 05:25
+- Got gantt styled sleep chart to work
+
+maggieZ -- 2019-01-12 13:14
+- Fixed water backend- need to conver HTML inputs to integers
+- Fixed water conversions
+
+tinaW -- 2019-01-12 14:24
+- Finished using USDA Nutrients API to get calories of food submitted by user in form
+- Wrote function to display total calories consumed today.
+- Added checks for when API key is missing or food is not found.
+- Updated nutrients template to show expected amount of nutrients.
+
+maggieZ -- 2019-01-12 18:27
+- Connected sleep page to homepage, adding sleep info to database
+- Fixed water input from page 
+- Started sleep calculator
+- Sleep front end (buttons/dropdown menus to select sleep times)
+- Added function for calculating the difference between two times
+
+tinaW -- 2019-01-12 21:24
+- Used USDA Nutrients API to get carbohydrates, fat, and protein based on user's meal and amount
+- Finished adding carbohydrates, fat, and protein to be displayed to user and added to database
+
+rayO -- 2019-01-13 16:11
+- Frontend work done on exercise/water pages, only charts left to be added
+- Added additional info on water/exercise pages to clarify how they work
+- Minor style change on profile page
+- Footer is now locked to the bottom
+
+rachelN -- 2019-01-13 18:00
+- Finished remaining charts with static data, will begin to get data from databases
+- Fixed days for line chart
+- Added JS CDN for plotly charts (should move that to head)
+
+rachelN -- 2019-01-13 20:30
+- Updated README.md
+
+rayO -- 2019-01-13 21:02
+- Frontend work done on nutrition page
+- Replaced placeholder items on home page for users not logged in but still lacks content
+- Minor change to navbar
+
+maggieZ -- 2019-01-13 21:30
+- Added bulk of work to sleep calculator
+- Watch out for: differing week_start_days
+
+rachelN -- 2019-01-14 16:45
+- Fixed API keys
+- Updated README.md
+- Fixed requirements.txt
+
+maggieZ -- 2019-01-14 17:20
+- Changed database and appropriate functions to include start hours for sleep.
+
+rachelN -- 2019-01-15 12:51
+- Got sleep chart to work!!
+- Updated README.md
+- Removed spoonacular kb card from doc/
+
+rachelN -- 2019-01-15 19:20
+- Updated README.md
+
+rayO -- 2019-01-15 22:17
+- Frontend work mostly done on sleep page
+- Made sleep.js generate Bootstrap list group items for sleep calculator
+
+rayO -- 2019-01-15 23:09
+- Finished sleep frontend
+
+rayO -- 2019-01-15 23:32
+- Added food consumed today on nutrients page
+
+tinaW -- 2019-01-16 10:04
+- Fixed bug with exercise, changed display of page
+
+rayO -- 2019-01-15 13:06
+- Added summary for nutrition, water, and exercise section on index
+
+rachelN -- 2019-01-16 16:20
+- Worked on calorie and exercise charts
+- Removed extra API key json files
+
+tinaW -- 2019-01-16 17:57
+- Fixed issues with sleep log and database
+
+tinaW -- 2019-01-17 12:04
+- Added daily goal feature
+- Added update goal functionality
+- Fixed sleep log!
+
+rayO -- 2019-01-17 12:52
+- Sleep calculator and sleep log are fully fixed
+
+maggieZ -- 2019-01-17 13:30
+- Fixed bug with water conversion for mL
+
+rayO - 2019-01-17 17:57
+- Finished goal on index page
+
+rachelN - 2019-01-17 18:07
+- Chart stuff 
+- Added in a dummy db so data/ shows up 
+
+tinaW -- 2019-01-17 19:15
+- Fixed goal bug
+- Added comments
+
+rachelN - 2019-01-18 06:13
+- YouTube video link! 
+- Design Doc Updates: 
+    - health.db
+          - users: id, username, hashed pw (passlib ftw)
+          - basic_info: user_id, goal, age, height, weight, allergies, dietary restrictions, expected macros
+          - sleep_log: no longer has an end time, just start and # of hours 
+          - weekly_diet: was not used 
+          - water_log, exercise_log, food_log: largely remained the same
+    - APIs
+          - not using Spoonacular
+          - usingly Plotly instead of Chart.js
+          - surprisingly few API keys actually used / needed 
+    - component map
+          - spoonacular was taken out of the back end
+          - plotly_charts.py and chart_data were added to the back end 
+          - no edit page- all editing is done in the normal pages (e.g. sleep or nutrition) 
+    - site map was the same except for the names and the editing stuff which is d≈one in the pages 
+    - notes: the way dates (and days) were implemented throughout our code was different so they may start on a different day, we recommend you test ambrosia on a sunday 
+

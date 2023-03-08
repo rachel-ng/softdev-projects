@@ -1,0 +1,16 @@
+#exerciseList{
+  color:black;
+  width: 85%;
+  margin:auto;
+}
+
+.list-group{
+  max-height: 300px;
+  margin-bottom: 10px;
+  overflow:scroll;
+  overflow-x:hidden;
+}
+
+#exerciseContainer{
+  text-align:center;
+}
